@@ -5,6 +5,24 @@ import { ArchitectureFlow } from "@/components/figures/ArchitectureFlow";
 import { CodeBlock } from "@/components/figures/CodeBlock";
 import { OpsPanel } from "@/components/figures/OpsPanel";
 
+/* Per-chapter dominant Stack Atlas craft dimension. Used to render a
+   small dimensional dot in the chapter eyebrow as a visual continuation
+   of the atlas legend. Cobalt brand (chapter number marker, italic
+   thesis left rule) stays cobalt — only the eyebrow gets the dot.
+   Each mapping traces to the chapter's documented dominant theme:
+     lexisnexis  → judgment   (DDD, resilient retry, ADR-shaped decisions)
+     motorola    → discipline (public-safety reliability, testing rigor)
+     tcs         → multiplier (knowledge transfer, Dow LOR, mentoring)
+     lti         → data       (database-first, stored procedures)
+     northeastern→ multiplier (teaching 190 students) */
+const CHAPTER_DIMENSION: Record<string, string> = {
+  lexisnexis: "var(--color-atlas-judgment)",
+  motorola: "var(--color-atlas-discipline)",
+  tcs: "var(--color-atlas-multiplier)",
+  lti: "var(--color-atlas-data)",
+  northeastern: "var(--color-atlas-multiplier)",
+};
+
 /**
  * SystemFile — one chapter rendered as a Systems/{slug}.md file.
  *
@@ -75,17 +93,38 @@ export function SystemFile({ slug }: { slug: string }) {
         <div className="col-span-12 lg:col-span-10">
           {/* Match the bumped SectionTitle scale across sections — chapter
               file path + dates now reads at scan speed. */}
+          {/* Chapter eyebrow with a small dimensional dot leading the
+              file-path label. Color comes from CHAPTER_DIMENSION map at
+              top of file. Reader scanning multiple chapters sees the
+              dimensional signal at the same visual location each time —
+              ties to the Stack Atlas legend. Cobalt brand still dominates
+              elsewhere in the chapter (number marker, italic thesis rule). */}
           <p
-            className="font-mono-label mb-3"
+            className="font-mono-label mb-3 inline-flex items-center gap-2"
             style={{
               color: "var(--color-cool-meta)",
               fontSize: "clamp(1.125rem, 1.6vw, 1.625rem)",
               letterSpacing: "0.05em",
             }}
           >
-            {section} / {slug}.md
-            <span aria-hidden="true" className="mx-2" style={{ color: "var(--color-border)" }}>—</span>
-            {section === "Teaching" ? "taught" : "maintained"} {exp.dates}
+            {CHAPTER_DIMENSION[slug] && (
+              <span
+                aria-label={`Chapter dimension marker`}
+                style={{
+                  display: "inline-block",
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "50%",
+                  background: CHAPTER_DIMENSION[slug],
+                  flex: "0 0 auto",
+                }}
+              />
+            )}
+            <span>
+              {section} / {slug}.md
+              <span aria-hidden="true" className="mx-2" style={{ color: "var(--color-border)" }}>—</span>
+              {section === "Teaching" ? "taught" : "maintained"} {exp.dates}
+            </span>
           </p>
           <h2
             style={{

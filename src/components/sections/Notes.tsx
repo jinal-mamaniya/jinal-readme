@@ -31,6 +31,19 @@ const SHARPEST_LINES: Record<string, string> = {
     "The engineers who struggled weren't struggling with syntax — they couldn't reason about why one approach was better than another.",
 };
 
+/* Each essay maps to its dominant Stack Atlas craft dimension. The number
+   marker recolors to that dimension's token, making the Notes section a
+   visual continuation of the atlas legend — reader can scan and pattern-
+   match "01 is judgment, 02 is runtime, 03 is multiplier."
+   Pull-quote left rule stays cobalt (--color-accent) so the brand signal
+   doesn't fragment; only the number marker recolors. Per rule #31 these
+   are semantic categorical tokens, not new brand accents. */
+const ESSAY_DIMENSION: Record<string, string> = {
+  "why-i-stopped-caring-about-frameworks": "var(--color-atlas-judgment)",
+  "the-real-cost-of-a-slow-query": "var(--color-atlas-runtime)",
+  "mentoring-isnt-about-code-reviews": "var(--color-atlas-multiplier)",
+};
+
 export function Notes() {
   const posts = getAllPosts();
   if (posts.length === 0) return null;
@@ -97,6 +110,8 @@ export function Notes() {
           .replace("the-real-cost-of-a-slow-query", "slow-query")
           .replace("mentoring-isnt-about-code-reviews", "mentoring");
         const sharpest = SHARPEST_LINES[post.slug];
+        const dimensionColor =
+          ESSAY_DIMENSION[post.slug] ?? "var(--color-accent)";
 
         return (
           <section
@@ -106,7 +121,11 @@ export function Notes() {
             style={{ borderColor: "var(--color-border)" }}
           >
             <div className="grid grid-cols-12 gap-x-6 gap-y-6 items-start">
-              {/* Number marker */}
+              {/* Number marker — colored by essay's craft dimension (see
+                  ESSAY_DIMENSION above). 01 frameworks = judgment cobalt,
+                  02 slow-query = runtime slate, 03 mentoring = multiplier
+                  magenta. Makes the Notes section a visual continuation
+                  of the Stack Atlas legend. */}
               <div className="col-span-12 lg:col-span-2">
                 <p
                   style={{
@@ -115,7 +134,7 @@ export function Notes() {
                     fontWeight: 700,
                     letterSpacing: "-0.04em",
                     lineHeight: 0.9,
-                    color: "var(--color-accent)",
+                    color: dimensionColor,
                   }}
                 >
                   {number}

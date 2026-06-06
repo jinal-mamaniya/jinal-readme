@@ -79,7 +79,11 @@ export const ATLAS_LINES: AtlasLine[] = [
     label: "Discipline",
     thesis:
       "The work that makes the rest possible. Error handling, observability, validation, coverage as discipline — not as a number.",
-    color: "#c2410c", // muted warm orange
+    /* Colors hoisted to --color-atlas-* design tokens (see globals.css).
+       Each token has light + dark variants and is reused outside the atlas
+       in Notes/DecisionTree/Glossary/chapter eyebrows wherever content
+       semantically references the dimension. */
+    color: "var(--color-atlas-discipline)",
     xDesktop: 75,
   },
   {
@@ -87,7 +91,7 @@ export const ATLAS_LINES: AtlasLine[] = [
     label: "Data craft",
     thesis:
       "Schema is the design. SPs, views, functions, EF, ETL — the database as architectural surface plus the bridge to the application.",
-    color: "#0f766e", // deep teal — densest column
+    color: "var(--color-atlas-data)",
     xDesktop: 245,
   },
   {
@@ -95,7 +99,7 @@ export const ATLAS_LINES: AtlasLine[] = [
     label: "AI-augmented",
     thesis:
       "Engineering with AI agents in the loop — Copilot for velocity, Claude for the harder reasoning. Prompt as code, review as collaboration.",
-    color: "#0e7490", // muted cyan
+    color: "var(--color-atlas-ai)",
     xDesktop: 415,
   },
   {
@@ -103,7 +107,7 @@ export const ATLAS_LINES: AtlasLine[] = [
     label: "Multiplier",
     thesis:
       "Mentoring, code review as teaching, cross-team coordination. The work that compounds — making other engineers faster is engineering.",
-    color: "#a21caf", // muted magenta
+    color: "var(--color-atlas-multiplier)",
     xDesktop: 585,
   },
   {
@@ -111,7 +115,7 @@ export const ATLAS_LINES: AtlasLine[] = [
     label: "Judgment",
     thesis:
       "When to distribute, when not to. When the schema carries the load, when the application does. ADR-shaped decisions, not framework preferences.",
-    color: "#1d4ed8", // brand cobalt
+    color: "var(--color-atlas-judgment)",
     xDesktop: 755,
   },
   {
@@ -119,7 +123,7 @@ export const ATLAS_LINES: AtlasLine[] = [
     label: "Runtime",
     thesis:
       "The tools, not the headline — runtimes and frameworks where I've shipped at production scale, picked per team depth.",
-    color: "#475569", // slate grey
+    color: "var(--color-atlas-runtime)",
     xDesktop: 935,
   },
 ];

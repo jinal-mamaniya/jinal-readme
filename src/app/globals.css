@@ -65,6 +65,38 @@
   --color-now-glow: oklch(48% 0.16 145 / 0.4);
   --color-overlay: rgba(20, 20, 20, 0.5);
 
+  /* ===== STACK ATLAS DIMENSIONAL COLORS =====
+     Six semantic categorical tokens — one per craft dimension. Hoisted
+     from stackAtlas.ts hardcoded hex so they (a) theme-swap, and (b)
+     can be used outside the atlas in places that semantically reference
+     a dimension (Notes essay markers, DecisionTree leaves, Glossary
+     tags, chapter eyebrows). The atlas becomes the portfolio's color
+     legend for craft dimensions.
+
+     Exempt from rule #31 single-accent discipline because these are
+     SEMANTIC CATEGORICAL (each = one specific dimension), same exemption
+     as Shiki syntax tokens and subway-map line colors. Never appear as
+     decorative emphasis — only when content references the dimension.
+
+     atlas-judgment aliases --color-accent because judgment IS cobalt —
+     the brand accent. Aliasing keeps them in sync if cobalt ever shifts.
+
+     Light-mode values tuned for ~4.5:1+ contrast against cream surface.
+     Approximate hex equivalents for reference (matching the original
+     stackAtlas.ts hardcoded values):
+       discipline = #c2410c (warm orange)
+       data       = #0f766e (deep teal)
+       ai         = #0e7490 (muted cyan)
+       multiplier = #a21caf (muted magenta)
+       judgment   = #1d4ed8 (cobalt — matches --color-accent)
+       runtime    = #475569 (slate grey) */
+  --color-atlas-discipline: oklch(50% 0.17 40);
+  --color-atlas-data: oklch(48% 0.08 180);
+  --color-atlas-ai: oklch(50% 0.1 220);
+  --color-atlas-multiplier: oklch(48% 0.21 325);
+  --color-atlas-judgment: var(--color-accent);
+  --color-atlas-runtime: oklch(45% 0.04 245);
+
   /* ===== FONTS — Geist Sans + Geist Mono (loaded in layout.tsx) =====
      Per RESEARCH.md §2B: engineering-doc register requires custom font
      selection. Geist (Vercel) is the closest free, open-source font to
@@ -141,6 +173,18 @@
   --color-now: oklch(72% 0.18 145);
   --color-now-glow: oklch(72% 0.18 145 / 0.45);
   --color-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Dark-mode atlas tokens — L bumped from ~48% to ~72% so each color
+     maintains contrast against the dark surface (--color-background
+     oklch 15%). Chroma preserved or slightly reduced to avoid
+     over-saturation against the dark ground.
+     atlas-judgment NOT overridden here — it inherits via
+     `var(--color-accent)` alias which already has its dark-mode value. */
+  --color-atlas-discipline: oklch(75% 0.14 40);
+  --color-atlas-data: oklch(72% 0.08 180);
+  --color-atlas-ai: oklch(75% 0.1 220);
+  --color-atlas-multiplier: oklch(72% 0.18 325);
+  --color-atlas-runtime: oklch(70% 0.03 245);
 }
 
 /* Smooth theme transitions on the elements most likely to change.

@@ -172,13 +172,38 @@ export function Readme() {
               Source trail self-documents at the cell label level
               (rule #16). 42/70/80% composite traces to LexisNexis
               summary bullet on resume-fullstack.pdf. */}
+          {/* Each metric carries its dominant Stack Atlas craft dimension.
+              The digit displays render in the dimensional color so the
+              hero scan-zone IMMEDIATELY signals "four distinct craft
+              dimensions in play" before the reader scrolls anywhere.
+              Mapping:
+                17K+ users           → multiplier (people scale, magenta)
+                99.95% availability  → discipline (reliability, orange)
+                100K+ throughput     → runtime (throughput at scale, slate)
+                42·70·80% latency    → judgment (perf optimization as a
+                                       judgment call, cobalt)
+              Semantic categorical per rule #31 — same exemption as
+              Shiki tokens. Atlas remains the legend. */}
           {[
-            { value: "17K+", label: "metrics.users" },
-            { value: "99.95%", label: "metrics.availability" },
-            { value: "100K+", label: "metrics.throughput" },
+            {
+              value: "17K+",
+              label: "metrics.users",
+              color: "var(--color-atlas-multiplier)",
+            },
+            {
+              value: "99.95%",
+              label: "metrics.availability",
+              color: "var(--color-atlas-discipline)",
+            },
+            {
+              value: "100K+",
+              label: "metrics.throughput",
+              color: "var(--color-atlas-runtime)",
+            },
             {
               value: "42 · 70 · 80%",
               label: "metrics.latency_reduction",
+              color: "var(--color-atlas-judgment)",
             },
           ].map((m, i) => (
             <li key={i}>
@@ -190,7 +215,7 @@ export function Readme() {
                   fontWeight: 700,
                   letterSpacing: "-0.02em",
                   lineHeight: 1,
-                  color: "var(--color-foreground)",
+                  color: m.color,
                 }}
               >
                 {m.value}

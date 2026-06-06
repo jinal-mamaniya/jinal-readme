@@ -1,0 +1,34 @@
+---
+title: "The real cost of a slow query"
+date: "2026-01-20"
+excerpt: "A 200ms query doesn't just slow down one request. It cascades. Here's how I think about database performance at scale."
+tags: ["performance", "databases"]
+---
+
+A 200ms database query doesn't sound that bad. Users probably won't even notice, right?
+
+Wrong. That 200ms query is never alone.
+
+## The cascade effect
+
+In a system serving thousands of concurrent users, that single slow query multiplies. It holds database connections longer, which means other queries queue up. Connection pools fill. Timeouts start firing. Retry logic kicks in, doubling the load. And suddenly your "200ms query" is causing 5-second page loads for everyone.
+
+I've seen this pattern at every company I've worked at. The root cause is almost never a bad database. It's a query that was fine at 100 users but wasn't designed for 17,000.
+
+## How I approach it
+
+My process for database performance is always the same:
+
+**1. Measure first.** Before optimizing anything, I need to see the actual execution plans. Not what I think is slow — what the data says is slow.
+
+**2. Index with intention.** Indexes aren't free. Every index speeds up reads but slows down writes. The question is always: what's the read/write ratio for this table?
+
+**3. Look at the access patterns.** Sometimes the best optimization isn't a better index — it's caching the result so you don't hit the database at all. At LexisNexis, introducing Redis for high-demand data didn't just improve speed — it fundamentally changed how much load the database had to handle.
+
+**4. Question the query itself.** Sometimes a slow query is doing too much. Can it be split? Can some of the work move to the application layer? Is a stored procedure doing joins that could be avoided with a better data model?
+
+## The lesson
+
+Performance isn't a feature you add at the end. It's a consequence of every decision you make from the beginning — your data model, your access patterns, your caching strategy, your index design.
+
+The most expensive technical debt I've seen isn't messy code. It's a data layer that was never designed for the scale it eventually had to handle.

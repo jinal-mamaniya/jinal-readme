@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <title>jinal-mamaniya</title>
+  <desc>Portfolio favicon styled as a tiny code block. Surface ground with cobalt JM mark mirrors the package.json block body — cobalt keys on cream surface — used throughout the portfolio.</desc>
+  <rect width="32" height="32" rx="6" fill="#ECECEC"/>
+  <text
+    x="16"
+    y="22"
+    font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    font-size="17"
+    font-weight="700"
+    letter-spacing="-0.5"
+    fill="#1647BE"
+    text-anchor="middle">JM</text>
+</svg>

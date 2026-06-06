@@ -1,0 +1,42 @@
+---
+title: "Mentoring isn't about code reviews"
+date: "2025-12-10"
+excerpt: "After mentoring dozens of engineers and teaching 190 students, here's what I've learned about helping people grow."
+tags: ["leadership", "mentorship"]
+---
+
+When I started mentoring junior engineers, I thought my job was to catch bugs in their pull requests. Write better code, ship better products. Simple.
+
+I was wrong.
+
+## The real gap
+
+The engineers who struggled weren't struggling with syntax. They could write React components. They could build API endpoints. What they couldn't do was reason about *why* one approach was better than another.
+
+"Should I use a context or Redux for this?" isn't a question about tools. It's a question about understanding the shape of your state, how many components need it, and how often it changes. The answer depends on the situation, not the library.
+
+## What changed my approach
+
+Teaching 190 students across two semesters at Northeastern changed everything. In a classroom, you can't just say "use this pattern." You have to explain *why*. And when you explain why, you realize how much of your own knowledge is unconscious.
+
+I started running sessions differently. Instead of reviewing code and saying "change this," I'd ask: "What happens when two users hit this endpoint at the same time?" or "What if this service goes down — what does the user see?"
+
+Those questions taught more than any code review ever did.
+
+## What good mentoring looks like
+
+The best mentoring I've done wasn't in pull requests. It was in conversations:
+
+- Walking through a system diagram on a whiteboard and asking "where are the failure points?"
+- Pairing on a debugging session where I didn't touch the keyboard
+- Asking "what did you consider before choosing this approach?" — not to challenge, but to understand their reasoning
+
+The goal isn't to make someone code like me. It's to help them develop their own engineering judgment.
+
+## The multiplier
+
+At TCS, I ran knowledge sessions for 40 engineers on API middleware integration. The goal wasn't "learn this library." It was "understand the space between your service and the rest of the world."
+
+That session didn't ship a single line of code. But in the months that followed, error handling improved by 45% across the team. Not because I told them what to do — because they understood *why* it mattered.
+
+That's the multiplier effect of mentoring. You don't scale by writing more code. You scale by helping others think better.

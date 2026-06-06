@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   README-GENRE PALETTE — VIGNELLI REGISTER, 2026-05-30
+   System sans + system mono. Cobalt accent. Light mode + dark mode.
+
+   Dark mode added 2026-05-30: RESEARCH.md §2B #4 documents dark themes
+   as dominant in senior dev portfolios. Web research: 81.9% of tech
+   audiences use dark mode. The portfolio's "this IS a README" thesis is
+   built on the GitHub README convention, which itself ships dark mode
+   support — staying light-only broke the convention being mimicked.
+
+   Switched `@theme inline` → `@theme` so generated Tailwind utilities use
+   `var(--color-X)` references (theme-swappable) instead of inlined values.
+   ============================================================================ */
+
+@theme {
+  /* ===== LIGHT MODE DEFAULTS =====
+     Pure #fff / #000 forbidden — they fail accessibility shadow contrast
+     and read as harsh on screens. Near-white L=99 + near-black L=15
+     gives ~17:1 contrast (AAA with headroom). */
+  --color-background: oklch(99% 0 0);
+  --color-surface: oklch(96% 0 0);
+  --color-surface-elevated: oklch(100% 0 0);
+  --color-card: rgba(20, 20, 20, 0.02);
+  --color-card-hover: rgba(20, 20, 20, 0.05);
+
+  --color-foreground: oklch(15% 0 0);
+  --color-text: oklch(15% 0 0);
+  --color-text-muted: oklch(40% 0 0);
+  /* text-dim bumped 55% → 43% on 2026-05-31. The original value tested
+     at 3.28:1 contrast against cream backgrounds — fails WCAG 2.1 SC 1.4.3
+     (AA Contrast Minimum requires 4.5:1 for normal text). Measured via
+     canvas-resolved colors across 71 elements (file tree leaves at 13px
+     being the bulk). At oklch(43%) the contrast clears 4.5:1.
+     Reference: https://www.w3.org/TR/WCAG21/#contrast-minimum */
+  --color-text-dim: oklch(43% 0 0);
+  /* border bumped 85% → 60% on 2026-05-31 for WCAG 2.1 SC 1.4.11 (AA
+     Non-text Contrast, 3:1 minimum). Card UI elements (architecture diagram,
+     OpsPanel, decision cards) have a `--color-surface` background that is
+     barely distinguishable from page background (~1.1:1) — the border is
+     what identifies them as distinct UI components. At oklch(85%) the
+     border tested at 1.53:1 (fails); at oklch(60%) it clears 3:1.
+     Section dividers using --color-border become slightly more visible
+     as a side effect — acceptable per Vignelli/engineering-doc convention.
+     Reference: https://www.w3.org/TR/WCAG21/#non-text-contrast */
+  --color-border: oklch(60% 0 0);
+
+  /* Cobalt blue — engineering-document register (IBM, Stripe, Linear,
+     Vercel, GitHub PR passing-checks). Light-mode value tuned for high
+     contrast on cream; dark-mode override lightens to retain readability
+     against the dark background. */
+  --color-accent: oklch(45% 0.18 250);
+  --color-accent-hover: oklch(52% 0.19 250);
+  --color-accent-glow: oklch(45% 0.18 250 / 0.15);
+
+  --color-cool-meta: oklch(45% 0 0);
+
+  /* color-now darkened 55% → 48% on 2026-05-31. The original "active"
+     status green tested at 4.44:1 on cream — just below WCAG 2.1 SC 1.4.3
+     AA minimum of 4.5:1. At 48% it clears 4.5:1 while still reading as a
+     vibrant green for the "active" badge.
+     Reference: https://www.w3.org/TR/WCAG21/#contrast-minimum */
+  --color-now: oklch(48% 0.16 145);
+  --color-now-glow: oklch(48% 0.16 145 / 0.4);
+  --color-overlay: rgba(20, 20, 20, 0.5);
+
+  /* ===== FONTS — Geist Sans + Geist Mono (loaded in layout.tsx) =====
+     Per RESEARCH.md §2B: engineering-doc register requires custom font
+     selection. Geist (Vercel) is the closest free, open-source font to
+     the "tight, geometric, slightly cold" Stripe/Linear/Vercel typography.
+     System stacks remain as fallbacks for the moment between font load
+     and paint (covered by display: swap on the font loader). */
+  --font-sans:
+    var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+
+  --text-label: 0.875rem;
+  --text-link: 0.9375rem;
+  --text-meta: 1rem;
+  --text-sub: 1.0625rem;
+  --text-quote: 1.125rem;
+  --text-body: clamp(1rem, 1.3vw, 1.1875rem);
+  --text-lede: clamp(1.25rem, 1.8vw, 1.5rem);
+  --text-h2: clamp(1.375rem, 2vw, 1.625rem);
+  --text-headline: clamp(2.25rem, 6vw, 5rem);
+  --text-display: clamp(3rem, 9vw, 7rem);
+}
+
+/* ============================================================================
+   DARK MODE OVERRIDES
+   Activated by `data-theme="dark"` on <html>. Set by:
+   (1) ThemeToggle component (user preference, persisted in localStorage), or
+   (2) Anti-FOUC inline script in layout.tsx (reads localStorage +
+       prefers-color-scheme before React hydrates).
+
+   Color tuning:
+   - Background L=15 (deep but not pure-black, avoids OLED-burn-in look)
+   - Foreground L=92 (warm-white, easier on eyes than pure-white at L=100)
+   - Accent shifts L=45 → L=72 (low-L cobalt on dark bg = invisible;
+     lifting to L=72 retains the cobalt hue while clearing WCAG AA contrast
+     against the L=15 background)
+   - Surface L=20 (cards lift slightly above background, not stark)
+   - Border L=28 (visible separator without becoming a hard line)
+   ============================================================================ */
+[data-theme="dark"] {
+  --color-background: oklch(15% 0 0);
+  --color-surface: oklch(20% 0 0);
+  --color-surface-elevated: oklch(22% 0 0);
+  --color-card: rgba(255, 255, 255, 0.03);
+  --color-card-hover: rgba(255, 255, 255, 0.06);
+
+  --color-foreground: oklch(92% 0 0);
+  --color-text: oklch(88% 0 0);
+  --color-text-muted: oklch(72% 0 0);
+  /* text-dim bumped 50% → 65% (2026-05-31). On near-black bg the original
+     50% gave ~5.4:1 contrast — AA passes but visibly dim. The file tree's
+     inactive leaves (lexisnexis.md, motorola.md, etc.) were the most
+     visible victim — readable but recessed compared to GitHub's dark mode
+     sidebar convention (~10:1). At 65% the ratio is ~7:1, clearly readable
+     while still subordinate to the active cobalt + directory headers.
+     text-muted bumped 65% → 72% in parallel so the muted-vs-dim hierarchy
+     is preserved. */
+  --color-text-dim: oklch(65% 0 0);
+  /* Dark mode border bumped 28% → 50% for WCAG 2.1 SC 1.4.11 (same reason
+     as light mode). At 28% the border tested at ~1.57:1 vs dark bg; at 50%
+     it clears 3:1. */
+  --color-border: oklch(50% 0 0);
+
+  --color-accent: oklch(72% 0.17 250);
+  --color-accent-hover: oklch(78% 0.16 250);
+  --color-accent-glow: oklch(72% 0.17 250 / 0.18);
+
+  --color-cool-meta: oklch(58% 0 0);
+
+  --color-now: oklch(72% 0.18 145);
+  --color-now-glow: oklch(72% 0.18 145 / 0.45);
+  --color-overlay: rgba(0, 0, 0, 0.6);
+}
+
+/* Smooth theme transitions on the elements most likely to change.
+   `color`, `background-color`, `border-color`, `fill`, `stroke` — only
+   color-related properties get the transition. Avoid transitioning
+   `all` (causes layout-flash jank). */
+html,
+body,
+section,
+article,
+nav,
+aside,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span,
+button,
+li,
+ol,
+ul,
+pre,
+code,
+blockquote,
+figure,
+figcaption,
+img,
+svg {
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    fill 200ms ease,
+    stroke 200ms ease;
+}
+
+/* ===== TYPOGRAPHY UTILITIES =====
+   System sans throughout. Hierarchy carried by weight + size, not by
+   switching font families. No font-variation-settings — system fonts
+   don't have variable axes the same way. */
+
+.font-display-cover {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.font-display-headline {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.font-display-lede {
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+.font-display-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+.font-display-body-italic {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-style: italic;
+}
+.font-display-spine {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.font-mono-meta {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+.font-mono-label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.font-mono-path {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.8125rem;
+}
+
+/* ===== ACCESSIBILITY ===== */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  z-index: 9999;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  transition: top 200ms ease;
+}
+.skip-to-content:focus {
+  top: 1rem;
+}
+
+/* ===== BASE ===== */
+html,
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================================================
+   SHIKI SYNTAX-HIGHLIGHTED CODE BLOCKS
+   Used by `<CodeBlock>` server component for C#/SQL/etc samples in chapters.
+
+   Shiki emits each token with `style="--shiki-light:#abc;--shiki-dark:#def"`
+   plus a class on the wrapping <pre>. We pick which CSS variable wins based
+   on the `[data-theme="dark"]` attribute — pure CSS theme swap, no JS, no
+   FOUC. Defaults to light values; dark mode overrides.
+
+   `.shiki-host` is the outer div emitted by the CodeBlock component. The
+   `.shiki` class is on Shiki's own <pre>. The existing wrapper in
+   SystemFile.tsx provides the rounded border + filename header bar; this
+   block only styles the highlighted code itself.
+   ============================================================================ */
+.shiki-host {
+  overflow-x: auto;
+}
+.shiki-host .shiki {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  padding: 1.25rem;
+  margin: 0;
+  background-color: var(--shiki-light-bg);
+  color: var(--shiki-light);
+}
+.shiki-host .shiki span {
+  color: var(--shiki-light);
+}
+[data-theme="dark"] .shiki-host .shiki {
+  background-color: var(--shiki-dark-bg);
+  color: var(--shiki-dark);
+}
+[data-theme="dark"] .shiki-host .shiki span {
+  color: var(--shiki-dark);
+}

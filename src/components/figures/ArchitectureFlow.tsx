@@ -120,7 +120,10 @@ export function ArchitectureFlow() {
           </p>
         </div>
         <svg
-          viewBox="0 0 720 220"
+          /* viewBox width 720→760 (2026-06-06): Response node at x=630
+             with width=100 ended at x=730, getting cropped at viewBox 720.
+             Bumping to 760 gives 30px right padding past Response box. */
+          viewBox="0 0 760 220"
           className="w-full h-auto"
           xmlns="http://www.w3.org/2000/svg"
           role="img"
@@ -220,16 +223,14 @@ export function ArchitectureFlow() {
                   y={114}
                   textAnchor="middle"
                   fontFamily="var(--font-mono)"
-                  /* Font size bumped 11 → 16 (2026-05-31). The SVG uses
-                     viewBox="0 0 720 220" + w-full so it scales to the
-                     container width. On mobile (~327px content area), the
-                     SVG scales to ~45% of natural size — fontSize 11 then
-                     rendered as ~5px effective, well below readable. At 16,
-                     mobile effective is ~7.3px (still small but legible
-                     given users can pinch-zoom via viewport meta). Desktop
-                     labels are slightly larger but match the engineering-
-                     doc figure register. */
-                  fontSize={16}
+                  /* fontSize 16 → 14 (2026-06-06): at 16, "Middleware"
+                     rendered text was 89px wide — exactly filling the
+                     100px box with zero padding, reading as crammed.
+                     At 14, "Middleware" renders ~78px so the 100px box
+                     gets ~11px padding each side. Mobile effective is
+                     still ~6.4px (pinch-zoomable). Engineering-doc
+                     figure register preserved. */
+                  fontSize={14}
                   fontWeight={500}
                   fill={
                     isHovered

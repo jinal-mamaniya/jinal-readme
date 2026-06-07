@@ -9,6 +9,7 @@ import { Notes } from "@/components/sections/Notes";
 import { Glossary } from "@/components/sections/Glossary";
 import { Maintainer } from "@/components/sections/Maintainer";
 import { TeachingIntro } from "@/components/sections/TeachingIntro";
+import { DirectoryCloser } from "@/components/sections/DirectoryCloser";
 
 /**
  * Home — vertical-scroll composition of the README sections.
@@ -30,7 +31,9 @@ export default function Home() {
         <SystemFile slug="motorola" />
         <SystemFile slug="tcs" />
         <SystemFile slug="lti" />
+        <DirectoryCloser name="Systems" chapters={4} />
         <Showcase />
+        <DirectoryCloser name="Showcase" chapters={1} />
         {/* Teaching/ — sits between Showcase and Notes per file tree order.
             TeachingIntro provides the directory-level intro (heading +
             subtitle) so Teaching/ follows the same pattern as every other
@@ -39,7 +42,9 @@ export default function Home() {
             Chapter itself owns `#teaching-northeastern`. */}
         <TeachingIntro />
         <SystemFile slug="northeastern" />
+        <DirectoryCloser name="Teaching" chapters={1} />
         <Notes />
+        <DirectoryCloser name="Notes" chapters={3} unit="essay" />
         <Glossary />
         <Maintainer />
       </main>

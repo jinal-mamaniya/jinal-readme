@@ -334,49 +334,175 @@ export function Readme() {
                   items={["legal-tech", "public-safety", "enterprise"]}
                   comma
                 />
-                {/* "stack" replaces "dependencies" with a custom field that
-                    nests category arrays. Removes the prior fake-npm-namespace
-                    convention (@languages/c-sharp etc. — those aren't real
-                    npm packages; engineers reading the JSON immediately spot
-                    it). The nested-array structure is honest custom JSON,
-                    not pretending to be npm dependency declarations. */}
+                {/* "stack" mirrors the Stack Atlas dimensions (rule #6 —
+                    same taxonomy throughout the document). The atlas is
+                    the portfolio's central organizing principle; this
+                    JSON block is a zoom-out preview of the atlas below.
+                    Same six dimensions:
+                      discipline · data_craft · ai_augmented ·
+                      multiplier · judgment · runtime
+                    Earlier 4-category structure (languages/frameworks/
+                    databases/infra) was traditional engineering-doc
+                    convention but ignored the portfolio's own thesis.
+
+                    Every item traces to techRadar.ts or stackAtlas.ts —
+                    rule #15 honored (no fabricated tech). Replaced
+                    "Express" with "Express.js" matching techRadar name.
+                    Added "avoid" key after stack — anti-patterns from
+                    techRadar "hold" ring, surfaces engineering judgment
+                    that "what I don't use and why" is senior signal. */}
                 <JsonObjectOpen indent={2} k="stack" />
                 <JsonInlineArray
                   indent={4}
-                  k="languages"
-                  items={["C#", "TypeScript", "JavaScript", "SQL", "LINQ"]}
-                  comma
-                />
-                <JsonInlineArray
-                  indent={4}
-                  k="frameworks"
+                  k="discipline"
                   items={[
-                    ".NET Core",
-                    "Node.js",
-                    "Angular",
-                    "React",
-                    "Redux",
-                    "GraphQL",
-                    "Apollo",
-                    "RabbitMQ",
-                    "Entity Framework",
-                    "Express",
-                    "Material UI",
+                    "NUnit",
+                    "xUnit",
+                    "Cypress",
+                    "Jest",
+                    "Jasmine",
+                    "Karma",
+                    "React Testing Library",
+                    "Fluent Validation",
+                    "Custom error middleware",
+                    "PII masking",
+                    "Polly retry",
+                    "Polly circuit breaker",
+                    "OAuth 2.0",
+                    "JWT",
+                    "Observability",
                   ]}
                   comma
                 />
                 <JsonInlineArray
                   indent={4}
-                  k="databases"
-                  items={["SQL Server", "PostgreSQL", "Redis", "MongoDB"]}
+                  k="data_craft"
+                  items={[
+                    "SQL",
+                    "T-SQL",
+                    "LINQ",
+                    "SQL Server",
+                    "PostgreSQL",
+                    "MongoDB",
+                    "Stored procedures",
+                    "Indexed views",
+                    "CTEs + window functions",
+                    "Constraints + computed cols",
+                    "Scalar + TVF functions",
+                    "DbContext + transactions",
+                    "EF Core",
+                    "Entity Framework",
+                    "EF + raw SQL hybrid",
+                    "Schema-first design",
+                    "Multi-tenant schema",
+                    "Normalization",
+                    "i18n schema",
+                    "ETL pipelines",
+                    "Redis caching",
+                    "Distributed Caching",
+                  ]}
                   comma
                 />
                 <JsonInlineArray
                   indent={4}
-                  k="infra"
-                  items={["Docker", "Kubernetes", "Azure DevOps", "Git"]}
+                  k="ai_augmented"
+                  items={[
+                    "GitHub Copilot",
+                    "Claude / Claude Code",
+                    "AI-assisted code review",
+                    "Agent-augmented debugging",
+                    "Agent-augmented workflow",
+                    "Prompt as code",
+                  ]}
+                  comma
+                />
+                <JsonInlineArray
+                  indent={4}
+                  k="multiplier"
+                  items={[
+                    "Code review as teaching",
+                    "Mentorship + Teaching",
+                    "Mentoring juniors",
+                    "Knowledge transfer",
+                    "Cross-team collaboration",
+                    "Onboarding new engineers",
+                    "Technical writing",
+                  ]}
+                  comma
+                />
+                <JsonInlineArray
+                  indent={4}
+                  k="judgment"
+                  items={[
+                    "Microservices",
+                    "Micro-Frontends",
+                    "Monolith ↔ microservices",
+                    "API Gateway",
+                    "REST",
+                    "Domain-Driven Design",
+                    "Clean Architecture",
+                    "Repository + Unit-of-Work",
+                    "MVVM",
+                    "MVC",
+                    "SOLID",
+                    "ADR convention",
+                  ]}
+                  comma
+                />
+                <JsonInlineArray
+                  indent={4}
+                  k="runtime"
+                  items={[
+                    "C#",
+                    "TypeScript",
+                    "JavaScript",
+                    "HTML5",
+                    "CSS3",
+                    ".NET Core",
+                    "Node.js",
+                    "Express.js",
+                    "Angular",
+                    "Angular Material",
+                    "React",
+                    "Redux",
+                    "RxJS",
+                    "Material UI",
+                    "GraphQL",
+                    "Apollo",
+                    "D3.js",
+                    "Async Processing",
+                    "RabbitMQ",
+                    "Docker",
+                    "Kubernetes",
+                    "Azure DevOps CI/CD",
+                    "CI/CD pipelines",
+                    "Git",
+                    "GitHub",
+                    "Postman",
+                    "BEM",
+                    "SASS / SCSS",
+                  ]}
                 />
                 <JsonClose indent={2} closer="}" comma />
+                {/* "avoid" surfaces anti-patterns from techRadar "hold"
+                    ring. Documenting what you DON'T use and why is a
+                    Principal-tier engineering signal — RESEARCH.md §5B
+                    cites this explicitly as senior register. */}
+                <JsonInlineArray
+                  indent={2}
+                  k="avoid"
+                  items={[
+                    "Framework Zealotry",
+                    "Kubernetes Without Earned Topology",
+                    "Microservices for Single-Team",
+                    "ORM-only for Complex Dynamic Queries",
+                    "Test Coverage % as Goal",
+                    "jQuery (legacy)",
+                    "Bootstrap (legacy)",
+                    ".NET MVC (legacy)",
+                  ]}
+                  comma
+                />
                 {/* scripts values are normal English prose in quotes.
                     `mentor` script removed — teaching/mentorship is a
                     different theme than "what I build"; lives in the

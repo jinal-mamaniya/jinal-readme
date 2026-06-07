@@ -42,3 +42,9 @@ next-env.d.ts
 .tmp-screens/
 .tmp-*.mjs
 .tmp-*.js
+
+# meta-tooling / project docs (kept local, not pushed public)
+CLAUDE.md
+RESEARCH.md
+README.md
+.claude/

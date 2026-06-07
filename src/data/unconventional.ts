@@ -40,7 +40,7 @@ export const systemUnconventional: Record<string, SystemUnconventional> = {
        architecture into .NET microservices with API Gateway patterns").
        Scope limits explicit. */
     limitations:
-      "This is the data-layer + middleware + async-processing + caching surface for one of six teams that share the LexisNexis codebase. It is NOT the full LexisNexis platform. Analytics, reporting, customer-facing UI features, and the queries against domains other teams own live elsewhere. The patterns I shipped (Polly for resilient retry, distributed Redis, RabbitMQ for async, OAuth2.0/JWT API gateway) extend to anywhere they're adopted — but adoption was team-by-team, not platform-wide. The Angular v12 → v15 migration was for the components my team maintains; not every team's components went on the same release.",
+      "This is the data-layer + middleware + async-processing + caching surface for one of six teams that share the LexisNexis codebase. It is NOT the full LexisNexis platform. Analytics, reporting, customer-facing UI features, and the queries against domains other teams own live elsewhere. The patterns I shipped (Polly for resilient retry, distributed Redis, async message processing, OAuth2.0/JWT API gateway) extend to anywhere they're adopted — but adoption was team-by-team, not platform-wide. The Angular v12 → v15 migration was for the components my team maintains; not every team's components went on the same release.",
   },
 
   motorola: {

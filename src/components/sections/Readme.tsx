@@ -319,14 +319,14 @@ export function Readme() {
                 <JsonPair indent={4} k="users" v={`"17K+ daily (TCS Dow OPD) · 3K+ (LTI early)"`} comma />
                 <JsonPair indent={4} k="global_reach" v={`"650 plants · 13 languages (TCS Dow OPD)"`} comma />
                 <JsonPair indent={4} k="availability" v={`"99.95% API (LexisNexis · Polly resilience)"`} comma />
-                <JsonPair indent={4} k="throughput" v={`"100K+ daily events (LexisNexis · RabbitMQ)"`} comma />
+                <JsonPair indent={4} k="throughput" v={`"100K+ daily events (LexisNexis)"`} comma />
                 <JsonPair indent={4} k="latency_reduction" v={`"42% system · 70% DB · 80% app speed (LexisNexis)"`} comma />
                 <JsonPair indent={4} k="downtime_reduction" v={`"75% (TCS Dow · exception handling)"`} comma />
                 <JsonPair indent={4} k="error_reduction" v={`"82% (LexisNexis Polly) · 60% (TCS Fluent Validation)"`} comma />
                 <JsonPair indent={4} k="test_coverage" v={`"95% (Motorola public safety · NUnit)"`} comma />
                 <JsonPair indent={4} k="code_quality" v={`"18% post-release defects ↓ (LexisNexis code reviews)"`} comma />
                 <JsonPair indent={4} k="delivery_speed" v={`"40% time-to-market (LexisNexis DDD) · 40% feature delivery (TCS)"`} comma />
-                <JsonPair indent={4} k="deployment" v={`"2hr → 1.2hr (LexisNexis Azure CI/CD)"`} comma />
+                <JsonPair indent={4} k="deployment" v={`"automated end-to-end (LexisNexis Azure CI/CD)"`} comma />
                 <JsonPair indent={4} k="scope" v={`"20+ clean-architecture services (TCS) · 25+ stored procedures (LTI)"`} />
                 <JsonClose indent={2} closer="}" comma />
                 <JsonInlineArray

@@ -121,6 +121,13 @@ export function FileTree() {
                  mobile compact mode in padding. */
               className={`font-mono-path block ${indent} py-1.5 rounded-sm transition-colors duration-150 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2`}
               style={{
+                /* Explicit fontSize 15px (0.9375rem) — the globals.css
+                   `.font-mono-path` rule was bumped 13→15px in the same
+                   commit, but inline style here guarantees the size
+                   lands regardless of Tailwind/Turbopack HMR state.
+                   "Systems/" and other sidebar labels were reading as
+                   very tiny at 13px Geist Mono. */
+                fontSize: "0.9375rem",
                 color: isActive
                   ? "var(--color-accent)"
                   : node.isDir

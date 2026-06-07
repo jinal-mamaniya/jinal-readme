@@ -275,7 +275,12 @@ svg {
 .font-mono-path {
   font-family: var(--font-mono);
   font-weight: 400;
-  font-size: 0.8125rem;
+  /* font-size 0.8125rem → 0.9375rem (13px → 15px) on 2026-06-06.
+     "Systems/" and other directory/file labels in the file-tree
+     sidebar read as very tiny at 13px Geist Mono — sidebar is the
+     primary navigation surface, so legibility wins over compactness.
+     15px is the standard sidebar-nav size (Linear, Vercel docs). */
+  font-size: 0.9375rem;
 }
 
 /* ===== ACCESSIBILITY ===== */

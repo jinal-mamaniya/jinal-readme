@@ -23,7 +23,7 @@ export function Showcase() {
   return (
     <section
       id="showcase"
-      className="px-6 sm:px-10 pt-24 pb-20 scroll-mt-12 border-t mx-auto max-w-screen-2xl"
+      className="px-6 sm:px-10 pt-40 pb-20 scroll-mt-12 border-t mx-auto max-w-screen-2xl"
       style={{ borderColor: "var(--color-border)" }}
     >
       {/* ===== SECTION HEADER ===== */}

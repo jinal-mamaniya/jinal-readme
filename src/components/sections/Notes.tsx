@@ -52,7 +52,7 @@ export function Notes() {
     <>
       <section
         id="notes"
-        className="px-6 sm:px-10 pt-24 pb-12 scroll-mt-12 border-t mx-auto max-w-screen-2xl"
+        className="px-6 sm:px-10 pt-40 pb-12 scroll-mt-12 border-t mx-auto max-w-screen-2xl"
         style={{ borderColor: "var(--color-border)" }}
       >
         <div className="grid grid-cols-12 gap-x-6 gap-y-4">

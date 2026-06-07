@@ -62,7 +62,7 @@ export function Glossary() {
   return (
     <section
       id="glossary"
-      className="px-6 sm:px-10 py-24 scroll-mt-12 border-t mx-auto max-w-screen-2xl"
+      className="px-6 sm:px-10 pt-40 pb-24 scroll-mt-12 border-t mx-auto max-w-screen-2xl"
       style={{ borderColor: "var(--color-border)" }}
     >
       {/* Section header */}

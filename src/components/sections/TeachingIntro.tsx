@@ -15,7 +15,7 @@ export function TeachingIntro() {
   return (
     <section
       id="teaching"
-      className="px-6 sm:px-10 pt-24 pb-12 scroll-mt-12 border-t"
+      className="px-6 sm:px-10 pt-40 pb-12 scroll-mt-12 border-t"
       style={{ borderColor: "var(--color-border)" }}
     >
       <div className="grid grid-cols-12 gap-x-6 gap-y-4">

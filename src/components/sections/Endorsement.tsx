@@ -43,7 +43,7 @@ export function Endorsement() {
             className="font-mono-label mb-2"
             style={{
               color: "var(--color-accent)",
-              fontSize: "clamp(1.125rem, 1.6vw, 1.625rem)",
+              fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
               letterSpacing: "0.05em",
             }}
           >

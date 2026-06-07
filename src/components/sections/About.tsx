@@ -43,7 +43,7 @@ export function About() {
         className="px-6 sm:px-10 pt-8 font-mono-label"
         style={{
           color: "var(--color-cool-meta)",
-          fontSize: "clamp(1.125rem, 1.6vw, 1.625rem)",
+          fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
           letterSpacing: "0.05em",
         }}
       >

@@ -38,7 +38,7 @@ export function Readme() {
             className="font-mono-label"
             style={{
               color: "var(--color-cool-meta)",
-              fontSize: "clamp(1.125rem, 1.6vw, 1.625rem)",
+              fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
               letterSpacing: "0.05em",
             }}
           >
@@ -872,7 +872,7 @@ function SectionTitle({ label, title }: { label: string; title: string }) {
   return (
     <div className="grid grid-cols-12 gap-x-6 mb-8 items-baseline">
       {/* Second pass on label size (Jinal called the first bump still tiny).
-          Now clamp(1.125rem, 1.6vw, 1.625rem) ~ 18-26px so the / 0N label
+          Now clamp(1.125rem, 1.4vw, 1.25rem) ~ 18-26px so the / 0N label
           reads as actual section nav, not as buried metadata. The title is
           clamp(1.75rem, 3vw, 2.5rem) ~ 28-40px, so ratio is now ~1.5× —
           clear hierarchy without the label disappearing. */}
@@ -880,7 +880,7 @@ function SectionTitle({ label, title }: { label: string; title: string }) {
         className="col-span-12 lg:col-span-2 font-mono-label"
         style={{
           color: "var(--color-accent)",
-          fontSize: "clamp(1.125rem, 1.6vw, 1.625rem)",
+          fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
           letterSpacing: "0.05em",
         }}
       >

@@ -26,12 +26,12 @@ export function Maintainer() {
     >
       {/* Section header */}
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mb-16">
-        {/* Right-side section eyebrow at larger scale (24-32px) so the
-            section dominates as content metadata. Sidebar stays at 15px
-            for navigation. Lowercase + regular weight + no tracking
-            preserved from the consistency fix. */}
+        {/* Eyebrow on its own full-width row so it doesn't overflow
+            the col-span-2 column at 32px — overlap with h2 fixed 2026-06-06.
+            Right-side section eyebrow stays at 24-32px to dominate as
+            content metadata. */}
         <p
-          className="col-span-12 lg:col-span-2 font-mono-path"
+          className="col-span-12 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
             fontSize: "clamp(1.5rem, 2.2vw, 2rem)",

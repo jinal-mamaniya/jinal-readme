@@ -58,8 +58,9 @@ export function Notes() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-4">
           {/* Match the bumped SectionTitle scale in Readme.tsx — file-path
               label sits at ~18-26px so the section nav reads at scan speed. */}
+          {/* Eyebrow full-width row — no col-span-2 overflow at 32px. */}
           <p
-            className="col-span-12 lg:col-span-2 font-mono-path"
+            className="col-span-12 font-mono-path"
             style={{
               color: "var(--color-cool-meta)",
               fontSize: "clamp(1.5rem, 2.2vw, 2rem)",

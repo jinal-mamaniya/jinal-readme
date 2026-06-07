@@ -32,13 +32,10 @@ export function Readme() {
             Software Engineer with 9+ years" verbatim; mirrored here in
             the engineering-doc register (lowercase mono tag, no shouting
             badge) so it reads as fact-statement, not marketing. */}
-        <div className="col-span-12 lg:col-span-2">
-          {/* File path uses .font-mono-path treatment (lowercase, regular
-              weight, no tracking — engineering-doc convention) BUT
-              at a substantially larger size than the sidebar (15px) so
-              the right-side section eyebrow dominates as content metadata,
-              not just navigation. Sidebar = nav register (small).
-              Right-side eyebrow = section register (large). */}
+        {/* Eyebrow on its own full-width row so 32px label doesn't
+            overflow the narrow col-span-2 column and overlap the h2.
+            Layout fix shipped 2026-06-06. */}
+        <div className="col-span-12">
           <p
             className="font-mono-path"
             style={{

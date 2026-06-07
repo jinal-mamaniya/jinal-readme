@@ -3,6 +3,7 @@ import { systemUnconventional } from "@/data/unconventional";
 import { codePatterns } from "@/data/codePatterns";
 import { ArchitectureFlow } from "@/components/figures/ArchitectureFlow";
 import { CodeBlock } from "@/components/figures/CodeBlock";
+import { ColoredText } from "@/components/figures/ColoredText";
 import { OpsPanel } from "@/components/figures/OpsPanel";
 
 /* Per-chapter dominant Stack Atlas craft dimension. Used to render a
@@ -293,7 +294,11 @@ export function SystemFile({ slug }: { slug: string }) {
                   maxWidth: "68ch",
                 }}
               >
-                {p}
+                {/* Keywords colored by Stack Atlas craft dimension
+                    (judgment / data / runtime / discipline / multiplier).
+                    First-occurrence-per-paragraph rule keeps density low.
+                    See ColoredText.tsx for the keyword→dimension mapping. */}
+                <ColoredText text={p} />
               </p>
             ))}
           </div>

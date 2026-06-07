@@ -123,12 +123,16 @@ export function Notes() {
                   ESSAY_DIMENSION above). 01 frameworks = judgment cobalt,
                   02 slow-query = runtime slate, 03 mentoring = multiplier
                   magenta. Makes the Notes section a visual continuation
-                  of the Stack Atlas legend. */}
+                  of the Stack Atlas legend.
+                  Size reduced 2026-06-06 per UX hierarchy fix: essay
+                  title h3 is 36px, so number max 24px keeps the 0.67
+                  ratio (subject > metadata). Smaller clamp than the
+                  chapter version because essay titles are h3 not h2. */}
               <div className="col-span-12 lg:col-span-2">
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "clamp(3rem, 6vw, 5.5rem)",
+                    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
                     fontWeight: 700,
                     letterSpacing: "-0.04em",
                     lineHeight: 0.9,

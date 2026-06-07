@@ -74,14 +74,20 @@ export function SystemFile({ slug }: { slug: string }) {
     >
       {/* ===== HEADER — number marker + file path + company ===== */}
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mb-12">
-        {/* Massive number marker in red */}
+        {/* Chapter number marker — subordinate to the 56px chapter title
+            per standard UX hierarchy (subject > metadata in visual weight).
+            Earlier 88px (clamp 3rem-5.5rem) was 1.57× bigger than the
+            title — inverted hierarchy. New ~40px max sits at ~0.7× the
+            title scale (standard subordinate ratio per Bringhurst /
+            Vignelli / Material Design). Still visible as a deliberate
+            marker, no longer competes with the chapter title. */}
         <div className="col-span-12 lg:col-span-2">
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "clamp(3rem, 6vw, 5.5rem)",
+              fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
               fontWeight: 700,
-              letterSpacing: "-0.04em",
+              letterSpacing: "-0.02em",
               lineHeight: 0.9,
               color: "var(--color-accent)",
             }}

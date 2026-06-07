@@ -131,10 +131,18 @@ export function SystemFile({ slug }: { slug: string }) {
               {section === "Teaching" ? "taught" : "maintained"} {exp.dates}
             </span>
           </p>
+          {/* Chapter h2 bumped 2026-06-06 from clamp(2rem, 4.5vw, 3.5rem)
+              (32-56px) → clamp(2.5rem, 5.5vw, 4.5rem) (40-72px). The
+              chapter title IS the content — it should be at least as
+              dominant as the directory intro h2 (80px) that names it.
+              Previous inverted-hierarchy state had the wrapper (intro)
+              outweighing the content (chapter). The right side now
+              dominates properly: chapter title 72px vs intro 80px reads
+              as peer-level content, not subordinate. */}
           <h2
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
+              fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
               fontWeight: 700,
               letterSpacing: "-0.025em",
               lineHeight: 1,

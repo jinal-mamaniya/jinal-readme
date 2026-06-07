@@ -68,7 +68,7 @@ const MAIN_NODES: FlowNode[] = [
     id: "response",
     label: "Response",
     x: 630,
-    note: "Trace closes here. The same id that entered as Request leaves with the Response — full request lifecycle observable.",
+    note: "Trace closes here. Full request lifecycle observable end-to-end from the same id.",
   },
 ];
 
@@ -152,11 +152,12 @@ export function ArchitectureFlow() {
 
           {/* Connection lines — drawn before nodes so they sit underneath.
               `fromX = node.x + NODE_INNER_WIDTH` aligns with the inner rect's
-              right edge. Bumped 70 → 100 to fit "Middleware" (89px text)
-              and "Response" (~72px) labels at 16px without overflow. */}
+              right edge. Final inner width 110 gives "Middleware" 14px label
+              (~75px rendered) ~17px padding each side and preserves a 10px
+              visible gap to the next node (spacing 120 - width 110). */}
           {MAIN_NODES.slice(0, -1).map((node, i) => {
             const nextNode = MAIN_NODES[i + 1];
-            const fromX = node.x + 100;
+            const fromX = node.x + 110;
             const toX = nextNode.x;
             return (
               <line
@@ -189,22 +190,23 @@ export function ArchitectureFlow() {
                 onMouseLeave={() => setHovered(null)}
                 style={{ cursor: "pointer" }}
               >
-                {/* Larger invisible hit-zone for hover. Widths bumped
-                    (hit-zone 82→112, inner 70→100) to fit the longest
-                    label "Middleware" (89px text at 16px Geist Mono)
-                    without overflow + 11px padding. Text x recenters
-                    from node.x+35 to node.x+50 (center of 100px box). */}
+                {/* Final node dimensions (2026-06-06):
+                      hit-zone width 122, inner width 110, label fontSize 14.
+                    "Middleware" renders ~75px at 14px Geist Mono → 17px
+                    padding inside the 110 inner rect. 10px visible gap
+                    between adjacent nodes (spacing 120 minus inner 110).
+                    Text x = node.x + 55 centers in the 110-wide box. */}
                 <rect
                   x={node.x - 6}
                   y={82}
-                  width={112}
+                  width={122}
                   height={56}
                   fill="transparent"
                 />
                 <rect
                   x={node.x}
                   y={88}
-                  width={100}
+                  width={110}
                   height={44}
                   rx={4}
                   fill="url(#arch-node-fill)"
@@ -219,7 +221,7 @@ export function ArchitectureFlow() {
                   }}
                 />
                 <text
-                  x={node.x + 50}
+                  x={node.x + 55}
                   y={114}
                   textAnchor="middle"
                   fontFamily="var(--font-mono)"
@@ -373,7 +375,7 @@ export function ArchitectureFlow() {
           color: "var(--color-text-dim)",
         }}
       >
-        Figure 1 — the pattern, not an employer&apos;s architecture
+        Figure 1 — request-flow pattern with async branch and resilient retry
       </figcaption>
     </figure>
   );

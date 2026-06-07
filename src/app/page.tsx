@@ -8,6 +8,7 @@ import { Showcase } from "@/components/sections/Showcase";
 import { Notes } from "@/components/sections/Notes";
 import { Glossary } from "@/components/sections/Glossary";
 import { Maintainer } from "@/components/sections/Maintainer";
+import { TeachingIntro } from "@/components/sections/TeachingIntro";
 
 /**
  * Home — vertical-scroll composition of the README sections.
@@ -31,12 +32,12 @@ export default function Home() {
         <SystemFile slug="lti" />
         <Showcase />
         {/* Teaching/ — sits between Showcase and Notes per file tree order.
-            Uses SystemFile component with section="Teaching" set in the
-            experience entry (data-driven, not a separate component).
-            The `#teaching` anchor here is the directory-level scroll target
-            for the file tree's `Teaching/` link; the chapter itself owns
-            `#teaching-northeastern`. */}
-        <a id="teaching" className="block scroll-mt-12" aria-hidden="true" />
+            TeachingIntro provides the directory-level intro (heading +
+            subtitle) so Teaching/ follows the same pattern as every other
+            directory (Systems/, Showcase/, Notes/, Glossary/). The empty
+            anchor was the lone exception to rule #6 — closed 2026-06-06.
+            Chapter itself owns `#teaching-northeastern`. */}
+        <TeachingIntro />
         <SystemFile slug="northeastern" />
         <Notes />
         <Glossary />

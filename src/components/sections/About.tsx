@@ -129,7 +129,16 @@ export function About() {
 
         {/* Bio — supporting meta. Quiet sans paragraph anchored at the
             name's left edge (no indent), text-muted color, smaller scale.
-            Reads as the citation for the claim above it. */}
+            Reads as the citation for the claim above it.
+
+            Two phrases lifted into colored emphasis:
+              - "Senior Software Engineer" → --color-accent (cobalt):
+                role/identity is the brand-emphasis token's exact use case.
+              - "Raleigh, NC" → --color-now (green): location maps to the
+                already-reserved "currently active here" semantic, same
+                token that powers the status: active badge above.
+            Per rule #31 — both are existing tokens (one brand accent +
+            one semantic), no new colors added. */}
         <p
           style={{
             fontFamily: "var(--font-sans)",
@@ -145,10 +154,18 @@ export function About() {
             maxWidth: "60ch",
           }}
         >
-          {siteConfig.title} based in Raleigh, NC. Ten years across
-          legal-tech, public-safety, and enterprise. This document is the
-          handoff I&apos;d want from anyone whose work I was about to
-          inherit.
+          <span
+            style={{ color: "var(--color-accent)", fontWeight: 600 }}
+          >
+            {siteConfig.title}
+          </span>{" "}
+          based in{" "}
+          <span style={{ color: "var(--color-now)", fontWeight: 600 }}>
+            Raleigh, NC
+          </span>
+          . Ten years across legal-tech, public-safety, and enterprise. This
+          document is the handoff I&apos;d want from anyone whose work I was
+          about to inherit.
         </p>
       </div>
 

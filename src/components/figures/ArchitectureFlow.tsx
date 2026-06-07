@@ -225,14 +225,15 @@ export function ArchitectureFlow() {
                   y={114}
                   textAnchor="middle"
                   fontFamily="var(--font-mono)"
-                  /* fontSize 16 → 14 (2026-06-06): at 16, "Middleware"
-                     rendered text was 89px wide — exactly filling the
-                     100px box with zero padding, reading as crammed.
-                     At 14, "Middleware" renders ~78px so the 100px box
-                     gets ~11px padding each side. Mobile effective is
-                     still ~6.4px (pinch-zoomable). Engineering-doc
-                     figure register preserved. */
-                  fontSize={14}
+                  /* fontSize 14 → 13 (2026-06-06 strict-review pass):
+                     at 14 with 110-wide box, "Middleware" had 8-9px
+                     rendered padding while neighbors had 16-39px —
+                     asymmetric, reading as draftsmanship slop. At 13,
+                     "Middleware" renders ~70px so 110 box gets ~14-15px
+                     padding rendered, matching the neighbor padding
+                     range. Mobile effective ~5.9px (was 6.4); still
+                     pinch-zoomable. */
+                  fontSize={13}
                   fontWeight={500}
                   fill={
                     isHovered
@@ -288,11 +289,13 @@ export function ArchitectureFlow() {
               y={166}
               textAnchor="middle"
               fontFamily="var(--font-mono)"
-              /* Font size bumped 10 → 14 for the same mobile-scaling reason
-                 as the main labels above. Async queue stays slightly smaller
-                 than main labels (14 vs 16) to preserve the visual hierarchy
-                 — async branch is a sub-flow off the main path. */
-              fontSize={14}
+              /* fontSize 14 → 13 (2026-06-06 strict-review pass): same
+                 padding fix as main nodes — at 14, "async queue" left 9-10px
+                 padding inside its 120-wide box, asymmetric vs neighbors.
+                 At 13, padding bumps to ~13px, matching main-row Middleware
+                 box. Visual hierarchy (async = sub-flow) preserved by the
+                 dashed-line container style, not by font size. */
+              fontSize={13}
               fontWeight={500}
               fill={
                 hovered === ASYNC_NODE.id
@@ -307,17 +310,17 @@ export function ArchitectureFlow() {
           </g>
 
           {/* Three pulses traveling the main flow at staggered offsets */}
-          <circle r={3.5} style={{ fill: "var(--color-accent)" }}>
+          <circle r={2} style={{ fill: "var(--color-accent)" }}>
             <animateMotion dur="3.5s" repeatCount="indefinite">
               <mpath href="#arch-flow-main-prod" />
             </animateMotion>
           </circle>
-          <circle r={3.5} opacity={0.7} style={{ fill: "var(--color-accent)" }}>
+          <circle r={2} opacity={0.7} style={{ fill: "var(--color-accent)" }}>
             <animateMotion dur="3.5s" begin="1.2s" repeatCount="indefinite">
               <mpath href="#arch-flow-main-prod" />
             </animateMotion>
           </circle>
-          <circle r={3.5} opacity={0.5} style={{ fill: "var(--color-accent)" }}>
+          <circle r={2} opacity={0.5} style={{ fill: "var(--color-accent)" }}>
             <animateMotion dur="3.5s" begin="2.4s" repeatCount="indefinite">
               <mpath href="#arch-flow-main-prod" />
             </animateMotion>
@@ -375,7 +378,7 @@ export function ArchitectureFlow() {
           color: "var(--color-text-dim)",
         }}
       >
-        Figure 1 — request-flow pattern with async branch and resilient retry
+        Figure 1 — request-flow pattern with async branch
       </figcaption>
     </figure>
   );

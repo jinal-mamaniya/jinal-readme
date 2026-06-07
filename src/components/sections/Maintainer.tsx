@@ -26,13 +26,12 @@ export function Maintainer() {
     >
       {/* Section header */}
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mb-16">
-        {/* Match the bumped SectionTitle scale across sections. */}
+        {/* File path uses .font-mono-path so it matches the sidebar's
+            `Maintainer.md` exactly. Per rule #6 consistency. */}
         <p
-          className="col-span-12 lg:col-span-2 font-mono-label"
+          className="col-span-12 lg:col-span-2 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
-            fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
-            letterSpacing: "0.05em",
           }}
         >
           Maintainer.md

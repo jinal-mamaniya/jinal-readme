@@ -30,11 +30,9 @@ export function Showcase() {
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mb-12">
         {/* Match the bumped SectionTitle scale across sections. */}
         <p
-          className="col-span-12 lg:col-span-2 font-mono-label"
+          className="col-span-12 lg:col-span-2 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
-            fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
-            letterSpacing: "0.05em",
           }}
         >
           Showcase/

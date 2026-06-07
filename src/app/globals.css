@@ -273,14 +273,16 @@ svg {
   letter-spacing: 0.1em;
 }
 .font-mono-path {
+  /* Universal file-path treatment — used in the sidebar AND in every
+     section eyebrow that displays a file path. Per rule #6 (consistency),
+     the same conceptual element renders the same everywhere: lowercase,
+     regular weight, no tracking, no uppercase. Matches real engineering-
+     doc convention (VS Code, GitHub file viewer, Linear docs). */
   font-family: var(--font-mono);
   font-weight: 400;
-  /* font-size 0.8125rem → 0.9375rem (13px → 15px) on 2026-06-06.
-     "Systems/" and other directory/file labels in the file-tree
-     sidebar read as very tiny at 13px Geist Mono — sidebar is the
-     primary navigation surface, so legibility wins over compactness.
-     15px is the standard sidebar-nav size (Linear, Vercel docs). */
   font-size: 0.9375rem;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 /* ===== ACCESSIBILITY ===== */

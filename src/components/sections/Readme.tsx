@@ -33,13 +33,12 @@ export function Readme() {
             the engineering-doc register (lowercase mono tag, no shouting
             badge) so it reads as fact-statement, not marketing. */}
         <div className="col-span-12 lg:col-span-2">
-          {/* Match section-label scale — file path reads at scan speed. */}
+          {/* File path uses .font-mono-path so it matches the sidebar's
+              `README.md` exactly. Per rule #6 consistency. */}
           <p
-            className="font-mono-label"
+            className="font-mono-path"
             style={{
               color: "var(--color-cool-meta)",
-              fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
-              letterSpacing: "0.05em",
             }}
           >
             README.md

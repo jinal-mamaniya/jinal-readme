@@ -68,7 +68,7 @@ export function Glossary() {
       {/* Section header */}
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mb-12">
         <p
-          className="col-span-12 lg:col-span-2 font-mono-label"
+          className="col-span-12 lg:col-span-2 font-mono-path"
           style={{ color: "var(--color-cool-meta)" }}
         >
           Index.md

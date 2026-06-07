@@ -39,12 +39,13 @@ export function About() {
           doc thesis instead of decorating it. === */}
       {/* Page-top file path — bumped to match SectionTitle scale so the
           engineering-doc orientation reads at scan speed. */}
+      {/* File path label uses .font-mono-path (the universal file-path
+          treatment — lowercase, regular weight, no tracking) so it matches
+          the sidebar's `About.md` exactly. Per rule #6 consistency. */}
       <div
-        className="px-6 sm:px-10 pt-8 font-mono-label"
+        className="px-6 sm:px-10 pt-8 font-mono-path"
         style={{
           color: "var(--color-cool-meta)",
-          fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
-          letterSpacing: "0.05em",
         }}
       >
         <span>jinal-mamaniya/About.md</span>

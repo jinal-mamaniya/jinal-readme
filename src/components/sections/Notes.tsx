@@ -59,11 +59,9 @@ export function Notes() {
           {/* Match the bumped SectionTitle scale in Readme.tsx — file-path
               label sits at ~18-26px so the section nav reads at scan speed. */}
           <p
-            className="col-span-12 lg:col-span-2 font-mono-label"
+            className="col-span-12 lg:col-span-2 font-mono-path"
             style={{
               color: "var(--color-cool-meta)",
-              fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
-              letterSpacing: "0.05em",
             }}
           >
             Notes/

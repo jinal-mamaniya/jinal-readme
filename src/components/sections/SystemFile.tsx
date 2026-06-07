@@ -101,11 +101,9 @@ export function SystemFile({ slug }: { slug: string }) {
               ties to the Stack Atlas legend. Cobalt brand still dominates
               elsewhere in the chapter (number marker, italic thesis rule). */}
           <p
-            className="font-mono-label mb-3 inline-flex items-center gap-2"
+            className="font-mono-path mb-3 inline-flex items-center gap-2"
             style={{
               color: "var(--color-cool-meta)",
-              fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
-              letterSpacing: "0.05em",
             }}
           >
             {CHAPTER_DIMENSION[slug] && (

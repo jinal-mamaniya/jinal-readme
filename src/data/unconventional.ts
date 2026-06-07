@@ -19,8 +19,10 @@
 export interface SystemUnconventional {
   /** What I'd qualify now with hindsight. Not regret — reflection. */
   selfCritique: string;
-  /** Explicit out-of-scope. What this system / role did NOT cover. */
-  limitations: string;
+  /** Explicit out-of-scope. What this system / role did NOT cover.
+      Optional — when omitted, the "What this system DOESN'T do"
+      block is suppressed for that chapter. */
+  limitations?: string;
 }
 
 /* Per-system unconventional content. Keys match experience.ts slugs. */
@@ -34,13 +36,9 @@ export const systemUnconventional: Record<string, SystemUnconventional> = {
        failures. EDIT TO YOUR VOICE. */
     selfCritique:
       "Looking at this chapter now, I'd qualify how I present the headline metrics. The 42% system-latency reduction and 80% application-speed boost are real for the paths I rebuilt — but both are aggregates, and the wins were uneven across the platform's surface. The middleware caught everything in its scope; the platform is bigger than what was in mine. I'd also revisit the GraphQL execution numbers (200ms → 120ms) — that's true for the queries we instrumented; the long-tail of complex queries didn't always follow the same curve.",
-    /* DRAFT — Sources: experience.ts narrative ("Six teams share one
-       codebase, 40+ engineers across them. On my team I own the full
-       stack end to end") + resume-fullstack ("Modernized monolithic
-       architecture into .NET microservices with API Gateway patterns").
-       Scope limits explicit. */
-    limitations:
-      "This is the data-layer + middleware + async-processing + caching surface for one of six teams that share the LexisNexis codebase. It is NOT the full LexisNexis platform. Analytics, reporting, customer-facing UI features, and the queries against domains other teams own live elsewhere. The patterns I shipped (Polly for resilient retry, distributed Redis, async message processing, OAuth2.0/JWT API gateway) extend to anywhere they're adopted — but adoption was team-by-team, not platform-wide. The Angular v12 → v15 migration was for the components my team maintains; not every team's components went on the same release.",
+    /* `limitations` field removed 2026-06-06 per user direction —
+       "What this system DOESN'T do" block suppressed for LexisNexis.
+       Other chapters keep their limitations callouts. */
   },
 
   motorola: {

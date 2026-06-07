@@ -147,10 +147,13 @@ export function ArchitectureFlow() {
             </linearGradient>
           </defs>
 
-          {/* Connection lines — drawn before nodes so they sit underneath */}
+          {/* Connection lines — drawn before nodes so they sit underneath.
+              `fromX = node.x + NODE_INNER_WIDTH` aligns with the inner rect's
+              right edge. Bumped 70 → 100 to fit "Middleware" (89px text)
+              and "Response" (~72px) labels at 16px without overflow. */}
           {MAIN_NODES.slice(0, -1).map((node, i) => {
             const nextNode = MAIN_NODES[i + 1];
-            const fromX = node.x + 70;
+            const fromX = node.x + 100;
             const toX = nextNode.x;
             return (
               <line
@@ -183,18 +186,22 @@ export function ArchitectureFlow() {
                 onMouseLeave={() => setHovered(null)}
                 style={{ cursor: "pointer" }}
               >
-                {/* Larger invisible hit-zone for hover */}
+                {/* Larger invisible hit-zone for hover. Widths bumped
+                    (hit-zone 82→112, inner 70→100) to fit the longest
+                    label "Middleware" (89px text at 16px Geist Mono)
+                    without overflow + 11px padding. Text x recenters
+                    from node.x+35 to node.x+50 (center of 100px box). */}
                 <rect
                   x={node.x - 6}
                   y={82}
-                  width={82}
+                  width={112}
                   height={56}
                   fill="transparent"
                 />
                 <rect
                   x={node.x}
                   y={88}
-                  width={70}
+                  width={100}
                   height={44}
                   rx={4}
                   fill="url(#arch-node-fill)"
@@ -209,7 +216,7 @@ export function ArchitectureFlow() {
                   }}
                 />
                 <text
-                  x={node.x + 35}
+                  x={node.x + 50}
                   y={114}
                   textAnchor="middle"
                   fontFamily="var(--font-mono)"
@@ -244,17 +251,21 @@ export function ArchitectureFlow() {
             onMouseLeave={() => setHovered(null)}
             style={{ cursor: "pointer" }}
           >
+            {/* Async-queue widths bumped (hit-zone 102→132, inner 90→120)
+                to fit "Async queue" label (99px text at 14px Geist Mono)
+                without overflow + 21px padding. Text x recenters to
+                ASYNC_NODE.x+60 (center of 120px box). */}
             <rect
               x={ASYNC_NODE.x - 6}
               y={140}
-              width={102}
+              width={132}
               height={42}
               fill="transparent"
             />
             <rect
               x={ASYNC_NODE.x}
               y={146}
-              width={90}
+              width={120}
               height={30}
               rx={4}
               fill="none"
@@ -270,7 +281,7 @@ export function ArchitectureFlow() {
               }}
             />
             <text
-              x={ASYNC_NODE.x + 45}
+              x={ASYNC_NODE.x + 60}
               y={166}
               textAnchor="middle"
               fontFamily="var(--font-mono)"

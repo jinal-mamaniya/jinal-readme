@@ -771,17 +771,37 @@ export function Readme() {
         </div>
       </div>
 
-      {/* ===== CREDENTIALS ===== */}
+      {/* ===== CREDENTIALS =====
+          Restructured 2026-06-06 from 2-column → 3-column grid to add
+          Awards & Recognition (was buried only inside TCS chapter).
+          Each column's category eyebrow carries an atlas-dimension dot
+          (matches the Glossary entry pattern) tying Credentials to the
+          dimensional language used elsewhere on the page:
+            Certifications → discipline orange (formal rigor)
+            Education      → judgment cobalt   (foundational decisions)
+            Awards         → multiplier magenta (people-recognition) */}
       <SectionTitle label="05" title="Credentials" />
       <div className="grid grid-cols-12 gap-x-8 gap-y-10">
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-4">
           <p
-            className="font-mono-label mb-4 pb-2 border-b"
+            className="font-mono-label mb-4 pb-2 border-b inline-flex items-center gap-2"
             style={{
               color: "var(--color-foreground)",
               borderColor: "var(--color-foreground)",
+              width: "100%",
             }}
           >
+            <span
+              aria-hidden="true"
+              style={{
+                display: "inline-block",
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "var(--color-atlas-discipline)",
+                flex: "0 0 auto",
+              }}
+            />
             Certifications
           </p>
           <ul className="space-y-3">
@@ -810,14 +830,26 @@ export function Readme() {
             ))}
           </ul>
         </div>
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-4">
           <p
-            className="font-mono-label mb-4 pb-2 border-b"
+            className="font-mono-label mb-4 pb-2 border-b inline-flex items-center gap-2"
             style={{
               color: "var(--color-foreground)",
               borderColor: "var(--color-foreground)",
+              width: "100%",
             }}
           >
+            <span
+              aria-hidden="true"
+              style={{
+                display: "inline-block",
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "var(--color-atlas-judgment)",
+                flex: "0 0 auto",
+              }}
+            />
             Education
           </p>
           <ul className="space-y-3">
@@ -841,6 +873,55 @@ export function Readme() {
                   }}
                 >
                   {e.institution} · {e.location} · {e.dates}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="col-span-12 lg:col-span-4">
+          <p
+            className="font-mono-label mb-4 pb-2 border-b inline-flex items-center gap-2"
+            style={{
+              color: "var(--color-foreground)",
+              borderColor: "var(--color-foreground)",
+              width: "100%",
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                display: "inline-block",
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "var(--color-atlas-multiplier)",
+                flex: "0 0 auto",
+              }}
+            />
+            Awards &amp; Recognition
+          </p>
+          <ul className="space-y-3">
+            {credentials.awards.map((a) => (
+              <li key={a.name}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "clamp(1rem, 1.15vw, 1.0625rem)",
+                    fontWeight: 600,
+                    color: "var(--color-foreground)",
+                  }}
+                >
+                  {a.name}
+                </p>
+                <p
+                  className="font-mono-meta mt-0.5"
+                  style={{
+                    color: "var(--color-text-dim)",
+                    fontSize: "0.8125rem",
+                  }}
+                >
+                  {a.issuer}
+                  {a.context ? ` · ${a.context}` : ""}
                 </p>
               </li>
             ))}

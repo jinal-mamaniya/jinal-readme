@@ -204,6 +204,33 @@ export const credentials = {
       dates: "Sep 2010 — Jun 2013",
     },
   ],
+  /* Awards + LOR added 2026-06-06 — were buried in TCS chapter only.
+     Surface here at Credentials level so the formal-credibility scan-zone
+     includes both academic + recognition signals. Sources:
+       - 3 TCS awards: experience.ts:241-245 (TCS chapter awards array)
+       - LOR: experience.ts:235-240 (TCS chapter testimonial — already
+              rendered in Endorsement at page-top; surface here too as
+              a formal credential). */
+  awards: [
+    {
+      name: "Star of the Month (×2)",
+      issuer: "Tata Consultancy Services",
+      context: "Recognized twice during Dow OPD tenure",
+    },
+    {
+      name: "Service & Commitment Award",
+      issuer: "Tata Consultancy Services",
+    },
+    {
+      name: "Contextual Master Award",
+      issuer: "Tata Consultancy Services",
+    },
+    {
+      name: "Letter of Recommendation",
+      issuer: "The Dow Chemical Company",
+      context: "Jacky S. Aikin, OPD Tool Owner · 2021",
+    },
+  ],
 };
 
 /* ===== Onboarding for the next engineer =====

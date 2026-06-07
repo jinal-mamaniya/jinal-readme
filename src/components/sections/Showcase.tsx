@@ -33,6 +33,7 @@ export function Showcase() {
           className="col-span-12 lg:col-span-2 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
+            fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
           }}
         >
           Showcase/

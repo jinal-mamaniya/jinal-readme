@@ -110,6 +110,7 @@ export function SystemFile({ slug }: { slug: string }) {
             className="font-mono-path mb-3 inline-flex items-center gap-2"
             style={{
               color: "var(--color-cool-meta)",
+              fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
             }}
           >
             {CHAPTER_DIMENSION[slug] && (

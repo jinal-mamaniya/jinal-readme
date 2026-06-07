@@ -26,12 +26,15 @@ export function Maintainer() {
     >
       {/* Section header */}
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mb-16">
-        {/* File path uses .font-mono-path so it matches the sidebar's
-            `Maintainer.md` exactly. Per rule #6 consistency. */}
+        {/* Right-side section eyebrow at larger scale (24-32px) so the
+            section dominates as content metadata. Sidebar stays at 15px
+            for navigation. Lowercase + regular weight + no tracking
+            preserved from the consistency fix. */}
         <p
           className="col-span-12 lg:col-span-2 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
+            fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
           }}
         >
           Maintainer.md

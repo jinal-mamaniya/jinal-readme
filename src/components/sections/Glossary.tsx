@@ -69,7 +69,10 @@ export function Glossary() {
       <div className="grid grid-cols-12 gap-x-6 gap-y-4 mb-12">
         <p
           className="col-span-12 lg:col-span-2 font-mono-path"
-          style={{ color: "var(--color-cool-meta)" }}
+          style={{
+            color: "var(--color-cool-meta)",
+            fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+          }}
         >
           Index.md
         </p>

@@ -33,12 +33,17 @@ export function Readme() {
             the engineering-doc register (lowercase mono tag, no shouting
             badge) so it reads as fact-statement, not marketing. */}
         <div className="col-span-12 lg:col-span-2">
-          {/* File path uses .font-mono-path so it matches the sidebar's
-              `README.md` exactly. Per rule #6 consistency. */}
+          {/* File path uses .font-mono-path treatment (lowercase, regular
+              weight, no tracking — engineering-doc convention) BUT
+              at a substantially larger size than the sidebar (15px) so
+              the right-side section eyebrow dominates as content metadata,
+              not just navigation. Sidebar = nav register (small).
+              Right-side eyebrow = section register (large). */}
           <p
             className="font-mono-path"
             style={{
               color: "var(--color-cool-meta)",
+              fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
             }}
           >
             README.md

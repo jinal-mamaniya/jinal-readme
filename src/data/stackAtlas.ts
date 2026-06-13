@@ -599,7 +599,7 @@ export const ATLAS_STATIONS: AtlasStation[] = [
     id: "angular",
     label: "Angular",
     lines: ["runtime"],
-    context: "v12 → v17. Material UI + RxJS for real-time UI. Depth.",
+    context: "v12 → v15. Material UI + RxJS for real-time UI. Depth.",
     emphasis: "terminal",
     y:54,
   },

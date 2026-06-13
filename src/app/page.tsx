@@ -22,7 +22,14 @@ export default function Home() {
   return (
     <>
       <FileTree />
-      <main id="main-content" className="xl:pl-[18rem]">
+      {/* Bottom padding pb-32 (xl:pb-0) clears the mobile FAB toggle so
+          content never scrolls underneath it. The FileTree menu button
+          sits at `fixed bottom-5 right-5` with xl:hidden — at <xl the
+          button occupies ~60px of bottom-right space; without this
+          padding, the last paragraph / badges / contact email of every
+          section get hidden behind the button. At xl+ the FAB hides and
+          the padding zeros out. */}
+      <main id="main-content" className="xl:pl-[18rem] pb-32 xl:pb-0">
         <About />
         <Endorsement />
         <Readme />

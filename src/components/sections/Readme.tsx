@@ -1,5 +1,6 @@
 import { credentials } from "@/data/unconventional";
 import { EngineeringDecisionTree } from "@/components/figures/EngineeringDecisionTree";
+import { DimensionalDot } from "@/components/ui/DimensionalDot";
 
 /**
  * Readme — the project's actual README, rendered with Pentagram/Vignelli
@@ -40,7 +41,7 @@ export function Readme() {
             className="font-mono-path"
             style={{
               color: "var(--color-cool-meta)",
-              fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+              fontSize: "var(--type-eyebrow)",
             }}
           >
             README.md
@@ -82,7 +83,7 @@ export function Readme() {
           className="col-span-12 lg:col-span-10"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
+            fontSize: "var(--type-h2)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
             lineHeight: 0.95,
@@ -122,7 +123,7 @@ export function Readme() {
           className="col-span-12 lg:col-span-7 lg:col-start-3 mt-2"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(1.125rem, 1.5vw, 1.375rem)",
+            fontSize: "var(--type-lede)",
             fontWeight: 400,
             lineHeight: 1.5,
             color: "var(--color-text-muted)",
@@ -311,13 +312,15 @@ export function Readme() {
                 />
                 {/* Metrics expanded 2026-05-31 from 3 entries to 12 — prior
                     was a shortcut that left ~25 documented achievements out.
-                    LexisNexis daily-users metric specifically removed per
-                    Jinal's call (current-employer NDA-prudent — other LN
-                    numbers stay because they're in the public resume).
+                    LN daily-users restored 2026-06-10: the 15K+ figure is
+                    in the public resume verbatim ("serving 15K+ daily users"),
+                    so the prior exclusion was over-cautious relative to the
+                    actual NDA boundary. Surfaces consistently with the LN
+                    chapter metric strip per rule #6.
                     Every metric traces to resume + LinkedIn; each attribution
                     names the system + technique. */}
                 <JsonObjectOpen indent={2} k="metrics" />
-                <JsonPair indent={4} k="users" v={`"17K+ daily (TCS Dow OPD) · 3K+ (LTI early)"`} comma />
+                <JsonPair indent={4} k="users" v={`"15K+ daily (LexisNexis) · 17K+ (TCS Dow OPD) · 3K+ (LTI early)"`} comma />
                 <JsonPair indent={4} k="global_reach" v={`"650 plants · 13 languages (TCS Dow OPD)"`} comma />
                 <JsonPair indent={4} k="availability" v={`"99.95% API (LexisNexis · Polly resilience)"`} comma />
                 <JsonPair indent={4} k="throughput" v={`"100K+ daily events (LexisNexis)"`} comma />
@@ -793,17 +796,7 @@ export function Readme() {
               width: "100%",
             }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "var(--color-atlas-discipline)",
-                flex: "0 0 auto",
-              }}
-            />
+            <DimensionalDot dimension="discipline" ariaLabel="" />
             Certifications
           </p>
           <ul className="space-y-3">
@@ -841,17 +834,7 @@ export function Readme() {
               width: "100%",
             }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "var(--color-atlas-judgment)",
-                flex: "0 0 auto",
-              }}
-            />
+            <DimensionalDot dimension="judgment" ariaLabel="" />
             Education
           </p>
           <ul className="space-y-3">
@@ -889,17 +872,7 @@ export function Readme() {
               width: "100%",
             }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "var(--color-atlas-multiplier)",
-                flex: "0 0 auto",
-              }}
-            />
+            <DimensionalDot dimension="multiplier" ariaLabel="" />
             Awards &amp; Recognition
           </p>
           <ul className="space-y-3">
@@ -1098,7 +1071,7 @@ function SectionTitle({ label, title }: { label: string; title: string }) {
         className="col-span-12 lg:col-span-10"
         style={{
           fontFamily: "var(--font-sans)",
-          fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+          fontSize: "var(--type-h3)",
           fontWeight: 700,
           letterSpacing: "-0.02em",
           lineHeight: 1.1,

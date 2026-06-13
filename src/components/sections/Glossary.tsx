@@ -1,3 +1,5 @@
+import { DimensionalDot, type AtlasDimension } from "@/components/ui/DimensionalDot";
+
 /**
  * Glossary — replaces the book's Index.
  *
@@ -5,19 +7,14 @@
  * where they're discussed. Compositional treatment: section title +
  * lede, then a 3-column grid of terms (file-tree-style cross-refs
  * shown as mono path text). Dotted leaders retained as design rhythm.
+ *
+ * Each entry maps to its dominant Stack Atlas craft dimension. Renders as
+ * a small colored dot before the term name — reader can scan "all the
+ * data terms" or "all the multiplier terms" at a glance, with the atlas
+ * as the legend. Semantic categorical use per rule #31. Dot rendered via
+ * the shared DimensionalDot primitive (extracted 2026-06-12 from this
+ * file's prior inline span).
  */
-
-/* Each entry maps to its dominant Stack Atlas craft dimension. Renders as
-   a small colored dot before the term name — reader can scan "all the
-   data terms" or "all the multiplier terms" at a glance, with the atlas
-   as the legend. Semantic categorical use per rule #31. */
-type AtlasDimension =
-  | "discipline"
-  | "data"
-  | "ai"
-  | "multiplier"
-  | "judgment"
-  | "runtime";
 
 interface GlossaryEntry {
   term: string;
@@ -49,15 +46,6 @@ const entries: GlossaryEntry[] = [
   { term: "Validation · stored procedure", ref: "Systems/lexisnexis.md", href: "#systems-lexisnexis", dimension: "data" },
 ];
 
-const DIMENSION_COLOR: Record<AtlasDimension, string> = {
-  discipline: "var(--color-atlas-discipline)",
-  data: "var(--color-atlas-data)",
-  ai: "var(--color-atlas-ai)",
-  multiplier: "var(--color-atlas-multiplier)",
-  judgment: "var(--color-atlas-judgment)",
-  runtime: "var(--color-atlas-runtime)",
-};
-
 export function Glossary() {
   return (
     <section
@@ -72,7 +60,7 @@ export function Glossary() {
           className="col-span-12 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
-            fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+            fontSize: "var(--type-eyebrow)",
           }}
         >
           Index.md
@@ -81,7 +69,7 @@ export function Glossary() {
           className="col-span-12 lg:col-span-10"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
+            fontSize: "var(--type-h2)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
             lineHeight: 0.95,
@@ -94,7 +82,7 @@ export function Glossary() {
           className="col-span-12 lg:col-span-7 lg:col-start-3 mt-4"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(1.125rem, 1.5vw, 1.375rem)",
+            fontSize: "var(--type-lede)",
             lineHeight: 1.5,
             color: "var(--color-text-muted)",
           }}
@@ -121,18 +109,7 @@ export function Glossary() {
               {/* Dimensional dot — 8px circle in the entry's atlas-dimension
                   color. Aria-label keeps it accessible without cluttering
                   the scan visually. */}
-              <span
-                aria-label={`Dimension: ${e.dimension}`}
-                style={{
-                  display: "inline-block",
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: DIMENSION_COLOR[e.dimension],
-                  flex: "0 0 auto",
-                  alignSelf: "center",
-                }}
-              />
+              <DimensionalDot dimension={e.dimension} alignSelf="center" />
               <span
                 style={{
                   fontFamily: "var(--font-sans)",

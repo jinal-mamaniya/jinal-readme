@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * ArchitectureFlow — animated, interactive request-flow diagram (Figure 1).
@@ -81,6 +81,20 @@ const ASYNC_NODE: FlowNode = {
 
 export function ArchitectureFlow() {
   const [hovered, setHovered] = useState<string | null>(null);
+  /* prefers-reduced-motion gate (2026-06-10): the file header claimed this
+     was honored but no implementation existed — the 4 SMIL animateMotion
+     pulses ran unconditionally. Now matches the OpsPanel pattern: read
+     the user preference on mount, listen for changes, suppress the
+     pulses when set. WCAG 2.3.3 / motion-disorder-safe. */
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
 
   const allNodes = [...MAIN_NODES, ASYNC_NODE];
   const hoveredNode = allNodes.find((n) => n.id === hovered);
@@ -119,12 +133,24 @@ export function ArchitectureFlow() {
             hover any node
           </p>
         </div>
+        {/* SVG mobile legibility fix (2026-06-10): on narrow viewports
+            (<560px content area), the 760-unit viewBox + w-full caused
+            13px node labels to shrink to ~5.6px rendered — sub-WCAG SC
+            1.4.4 (Resize Text) and below comfortable touch-screen reading.
+            Engineering-schematic convention: keep the diagram at a
+            minimum legible width and let it scroll horizontally on narrow
+            mobile, rather than illegibly shrinking everything to fit.
+            min-width 560px → labels render at ~9.6px on the smallest
+            phones, the diagram remains readable, and swipe reveals the
+            full flow. */}
+        <div className="overflow-x-auto -mx-2 px-2 pb-1">
         <svg
           /* viewBox width 720→760 (2026-06-06): Response node at x=630
              with width=100 ended at x=730, getting cropped at viewBox 720.
              Bumping to 760 gives 30px right padding past Response box. */
           viewBox="0 0 760 220"
-          className="w-full h-auto"
+          className="h-auto block"
+          style={{ minWidth: "560px", width: "100%" }}
           xmlns="http://www.w3.org/2000/svg"
           role="img"
           aria-label="Diagram: a request travels from Request through API, Middleware, Cache, and DB to a Response, with an async queue branching from the Middleware."
@@ -309,29 +335,60 @@ export function ArchitectureFlow() {
             </text>
           </g>
 
-          {/* Three pulses traveling the main flow at staggered offsets */}
-          <circle r={2} style={{ fill: "var(--color-accent)" }}>
-            <animateMotion dur="3.5s" repeatCount="indefinite">
-              <mpath href="#arch-flow-main-prod" />
-            </animateMotion>
-          </circle>
-          <circle r={2} opacity={0.7} style={{ fill: "var(--color-accent)" }}>
-            <animateMotion dur="3.5s" begin="1.2s" repeatCount="indefinite">
-              <mpath href="#arch-flow-main-prod" />
-            </animateMotion>
-          </circle>
-          <circle r={2} opacity={0.5} style={{ fill: "var(--color-accent)" }}>
-            <animateMotion dur="3.5s" begin="2.4s" repeatCount="indefinite">
-              <mpath href="#arch-flow-main-prod" />
-            </animateMotion>
-          </circle>
-          {/* Async branch pulse — emerald, reserved for "now" register */}
-          <circle r={2.5} fill="var(--color-now)" opacity={0.7}>
-            <animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite">
-              <mpath href="#arch-flow-async-prod" />
-            </animateMotion>
-          </circle>
+          {/* Three pulses traveling the main flow at staggered offsets.
+              Suppressed entirely when prefers-reduced-motion: reduce — see
+              effect above. Static markers replace them so the diagram still
+              reads as "data flow" without motion. */}
+          {!reducedMotion ? (
+            <>
+              <circle r={2} style={{ fill: "var(--color-accent)" }}>
+                <animateMotion dur="3.5s" repeatCount="indefinite">
+                  <mpath href="#arch-flow-main-prod" />
+                </animateMotion>
+              </circle>
+              <circle r={2} opacity={0.7} style={{ fill: "var(--color-accent)" }}>
+                <animateMotion dur="3.5s" begin="1.2s" repeatCount="indefinite">
+                  <mpath href="#arch-flow-main-prod" />
+                </animateMotion>
+              </circle>
+              <circle r={2} opacity={0.5} style={{ fill: "var(--color-accent)" }}>
+                <animateMotion dur="3.5s" begin="2.4s" repeatCount="indefinite">
+                  <mpath href="#arch-flow-main-prod" />
+                </animateMotion>
+              </circle>
+              {/* Async branch pulse — emerald, reserved for "now" register */}
+              <circle r={2.5} fill="var(--color-now)" opacity={0.7}>
+                <animateMotion dur="2.6s" begin="0.6s" repeatCount="indefinite">
+                  <mpath href="#arch-flow-async-prod" />
+                </animateMotion>
+              </circle>
+            </>
+          ) : (
+            <>
+              {/* Static markers — one accent dot in the gap BETWEEN each
+                  pair of adjacent nodes (the segment the animated pulses
+                  travel on), plus one "now" dot at the midpoint of the
+                  async branch's horizontal segment. Earlier positions
+                  (235, 355, 475, 595) landed inside the node rects — a
+                  visual nonsense for a "flow direction" signal. Correct
+                  midpoints derived from node geometry:
+                    Request right=140, API left=150 → gap mid 145
+                    API right=260, Middleware left=270 → gap mid 265
+                    Middleware right=380, Cache left=390 → gap mid 385
+                    Cache right=500, DB left=510 → gap mid 505
+                    DB right=620, Response left=630 → gap mid 625
+                  Async path: M 300 110 Q 340 110 340 160 L 410 160 →
+                  horizontal segment from x=340 to x=410, midpoint 375. */}
+              <circle cx={145} cy={110} r={2} style={{ fill: "var(--color-accent)" }} />
+              <circle cx={265} cy={110} r={2} style={{ fill: "var(--color-accent)" }} />
+              <circle cx={385} cy={110} r={2} style={{ fill: "var(--color-accent)" }} />
+              <circle cx={505} cy={110} r={2} style={{ fill: "var(--color-accent)" }} />
+              <circle cx={625} cy={110} r={2} style={{ fill: "var(--color-accent)" }} />
+              <circle cx={375} cy={160} r={2.5} fill="var(--color-now)" opacity={0.8} />
+            </>
+          )}
         </svg>
+        </div>
 
         {/* Hover-revealed pattern note. Fixed-height box keeps the figure
             footprint stable so hovering doesn't reflow the surrounding text. */}

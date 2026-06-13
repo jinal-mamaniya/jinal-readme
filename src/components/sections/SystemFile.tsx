@@ -5,6 +5,10 @@ import { ArchitectureFlow } from "@/components/figures/ArchitectureFlow";
 import { CodeBlock } from "@/components/figures/CodeBlock";
 import { ColoredText } from "@/components/figures/ColoredText";
 import { OpsPanel } from "@/components/figures/OpsPanel";
+import {
+  DimensionalDot,
+  type AtlasDimension,
+} from "@/components/ui/DimensionalDot";
 
 /* Per-chapter dominant Stack Atlas craft dimension. Used to render a
    small dimensional dot in the chapter eyebrow as a visual continuation
@@ -15,13 +19,16 @@ import { OpsPanel } from "@/components/figures/OpsPanel";
      motorola    → discipline (public-safety reliability, testing rigor)
      tcs         → multiplier (knowledge transfer, Dow LOR, mentoring)
      lti         → data       (database-first, stored procedures)
-     northeastern→ multiplier (teaching 190 students) */
-const CHAPTER_DIMENSION: Record<string, string> = {
-  lexisnexis: "var(--color-atlas-judgment)",
-  motorola: "var(--color-atlas-discipline)",
-  tcs: "var(--color-atlas-multiplier)",
-  lti: "var(--color-atlas-data)",
-  northeastern: "var(--color-atlas-multiplier)",
+     northeastern→ multiplier (teaching 190 students)
+   Refactored 2026-06-12: was a Record<string, string> of CSS var refs;
+   now a Record<string, AtlasDimension> naming the semantic dimension.
+   DimensionalDot resolves the dimension → color. */
+const CHAPTER_DIMENSION: Record<string, AtlasDimension> = {
+  lexisnexis: "judgment",
+  motorola: "discipline",
+  tcs: "multiplier",
+  lti: "data",
+  northeastern: "multiplier",
 };
 
 /**
@@ -110,20 +117,14 @@ export function SystemFile({ slug }: { slug: string }) {
             className="font-mono-path mb-3 inline-flex items-center gap-2"
             style={{
               color: "var(--color-cool-meta)",
-              fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+              fontSize: "var(--type-eyebrow)",
             }}
           >
             {CHAPTER_DIMENSION[slug] && (
-              <span
-                aria-label={`Chapter dimension marker`}
-                style={{
-                  display: "inline-block",
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  background: CHAPTER_DIMENSION[slug],
-                  flex: "0 0 auto",
-                }}
+              <DimensionalDot
+                dimension={CHAPTER_DIMENSION[slug]}
+                size={10}
+                ariaLabel="Chapter dimension marker"
               />
             )}
             <span>
@@ -143,7 +144,7 @@ export function SystemFile({ slug }: { slug: string }) {
           <h2
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
+              fontSize: "var(--type-h2-chapter)",
               fontWeight: 700,
               letterSpacing: "-0.025em",
               lineHeight: 1,
@@ -174,7 +175,7 @@ export function SystemFile({ slug }: { slug: string }) {
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+                fontSize: "var(--type-quote-card)",
                 fontStyle: "italic",
                 fontWeight: 400,
                 letterSpacing: "-0.015em",
@@ -221,7 +222,7 @@ export function SystemFile({ slug }: { slug: string }) {
                     <p
                       style={{
                         fontFamily: "var(--font-sans)",
-                        fontSize: "clamp(2.25rem, 4vw, 3.25rem)",
+                        fontSize: "var(--type-metric)",
                         fontWeight: 700,
                         letterSpacing: "-0.025em",
                         lineHeight: 0.95,

@@ -1,4 +1,5 @@
 import { projects } from "@/data/projects";
+import { DimensionalDot } from "@/components/ui/DimensionalDot";
 
 /**
  * Showcase — replaces the book's Plate.
@@ -17,8 +18,18 @@ import { projects } from "@/data/projects";
  *   — Open-live-site CTA as a prominent button-style link with hover state
  */
 export function Showcase() {
-  const project = projects[0];
-  if (!project) return null;
+  /* Designed for ONE featured project at Pentagram-tier treatment —
+     display-scale title, hero image, 2-column essay body, signature-
+     insight card, full tech grid. The composition is built around a
+     single project getting the canvas; rendering N projects side-by-side
+     would dilute the treatment to thumbnail size. If a second project
+     ships, surface it as an inline mini-card BELOW the featured block
+     (or move it into its own /showcase/[slug] route), not by iterating
+     here. The `featured` binding names the intent that `projects[0]`
+     hid. */
+  const [featured] = projects;
+  if (!featured) return null;
+  const project = featured;
 
   return (
     <section
@@ -34,7 +45,7 @@ export function Showcase() {
           className="col-span-12 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
-            fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+            fontSize: "var(--type-eyebrow)",
           }}
         >
           Showcase/
@@ -43,26 +54,28 @@ export function Showcase() {
           className="col-span-12 lg:col-span-10"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
+            fontSize: "var(--type-h2)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
             lineHeight: 0.95,
             color: "var(--color-foreground)",
           }}
         >
-          Side project.
+          An artist&apos;s career as a dataset.
         </h2>
         <p
           className="col-span-12 lg:col-span-7 lg:col-start-3 mt-4"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(1.125rem, 1.5vw, 1.375rem)",
+            fontSize: "var(--type-lede)",
             lineHeight: 1.5,
             color: "var(--color-text-muted)",
           }}
         >
-          Not a system I was hired to build — representative of how I think
-          when I&apos;m the one setting the bar.
+          Six interconnected views, harmonic synthesis math, d3-force
+          layouts. A standardized 3-angle impact methodology that holds
+          across every release. The engineering I do when the constraints
+          are mine to choose.
         </p>
       </div>
 
@@ -85,19 +98,32 @@ export function Showcase() {
             </p>
           </div>
           <div className="col-span-12 lg:col-span-10">
+            {/* Project eyebrow with the data-dimension dot — Showcase
+                joins the chapter pattern: every craft section has a small
+                colored dot signaling its dominant atlas dimension. BTS
+                project = data craft (treating an artist's career as a
+                queryable dataset). Teal dot ties the Showcase to the
+                Stack Atlas legend the same way chapter eyebrows do. */}
             <p
-              className="font-mono-label mb-3"
+              className="font-mono-label mb-3 inline-flex items-center gap-2"
               style={{ color: "var(--color-cool-meta)" }}
             >
-              Showcase / bts-evolution.md
-              <span
-                aria-hidden="true"
-                className="mx-2"
-                style={{ color: "var(--color-border)" }}
-              >
-                —
+              <DimensionalDot
+                dimension="data"
+                size={8}
+                ariaLabel="Showcase dimension marker"
+              />
+              <span>
+                Showcase / bts-evolution.md
+                <span
+                  aria-hidden="true"
+                  className="mx-2"
+                  style={{ color: "var(--color-border)" }}
+                >
+                  —
+                </span>
+                2025 — Live
               </span>
-              2025 — Live
             </p>
             <h3
               style={{
@@ -120,7 +146,7 @@ export function Showcase() {
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "clamp(1.375rem, 2.6vw, 2.25rem)",
+                fontSize: "var(--type-quote-sm)",
                 fontStyle: "italic",
                 fontWeight: 400,
                 letterSpacing: "-0.015em",
@@ -173,7 +199,71 @@ export function Showcase() {
           </div>
         )}
 
-        {/* ===== ESSAY in 2-col layout ===== */}
+        {/* ===== ORIGIN MOMENT =====
+            New typographic block 2026-06-13: extracts the BTS-discovery
+            origin from being buried as essay para 3 to be its own
+            visual beat between the hero image and the engineering essay.
+            Read sequence becomes: visual hook (image) → emotional
+            anchor (origin) → engineering depth (essay) → originality
+            claim (signature insight). The origin lands at scan zone in
+            ~2 seconds: a music-domain reader registers "March 2025,
+            Carpool Karaoke" and the engineering follow-through.
+            Transparent typography (no tinted background) to differentiate
+            from the boxed signature-insight card below. Cobalt 3-px left
+            rule matches the tagline pull-quote visual family. */}
+        <div className="grid grid-cols-12 gap-x-6 mb-12">
+          <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+            <p
+              className="font-mono-label mb-3"
+              style={{
+                color: "var(--color-accent)",
+                letterSpacing: "0.1em",
+              }}
+            >
+              March 2025
+            </p>
+            <blockquote
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "var(--type-quote-card)",
+                fontStyle: "italic",
+                fontWeight: 400,
+                letterSpacing: "-0.015em",
+                lineHeight: 1.2,
+                color: "var(--color-foreground)",
+                borderLeft: "3px solid var(--color-accent)",
+                paddingLeft: "1.5rem",
+                maxWidth: "32ch",
+              }}
+            >
+              It started with Carpool Karaoke.
+            </blockquote>
+            <p
+              className="mt-4"
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "clamp(1rem, 1.15vw, 1.0625rem)",
+                fontStyle: "italic",
+                lineHeight: 1.55,
+                color: "var(--color-text-muted)",
+                maxWidth: "60ch",
+                paddingLeft: "1.5rem",
+              }}
+            >
+              The project exists because of music I love. I recognized a
+              pattern other engineers might miss: a decade of compound
+              dedication produces measurable signals. Patterns you can
+              prove with data.
+            </p>
+          </div>
+        </div>
+
+        {/* ===== ESSAY in 2-col layout =====
+            Reduced 2026-06-13 from 4 paragraphs to 3 — the personal
+            origin (formerly para 3) moved to the origin block above.
+            New layout: col 1 carries paras 0+1 (engineering overview +
+            tech specs); col 2 carries para 2 (the closer) at heavier
+            weight, with breathing room from col 1's two paragraphs. */}
         <div className="grid grid-cols-12 gap-x-8 gap-y-8 mb-12">
           <div className="col-span-12 lg:col-span-6">
             <p
@@ -200,17 +290,6 @@ export function Showcase() {
           </div>
           <div className="col-span-12 lg:col-span-6">
             <p
-              className="mb-6"
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "clamp(1rem, 1.2vw, 1.125rem)",
-                lineHeight: 1.65,
-                color: "var(--color-text)",
-              }}
-            >
-              {project.essay[2]}
-            </p>
-            <p
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "clamp(1.125rem, 1.4vw, 1.375rem)",
@@ -220,7 +299,7 @@ export function Showcase() {
                 color: "var(--color-foreground)",
               }}
             >
-              {project.essay[3]}
+              {project.essay[2]}
             </p>
           </div>
         </div>

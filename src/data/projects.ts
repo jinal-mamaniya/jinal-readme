@@ -48,15 +48,26 @@ export const projects: Project[] = [
        which pattern-matched hiring managers to "data viz about a boy band"
        before they reached the technical substance. Same content, beats
        reordered: platform brief \u2192 architectural decisions \u2192 motivation. */
+    /* Essay collapsed 2026-06-13 from 4 paragraphs to 3 \u2014 the personal
+       origin paragraph ("The project exists because of music I love...
+       Carpool Karaoke...") moved out of the essay flow into a styled
+       origin moment block rendered between the hero image and the essay
+       in Showcase.tsx. UX rationale: the origin earned a typographic
+       moment of its own (date stamp + pull-quote + body) instead of
+       being buried as para 3 of the engineering essay. New essay arc:
+         para 0 \u2014 engineering overview
+         para 1 \u2014 tech specs
+         para 2 \u2014 closer
+       The Carpool Karaoke moment lives in the origin block, sourced
+       from this para 3 prose verbatim. */
     essay: [
-      "A data-visualization platform: six interconnected views, built solo end-to-end. A living discography timeline; sonic fingerprints generated through harmonic synthesis math; emotional mapping on Russell's Circumplex Model; a decade of live tours visualized with d3-force layouts and auto-lane assignment; cultural footprint measured via a standardized 8-day Wikipedia impact methodology; and a personal bookend.",
+      "Six interconnected views, for engineering a music career as data. A living discography timeline; sonic fingerprints generated through harmonic synthesis math; emotional mapping on Russell's Circumplex Model; a decade of live tours visualized with d3-force layouts and auto-lane assignment; cultural footprint measured via a standardized 8-day Wikipedia impact methodology; and a personal bookend.",
       "Each view stands alone but talks to every other \u2014 bidirectional state sync between timeline and grid, scientifically standardized 3-angle impact comparison (album / band / genre), 120-point harmonic radius modulated by 5 audio features, d3-force marker collision on the regional map. React 19, Vite, TypeScript, D3.",
-      "The project exists because of music I love. In March 2025 I discovered BTS through Carpool Karaoke and recognized a pattern other engineers might miss: a decade of compound dedication produces measurable signals. Patterns you can prove with data.",
-      "Built with the same discipline I bring to enterprise systems.",
+      "This is what the engineering looks like when the brief is mine.",
     ],
     signatureInsight: {
       label: "The signature contribution",
-      body: "The 3-angle impact view. When an album drops, the world doesn\u2019t just look up the album \u2014 they look up the band, the genre, and the label. The platform measures all three, using scientifically standardized 8-day before/after Wikipedia comparisons. The pattern holds across every release of a 13-year career.",
+      body: "The 3-angle impact view. When an album drops, the world doesn\u2019t just look up the album \u2014 they look up the band, the genre, and the label. The platform measures all three, using scientifically standardized 8-day before/after Wikipedia comparisons. The pattern holds across every release.",
     },
     heroImage: {
       src: "/images/projects/bts/01_bts-discography.png",

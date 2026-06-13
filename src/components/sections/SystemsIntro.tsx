@@ -17,7 +17,7 @@ export function SystemsIntro() {
           className="col-span-12 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
-            fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+            fontSize: "var(--type-eyebrow)",
           }}
         >
           Systems/
@@ -26,7 +26,7 @@ export function SystemsIntro() {
           className="col-span-12 lg:col-span-10"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
+            fontSize: "var(--type-h2)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
             lineHeight: 0.95,
@@ -39,7 +39,7 @@ export function SystemsIntro() {
           className="col-span-12 lg:col-span-7 lg:col-start-3 mt-4"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(1.125rem, 1.5vw, 1.375rem)",
+            fontSize: "var(--type-lede)",
             lineHeight: 1.5,
             color: "var(--color-text-muted)",
           }}

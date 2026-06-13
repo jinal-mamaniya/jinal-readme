@@ -43,7 +43,7 @@ export function Endorsement() {
             className="font-mono-label mb-2"
             style={{
               color: "var(--color-accent)",
-              fontSize: "clamp(1.125rem, 1.4vw, 1.25rem)",
+              fontSize: "var(--type-label)",
               letterSpacing: "0.05em",
             }}
           >
@@ -70,7 +70,7 @@ export function Endorsement() {
           <blockquote
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              fontSize: "var(--type-quote-display)",
               fontWeight: 400,
               fontStyle: "italic",
               letterSpacing: "-0.02em",

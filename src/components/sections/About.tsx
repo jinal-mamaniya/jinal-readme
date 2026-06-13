@@ -47,7 +47,7 @@ export function About() {
         className="px-6 sm:px-10 pt-8 font-mono-path"
         style={{
           color: "var(--color-cool-meta)",
-          fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+          fontSize: "var(--type-eyebrow)",
         }}
       >
         <span>jinal-mamaniya/About.md</span>
@@ -97,7 +97,7 @@ export function About() {
           className="mb-8"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(3.5rem, 13vw, 14rem)",
+            fontSize: "var(--type-display-name)",
             fontWeight: 700,
             letterSpacing: "-0.04em",
             lineHeight: 0.88,
@@ -166,9 +166,11 @@ export function About() {
           <span style={{ color: "var(--color-now)", fontWeight: 600 }}>
             Raleigh, NC
           </span>
-          . Ten years across legal-tech, public-safety, and enterprise. This
-          document is the handoff I&apos;d want from anyone whose work I was
-          about to inherit.
+          . This document is the{" "}
+          <span style={{ color: "var(--color-accent)", fontWeight: 600 }}>
+            handoff
+          </span>{" "}
+          I&apos;d want from anyone whose work I was about to inherit.
         </p>
       </div>
 

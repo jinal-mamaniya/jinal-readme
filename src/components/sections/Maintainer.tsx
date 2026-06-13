@@ -34,7 +34,7 @@ export function Maintainer() {
           className="col-span-12 font-mono-path"
           style={{
             color: "var(--color-cool-meta)",
-            fontSize: "clamp(1.5rem, 2.2vw, 2rem)",
+            fontSize: "var(--type-eyebrow)",
           }}
         >
           Maintainer.md
@@ -43,7 +43,7 @@ export function Maintainer() {
           className="col-span-12 lg:col-span-10"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
+            fontSize: "var(--type-h2)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
             lineHeight: 0.95,
@@ -56,7 +56,7 @@ export function Maintainer() {
           className="col-span-12 lg:col-span-7 lg:col-start-3 mt-4"
           style={{
             fontFamily: "var(--font-sans)",
-            fontSize: "clamp(1.125rem, 1.5vw, 1.375rem)",
+            fontSize: "var(--type-lede)",
             lineHeight: 1.5,
             color: "var(--color-text-muted)",
           }}
@@ -103,7 +103,7 @@ export function Maintainer() {
                 style={{
                   color: "var(--color-cool-meta)",
                   minWidth: "5rem",
-                  fontSize: "clamp(0.8125rem, 1vw, 0.9375rem)",
+                  fontSize: "var(--type-label-sm)",
                   letterSpacing: "0.05em",
                 }}
               >
@@ -129,7 +129,7 @@ export function Maintainer() {
                   style={{
                     color: "var(--color-cool-meta)",
                     minWidth: "5rem",
-                    fontSize: "clamp(0.8125rem, 1vw, 0.9375rem)",
+                    fontSize: "var(--type-label-sm)",
                     letterSpacing: "0.05em",
                   }}
                 >
@@ -166,7 +166,7 @@ export function Maintainer() {
             className="mb-5"
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+              fontSize: "var(--type-h4)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
               lineHeight: 1.15,
@@ -201,7 +201,7 @@ export function Maintainer() {
             className="mb-4"
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+              fontSize: "var(--type-h4)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
               lineHeight: 1.15,
@@ -319,11 +319,11 @@ export function Maintainer() {
               maxWidth: "68ch",
             }}
           >
-            Set in the system sans-serif stack ({"-apple-system, BlinkMacSystemFont, Segoe UI, system-ui"}).
-            Mono labels in system mono. Light-mode by design — engineering
-            documentation is read in light mode. Built with Next.js on Vercel.
-            © 2026 Jinal Mamaniya. All rights reserved — but this story is
-            meant to be shared.
+            Set in Geist Sans + Geist Mono, loaded via next/font. Light and
+            dark modes both first-class — defaults to your system preference,
+            toggle persists in localStorage. Built with Next.js. © 2026
+            Jinal Mamaniya. All rights reserved — but this story is meant
+            to be shared.
           </p>
           <p
             className="italic"

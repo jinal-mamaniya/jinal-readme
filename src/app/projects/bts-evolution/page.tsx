@@ -118,11 +118,24 @@ export default function BtsEvolutionCaseStudy() {
           </Link>
         </div>
 
-        {/* ===== 2. TITLE BLOCK ===== */}
+        {/* ===== 2. TITLE BLOCK — thesis-shaped hero =====
+            Reworked 2026-06-14 in the Round-A strict-review pass:
+            • Eyebrow drops the invented "Artist Intelligence" category;
+              uses three real signals instead — solo build, year,
+              active-status (the project is still maintained in 2026).
+              Teal atlas dot stays as the data-dimension marker.
+            • H1 carries the engineering THESIS ("Most music analytics
+              lie quietly.") rather than repeating the project title.
+              The project name lives in the breadcrumb + `<title>` meta,
+              freeing the H1 slot to assert posture in the scan zone.
+            • Tagline expanded — defines "queryable history" inline
+              (thirteen-year career → query), asserts the solo build,
+              signals end-to-end verification.
+            • Top URL chip removed — was redundant with the foot CTA
+              and read as a decorative-but-clickable affordance with
+              unclear action context. Foot CTA is the canonical action;
+              one signal beats two. */}
         <header className="mb-12">
-          {/* Eyebrow with teal atlas dot — matches the Showcase eyebrow
-              pattern, ties the case study to the Stack Atlas data
-              dimension. */}
           <p
             className="font-mono-label mb-4 inline-flex items-center gap-2"
             style={{ color: "var(--color-cool-meta)" }}
@@ -130,13 +143,13 @@ export default function BtsEvolutionCaseStudy() {
             <DimensionalDot
               dimension="data"
               size={8}
-              ariaLabel="Project dimension marker"
+              ariaLabel="Data dimension marker"
             />
-            <span>Project · Artist Intelligence</span>
+            <span>Solo build · 2025 · Active</span>
           </p>
 
           <h1
-            className="mb-5"
+            className="mb-6"
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "clamp(2.5rem, 6vw, 5rem)",
@@ -144,16 +157,13 @@ export default function BtsEvolutionCaseStudy() {
               letterSpacing: "-0.035em",
               lineHeight: 0.98,
               color: "var(--color-foreground)",
-              maxWidth: "16ch",
+              maxWidth: "20ch",
             }}
           >
-            {project.title}
+            {project.detailHeadline ?? project.title}
           </h1>
 
-          {/* Tagline pull-quote — same visual family as Showcase tagline,
-              cobalt 3px left rule. */}
           <p
-            className="mb-6"
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "clamp(1.25rem, 2vw, 1.75rem)",
@@ -164,33 +174,11 @@ export default function BtsEvolutionCaseStudy() {
               color: "var(--color-foreground)",
               borderLeft: "3px solid var(--color-accent)",
               paddingLeft: "1.5rem",
-              maxWidth: "44ch",
+              maxWidth: "52ch",
             }}
           >
-            {project.tagline}
+            {project.detailTagline ?? project.tagline}
           </p>
-
-          {/* Live-site chip — small mono badge linking out. The hero
-              moment for a reader who landed direct from LinkedIn. */}
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 font-mono-meta transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded-sm"
-            style={{
-              color: "var(--color-accent)",
-              minHeight: "24px",
-              padding: "4px 0",
-            }}
-          >
-            <span>{project.liveUrlDisplay}</span>
-            <span
-              aria-hidden="true"
-              className="inline-block transition-transform duration-300 group-hover:translate-x-1"
-            >
-              ↗
-            </span>
-          </a>
         </header>
 
         {/* ===== 3. HERO IMAGE ===== */}

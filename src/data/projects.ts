@@ -77,7 +77,26 @@ export interface ProjectRule {
 export interface Project {
   slug: string;
   title: string;
+  /**
+   * Short scan-zone tagline used by the home Showcase teaser. Keeps the
+   * project's signature line at a tight, scannable length.
+   */
   tagline: string;
+  /**
+   * Thesis-shaped headline used as the detail page H1. Names the BIG
+   * IDEA rather than repeating the project title — the title already
+   * lives in the breadcrumb + metadata. Set this on Plate-tier case
+   * studies where the hero block should assert the engineering thesis
+   * in the scan zone.
+   */
+  detailHeadline?: string;
+  /**
+   * Expanded tagline used as the detail page pull-quote — earns the
+   * room the detail surface gives it (defines load-bearing phrases,
+   * asserts solo build, signals engineering rigor). The Showcase
+   * teaser keeps the shorter `tagline` for scan rhythm.
+   */
+  detailTagline?: string;
   liveUrl: string;
   /** Hostname for display in the live-site chip (no scheme, no path). */
   liveUrlDisplay: string;
@@ -129,6 +148,22 @@ export const projects: Project[] = [
     slug: "bts-evolution",
     title: "BTS Evolution",
     tagline: "Engineering a discography as queryable history.",
+    /* Thesis-as-headline for the detail page H1. Names the BIG IDEA
+       (most music analytics lie quietly — this one doesn't) rather
+       than repeating the project title. Authored 2026-06-14 in the
+       Round-A strict-review pass, replacing an earlier H1 that just
+       rendered `title` ("BTS Evolution") — the project name still
+       lives in the breadcrumb + metadata, freeing the H1 slot to
+       carry engineering posture in the scan zone. */
+    detailHeadline: "Most music analytics lie quietly.",
+    /* Expanded tagline for the detail page pull-quote. Defines
+       "queryable history" inline (thirteen-year career → query),
+       asserts the solo build, signals engineering rigor with
+       "verified end-to-end". The Showcase teaser keeps the shorter
+       tagline above — that surface earns its rhythm with scan
+       brevity. */
+    detailTagline:
+      "A solo-built artist-intelligence platform that doesn’t — engineering a thirteen-year career as queryable history, verified end-to-end.",
     liveUrl: BTS_LIVE,
     liveUrlDisplay: "bts-evolution.netlify.app",
 

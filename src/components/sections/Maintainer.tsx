@@ -168,7 +168,10 @@ export function Maintainer() {
       <div className="grid grid-cols-12 gap-x-6 mb-20">
         <div className="col-span-12 lg:col-span-10 lg:col-start-3">
           <SectionEyebrow label="Onboarding" />
-          <h4
+          {/* h3 (not h4) so the heading order doesn't skip a level after the
+              section h2 (axe: heading-order). Keeps the --type-h4 size so
+              the visual treatment is unchanged. */}
+          <h3
             className="mb-5"
             style={{
               fontFamily: "var(--font-sans)",
@@ -180,7 +183,7 @@ export function Maintainer() {
             }}
           >
             For the next engineer.
-          </h4>
+          </h3>
           <div
             className="whitespace-pre-line"
             style={{
@@ -203,7 +206,9 @@ export function Maintainer() {
       <div id="maintainer-lor" className="grid grid-cols-12 gap-x-6 mb-20 scroll-mt-12">
         <div className="col-span-12 lg:col-span-10 lg:col-start-3">
           <SectionEyebrow label="Acknowledgments" />
-          <h4
+          {/* h3 (not h4) — see "For the next engineer" above; avoids the
+              heading-order skip while keeping the --type-h4 size. */}
+          <h3
             className="mb-4"
             style={{
               fontFamily: "var(--font-sans)",
@@ -215,7 +220,7 @@ export function Maintainer() {
             }}
           >
             Letter of Recommendation
-          </h4>
+          </h3>
           <div
             className="p-7"
             style={{

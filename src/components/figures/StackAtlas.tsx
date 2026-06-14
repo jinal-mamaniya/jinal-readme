@@ -224,7 +224,14 @@ function StackSubwayMap({
        forcing a fixed 1100px that horizontally scrolled (and cut off the
        Runtime line) at common widths. overflow-x-auto stays as a floor for
        very narrow desktop containers. */
-    <div className="w-full overflow-x-auto">
+    <div
+      /* keyboard-scrollable region for the narrow-desktop horizontal
+         overflow floor (axe: scrollable-region-focusable). */
+      tabIndex={0}
+      role="region"
+      aria-label="Stack atlas — scrollable craft map"
+      className="w-full overflow-x-auto"
+    >
       <svg
         viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
         width="100%"

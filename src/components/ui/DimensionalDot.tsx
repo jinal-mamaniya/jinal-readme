@@ -59,6 +59,11 @@ export function DimensionalDot({
   const label = isDecorative ? undefined : ariaLabel ?? `Dimension: ${dimension}`;
   return (
     <span
+      /* role="img" so the aria-label is a permitted attribute — a bare
+         <span> has no role, and ARIA prohibits naming a roleless generic
+         element (axe: aria-prohibited-attr). Decorative dots stay
+         aria-hidden with no role. */
+      role={isDecorative ? undefined : "img"}
       aria-hidden={isDecorative || undefined}
       aria-label={label}
       style={{

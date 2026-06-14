@@ -143,7 +143,13 @@ export function ArchitectureFlow() {
             min-width 560px → labels render at ~9.6px on the smallest
             phones, the diagram remains readable, and swipe reveals the
             full flow. */}
-        <div className="overflow-x-auto -mx-2 px-2 pb-1">
+        <div
+          /* keyboard-scrollable region (axe: scrollable-region-focusable) */
+          tabIndex={0}
+          role="region"
+          aria-label="Request-flow architecture diagram"
+          className="overflow-x-auto -mx-2 px-2 pb-1"
+        >
         <svg
           /* viewBox width 720→760 (2026-06-06): Response node at x=630
              with width=100 ended at x=730, getting cropped at viewBox 720.

@@ -314,6 +314,12 @@ export function Readme() {
                   numbers   → foreground
                   punctuation → cool-meta (subdued) */}
             <pre
+              /* tabIndex + role so keyboard users can focus and scroll the
+                 horizontally-overflowing code block (axe:
+                 scrollable-region-focusable). */
+              tabIndex={0}
+              role="region"
+              aria-label="package.json — skills and stack"
               className="overflow-x-auto p-5 m-0"
               style={{
                 fontFamily: "var(--font-mono)",

@@ -46,35 +46,58 @@ export function Readme() {
           >
             README.md
           </p>
+          {/* Identity strip — was four ~11px stacked mono lines, which
+              left the single most important scan-zone fact (level + tenure)
+              as the smallest element on the page, dwarfed by the 72px
+              headline. Reworked 2026-06-14 into one horizontal credential
+              line: keys stay muted/small, VALUES are bumped and weighted so
+              "senior software engineer · 10 · raleigh, NC · since 2013"
+              reads as a confident spec-sheet header in a single glance.
+              Still the engineering-doc register (lowercase mono, dot-
+              separated) — a fact statement, not a marketing badge.
+              `since: 2013` traces verbatim to projects.ts ("my 2013
+              engineering start") + experience.ts (TCS Jul 2013), so the
+              reader can cross-check the 10-year claim against a concrete
+              date. */}
           <div
-            className="mt-4 pt-4 border-t font-mono-label"
-            style={{
-              borderColor: "var(--color-border)",
-              color: "var(--color-text)",
-              lineHeight: 1.7,
-            }}
+            className="mt-4 pt-4 border-t"
+            style={{ borderColor: "var(--color-border)" }}
           >
-            <p>
-              <span style={{ color: "var(--color-cool-meta)" }}>role:</span>{" "}
-              senior software engineer
-            </p>
-            <p>
-              <span style={{ color: "var(--color-cool-meta)" }}>years:</span>{" "}
-              10
-            </p>
-            <p>
-              <span style={{ color: "var(--color-cool-meta)" }}>base:</span>{" "}
-              raleigh, NC
-            </p>
-            {/* `since:` traces verbatim to projects.ts:175 ("my 2013
-                engineering start") and experience.ts:250 (TCS Jul 2013
-                onwards). Surfaces career-start year next to years count
-                so reader can cross-check the 10y claim against a
-                concrete date — engineering-doc register. */}
-            <p>
-              <span style={{ color: "var(--color-cool-meta)" }}>since:</span>{" "}
-              2013
-            </p>
+            {/* Pairs separated by gap, not inline dots — the role value
+                ("senior software engineer") is long enough to wrap on
+                narrow mobile, and inline dot separators stranded a stray
+                "·" on the wrap. Clean gap-x spacing wraps gracefully at
+                every width with no orphaned glyphs. */}
+            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+              {[
+                { k: "role", v: "senior software engineer", lead: true },
+                { k: "years", v: "10" },
+                { k: "base", v: "raleigh, NC" },
+                { k: "since", v: "2013" },
+              ].map((f) => (
+                <span key={f.k} className="inline-flex items-baseline">
+                  <span
+                    className="font-mono-label"
+                    style={{
+                      color: "var(--color-cool-meta)",
+                      fontSize: "0.8125rem",
+                    }}
+                  >
+                    {f.k}:
+                  </span>
+                  <span
+                    className="font-mono-label ml-2"
+                    style={{
+                      color: "var(--color-foreground)",
+                      fontSize: f.lead ? "1rem" : "0.9375rem",
+                      fontWeight: f.lead ? 600 : 500,
+                    }}
+                  >
+                    {f.v}
+                  </span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 

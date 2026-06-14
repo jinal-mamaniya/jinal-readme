@@ -374,16 +374,21 @@ export function Showcase() {
         </div>
 
         {/* ===== CTAs — read the case study + open live site =====
-            Two confident buttons, both at premier weight, differentiated
-            by COLOR not by visual hierarchy: the case study is the
-            internal-canonical artifact (foreground filled), the live site
-            is the project's hero CTA (accent filled — the cobalt that
-            elsewhere in the page reads as the project's emphasis color).
-            "Open the live site" reads as dominant because the accent
-            color CARRIES dominance — the same color that marks the "01"
-            number, the tagline left rule, the origin date stamp. Mono
-            URL chip beneath the live button doubles as the trust signal
-            (this is the actual hostname you'll land on). */}
+            Visual dominance flipped 2026-06-14 in the Round-B strict-
+            review pass. Previously the live site was the cobalt-filled
+            hero CTA because the home teaser had no thesis assertion —
+            sending the reader to the live demo was the safest route
+            for a reader who couldn't tell what the case study contained.
+            Round A reworked the case-study hero to assert the
+            engineering thesis ("Most music analytics lie quietly.") in
+            scan zone, which removed the "what will I get?" friction —
+            so the funnel-optimal route now keeps the reader IN the
+            portfolio reading the structured artifact. Cobalt fill moves
+            to "Read the case study". "Open the live site" becomes the
+            outlined secondary CTA with URL chip beneath as the trust
+            signal. The detail page foot CTA stays cobalt-on-live —
+            that's correct for the post-essay reader, who has earned
+            the click-out. */}
         <div className="grid grid-cols-12 gap-x-6">
           <div className="col-span-12 lg:col-span-10 lg:col-start-3">
             <div className="flex flex-wrap items-start gap-x-5 gap-y-6">
@@ -391,7 +396,7 @@ export function Showcase() {
                 href="/projects/bts-evolution"
                 className="group inline-flex items-center gap-3 transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
                 style={{
-                  background: "var(--color-foreground)",
+                  background: "var(--color-accent)",
                   color: "var(--color-background)",
                   borderRadius: "2px",
                   fontFamily: "var(--font-sans)",
@@ -409,9 +414,10 @@ export function Showcase() {
                 </span>
               </Link>
 
-              {/* "Open the live site" — accent-filled hero CTA paired with
-                  a mono URL chip beneath. Stack as a column so the chip
-                  reads as the button's address line. */}
+              {/* "Open the live site" — outlined secondary CTA paired
+                  with a mono URL chip beneath. Border carries the button
+                  affordance; the URL chip doubles as the trust signal
+                  (the actual hostname the click lands on). */}
               <div className="inline-flex flex-col items-start gap-2">
                 <a
                   href={project.liveUrl}
@@ -419,13 +425,16 @@ export function Showcase() {
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-3 transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
                   style={{
-                    background: "var(--color-accent)",
-                    color: "var(--color-background)",
+                    background: "transparent",
+                    color: "var(--color-foreground)",
+                    border: "1px solid var(--color-foreground)",
                     borderRadius: "2px",
                     fontFamily: "var(--font-sans)",
                     fontWeight: 600,
                     fontSize: "1rem",
-                    padding: "0.875rem 1.75rem",
+                    /* Match filled-button visual height — subtract the
+                       1px border on each axis from the original padding. */
+                    padding: "calc(0.875rem - 1px) calc(1.75rem - 1px)",
                   }}
                 >
                   <span>Open the live site</span>

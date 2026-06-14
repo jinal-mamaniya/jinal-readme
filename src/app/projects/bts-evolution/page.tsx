@@ -90,13 +90,19 @@ export default function BtsEvolutionCaseStudy() {
       />
 
       <article className="mx-auto max-w-[80rem]">
-        {/* ===== 1. RUNNING HEADER — file path + back link ===== */}
+        {/* ===== 1. RUNNING HEADER — file path + back link =====
+            The user-name root segment is hidden below the `sm` breakpoint
+            (640px) so the breadcrumb fits a 375px viewport without
+            wrapping. The reader on mobile already knows whose portfolio
+            they're on; "Showcase / bts-evolution.md" carries the needed
+            wayfinding. Round-C strict-review fix, 2026-06-14. */}
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 mb-14">
           <p
             className="font-mono-label"
             style={{ color: "var(--color-cool-meta)" }}
           >
-            jinal-mamaniya / Showcase / bts-evolution.md
+            <span className="hidden sm:inline">jinal-mamaniya / </span>
+            Showcase / bts-evolution.md
           </p>
           <Link
             href="/#showcase"
@@ -181,12 +187,23 @@ export default function BtsEvolutionCaseStudy() {
           </p>
         </header>
 
-        {/* ===== 3. HERO IMAGE ===== */}
+        {/* ===== 3. HERO IMAGE =====
+            Image goes full-bleed (negative-margin breakout from the
+            page's px-6 padding) at mobile — gives absolute pixel
+            resolution to chart detail that would otherwise crush in a
+            327px content column. At sm+ the image returns to its
+            framed, padded presentation. Round-C strict-review fix,
+            2026-06-14: earlier mobile render made album cards
+            unreadable; full-bleed gives them roughly 1.4× the pixels. */}
         <figure className="mb-16">
           <div
-            className="w-full overflow-hidden"
+            /* w-screen + negative margin = true viewport-edge bleed at
+               mobile (doesn't get clamped by parent content width the
+               way w-full does). At sm+ the bleed unwinds (w-auto +
+               mx-0) and the framed border + radius return. */
+            className="overflow-hidden w-screen -ml-6 sm:w-auto sm:ml-0 sm:border"
             style={{
-              border: "1px solid var(--color-border)",
+              borderColor: "var(--color-border)",
               borderRadius: "2px",
               background: "var(--color-surface)",
             }}

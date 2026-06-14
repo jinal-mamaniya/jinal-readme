@@ -326,14 +326,37 @@ function StackSubwayMap({
           if (!primaryLine) return null;
           const cx = primaryLine.xDesktop;
           const cy = yCoord(station.y);
-          const radius =
-            station.emphasis === "terminal"
-              ? TERMINAL_RADIUS
-              : station.emphasis === "junction" || station.lines.length > 1
-                ? JUNCTION_RADIUS
-                : STATION_RADIUS;
+          const isTerminal = station.emphasis === "terminal";
+          const isJunctionStation =
+            station.emphasis === "junction" || station.lines.length > 1;
+          const radius = isTerminal
+            ? TERMINAL_RADIUS
+            : isJunctionStation
+              ? JUNCTION_RADIUS
+              : STATION_RADIUS;
           const isSelected = station.id === selectedStationId;
           const isFocused = station.id === focusedStationId;
+
+          /* Visual hierarchy — the section's job is to show which work is
+             signature depth, not to list 59 equal things. Terminals (the
+             marked signature stations) read dark + bold with a solid
+             line-color dot; junctions sit at medium weight; routine
+             stations recede to muted gray at regular weight. The contrast
+             comes mostly from SUPPRESSING the routine layer (Vignelli:
+             the map is legible because most of it is quiet), which keeps
+             label sizes near-constant and avoids re-introducing the
+             column collisions the 11px fix just resolved. */
+          const labelWeight = isSelected || isTerminal
+            ? 700
+            : isJunctionStation
+              ? 600
+              : 400;
+          const labelSize = isTerminal ? 12 : STATION_FONT_SIZE;
+          const labelFill = isSelected
+            ? "var(--color-accent)"
+            : isTerminal || isJunctionStation
+              ? "var(--color-foreground)"
+              : "var(--color-text-muted)";
           /* Labels render to the right of every station. Column spacing
              (170px) accommodates max label width (~140px) without
              cross-column collision. */
@@ -383,12 +406,17 @@ function StackSubwayMap({
                   strokeDasharray="3,3"
                 />
               )}
-              {/* Station marker */}
+              {/* Station marker — terminals get a solid line-color fill so
+                  the signature stations read as filled stops; junction and
+                  routine stations stay hollow (junctions add a secondary
+                  interior ring below). */}
               <circle
                 cx={cx}
                 cy={cy}
                 r={radius + (isSelected ? 4 : 0)}
-                fill="var(--color-background)"
+                fill={
+                  isTerminal ? primaryLine.color : "var(--color-background)"
+                }
                 stroke={primaryLine.color}
                 strokeWidth={isSelected ? 4 : 3}
               />
@@ -413,11 +441,9 @@ function StackSubwayMap({
                 textAnchor={labelTextAnchor}
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: `${STATION_FONT_SIZE}px`,
-                  fontWeight: isSelected ? 700 : 500,
-                  fill: isSelected
-                    ? "var(--color-accent)"
-                    : "var(--color-foreground)",
+                  fontSize: `${labelSize}px`,
+                  fontWeight: labelWeight,
+                  fill: labelFill,
                   pointerEvents: "none",
                 }}
               >

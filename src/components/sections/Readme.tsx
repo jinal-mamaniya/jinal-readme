@@ -76,21 +76,29 @@ export function Readme() {
                 { k: "since", v: "2013" },
               ].map((f) => (
                 <span key={f.k} className="inline-flex items-baseline">
+                  {/* Readable mono — NOT font-mono-label, which forces
+                      uppercase + 0.1em tracking. Caps + wide tracking
+                      destroys word-shape recognition on a real phrase
+                      ("senior software engineer"); normal-case mono reads
+                      like authentic CLI/config output and stays legible. */}
                   <span
-                    className="font-mono-label"
                     style={{
+                      fontFamily: "var(--font-mono)",
                       color: "var(--color-cool-meta)",
-                      fontSize: "0.8125rem",
+                      fontSize: "0.875rem",
+                      letterSpacing: "0",
                     }}
                   >
                     {f.k}:
                   </span>
                   <span
-                    className="font-mono-label ml-2"
+                    className="ml-2"
                     style={{
+                      fontFamily: "var(--font-mono)",
                       color: "var(--color-foreground)",
-                      fontSize: f.lead ? "1rem" : "0.9375rem",
+                      fontSize: f.lead ? "1.0625rem" : "0.9375rem",
                       fontWeight: f.lead ? 600 : 500,
+                      letterSpacing: "0",
                     }}
                   >
                     {f.v}

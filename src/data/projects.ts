@@ -167,10 +167,20 @@ export const projects: Project[] = [
     liveUrl: BTS_LIVE,
     liveUrlDisplay: "bts-evolution.netlify.app",
 
-    /* Showcase teaser — single paragraph. Frames the WHY without crowding the
-       hero. The full essay lives on the detail page. */
+    /* Showcase teaser — single paragraph. Frames the WHY without crowding
+       the hero. The full essay lives on the detail page. Reworked in the
+       Round-D strict-review pass (2026-06-14): the earlier closing tail
+       "built with the same discipline I bring to enterprise systems" was
+       generic-positioning tell-don't-show vocabulary — replaced with three
+       concrete engineering moves that earn the click. Each move is
+       verifiable in the case study (frozen cache → 444→6 architecture
+       decision; Wikipedia versioning → article-name pivots across BTS/Hybe
+       renames; cross-validated audio → 189-song UCLA dataset vs ReccoBeats).
+       Closing clause "engineering depth lives in the case study" routes
+       the reader to the structured artifact (now the dominant CTA after
+       the Round-B flip). */
     teaserLede:
-      "Six interconnected views over one verified data spine. The platform reads thirteen years of releases, tours, and global attention as queryable history — built with the same discipline I bring to enterprise systems.",
+      "Six interconnected views over one verified data spine — thirteen years of releases, tours, and global attention rendered as queryable history. Frozen-cache architecture, Wikipedia article-name versioning across upstream renames, cross-validated audio data. Most music analytics quietly skip all three.",
 
     /* Detail page essay — three beats.
        P1: spark + thesis. Hooks the reader with the personal moment,
@@ -189,8 +199,8 @@ export const projects: Project[] = [
        D:\\ramapir\\bts-evolution. */
     detailEssay: [
       "It started with a Carpool Karaoke clip in March 2025 — but the case study isn't about that. It's about what I noticed within weeks: most music analytics platforms lie quietly. Release dates drift. Wikipedia article names change mid-history. Third-party APIs serve stale data dressed as fresh. This is the case study of building one that doesn't.",
-      "Six interconnected views read from one verified data spine. Curated MusicBrainz release-group IDs (because upstream release dates are wrong often enough to matter — LOVE YOURSELF ‘Her’ would land in the WINGS era if you trusted the source). A frozen-cache pattern that drops 444 third-party API calls to six per refresh. Validation scripts that cross-check audio features against ReccoBeats, Wikipedia article names against history, tour data against setlist.fm, song titles against MusicBrainz. Wikipedia article-name versioning that knows BTS_(band) was renamed to BTS in March 2020 and Big_Hit_Entertainment to Hybe_Corporation a year later — so historical impact queries hit the era-correct page. The data discipline is the work.",
-      "Sound Signature renders each album as a 120-point harmonic shape modulated by five audio features, verified against a 189-song UCLA-curated dataset that itself was independently validated against ReccoBeats. Emotional Map plots tracks in Russell’s Circumplex. Concert Evolution maps the actual setlist progression of every tour from 2014 forward. Global Reach measures release-day attention across three angles — the artist, the genre, the label — because conflating them is how analytics lies.",
+      "The data discipline is the work. Six interconnected views read from one verified data spine. Curated MusicBrainz release-group IDs, because upstream release dates are wrong often enough to matter — LOVE YOURSELF ‘Her’ would land in the WINGS era if you trusted the source. A frozen-cache pattern that drops 444 third-party API calls to six per refresh. Validation scripts that cross-check audio features against ReccoBeats, Wikipedia article names against history, tour data against setlist.fm, song titles against MusicBrainz. Wikipedia article-name versioning that knows BTS_(band) was renamed to BTS in March 2020 and Big_Hit_Entertainment to Hybe_Corporation a year later — so historical impact queries hit the era-correct page.",
+      "Sound Signature renders each album as a 120-point harmonic shape modulated by five audio features, verified against a 189-song UCLA-curated dataset that itself was independently validated against ReccoBeats. Emotional Map plots tracks in Russell’s Circumplex. Concert Evolution maps the actual setlist progression of every tour from 2014 forward. Global Reach measures release-day attention across three angles — the artist, the genre, the label — against the era-correct Wikipedia page for each. Because conflating them is how analytics lies.",
     ],
 
     /* Three stats, three NON-OVERLAPPING engineering stories.
@@ -254,7 +264,7 @@ export const projects: Project[] = [
         number: "01",
         name: "Discography",
         whatItAnswers: "How do you read a decade of releases as a single arc?",
-        body: "A chapter-aware dossier per album, sitting inside a horizontal Cover River that auto-pans the decade on demand. The layout reshapes between two and three columns depending on whether a track is selected; the pacing sparkline is computed from per-track tempo arcs; chapter taglines render only for albums in the curated spine. The River uses the View Transitions API for cover morphs and has a one-time drift hint gated by sessionStorage + prefers-reduced-motion.",
+        body: "A chapter-aware dossier per album, sitting inside a horizontal Cover River that auto-pans the decade on demand. The layout reshapes between two and three columns depending on whether a track is selected; the pacing sparkline is computed from per-track tempo arcs; chapter taglines render only for albums in the curated spine. The River has a one-time drift hint gated by sessionStorage and prefers-reduced-motion.",
         liveHash: "#standard",
         image: {
           src: "/images/projects/bts/01_bts-discography.png",
@@ -295,7 +305,7 @@ export const projects: Project[] = [
         number: "03",
         name: "Emotional Map",
         whatItAnswers: "Where do these songs cluster on the emotion graph?",
-        body: "Russell’s Circumplex Model rendered as a quadrant scatter. Every track positioned by valence (sad → happy) and energy (calm → intense), distributed across four named quadrants: Joyful, Intense, Peaceful, Melancholic. Selecting an album triggers a 70-second auto-cycle through its tracks; selecting a single song surfaces its lyrics excerpt. Same 189-song dataset — the same audio truth shown a different way.",
+        body: "Russell’s Circumplex Model rendered as a quadrant scatter. Every track positioned by valence (sad → happy) and energy (calm → intense), distributed across four named quadrants: Joyful, Intense, Peaceful, Melancholic. The same 189-song dataset behind Sound Signature, here read as feeling instead of sound.",
         liveHash: "#emotional",
         image: {
           src: "/images/projects/bts/04_emotional-map.png",
@@ -357,7 +367,7 @@ export const projects: Project[] = [
         number: "06",
         name: "My Story",
         whatItAnswers: "Why this artist, and why this much engineering?",
-        body: "Two arcs run in parallel on the timeline view. BTS debuted in 2013. I started shipping production systems at LTI in Mumbai the same year. A decade later both bodies of work compounded into something pointable-at. The discipline I bring to enterprise systems — traceability, validation, refusal to fabricate — is the same discipline that turns a thirteen-year career into queryable history. This is what the engineering looks like when the brief is mine.",
+        body: "Two arcs run in parallel on the timeline view. BTS debuted in 2013. I started shipping production systems at LTI in Mumbai the same year. A decade later both bodies of work compounded into something pointable-at. Traceability, validation, the refusal to fabricate — same engineering discipline whether the brief is an enterprise platform or a thirteen-year career rendered as queryable history. This is what the engineering looks like when the brief is mine.",
         liveHash: "#creator",
         whatItLeavesOpen: null,
       },
@@ -422,6 +432,17 @@ export const projects: Project[] = [
        capability checklist. */
     techStack: [
       {
+        /* Frontend group — each entry verified imported in the BTS
+           Evolution source tree before listing here.
+           Three.js + Tone.js removed 2026-06-14 in the Round-D strict-
+           review pass: both were installed in package.json (three
+           ^0.175, tone ^15) but had ZERO `from "three"` / `from "tone"`
+           imports anywhere under bts-evolution/src. Listing them as
+           load-bearing case-study stack was rule #15 fabrication-
+           adjacent — installed-but-unused deps don't earn the slot.
+           Remaining five are all import-verified: D3 in 3+ chart
+           components, Framer Motion in TourDetailPanel, the rest
+           foundational. */
         label: "Frontend",
         items: [
           "React 19",
@@ -429,8 +450,6 @@ export const projects: Project[] = [
           "Vite 6",
           "D3 v7",
           "Framer Motion 12",
-          "Three.js",
-          "Tone.js",
         ],
       },
       {

@@ -141,6 +141,11 @@ export function SystemFile({ slug }: { slug: string }) {
               outweighing the content (chapter). The right side now
               dominates properly: chapter title 72px vs intro 80px reads
               as peer-level content, not subordinate. */}
+          {/* Title is the company name only — one line, one color — so all
+              four chapters share the same header treatment. The client
+              (TCS only) moves to the role subtitle line below, where it
+              reads as context without making this title a two-color
+              three-line outlier. */}
           <h2
             style={{
               fontFamily: "var(--font-sans)",
@@ -152,9 +157,6 @@ export function SystemFile({ slug }: { slug: string }) {
             }}
           >
             {exp.company}
-            {exp.client && (
-              <span style={{ color: "var(--color-accent)" }}> · {exp.client}</span>
-            )}
           </h2>
           <p
             className="mt-3 font-mono-meta"
@@ -164,6 +166,14 @@ export function SystemFile({ slug }: { slug: string }) {
             }}
           >
             {exp.title}
+            {exp.client && (
+              <>
+                {" · "}
+                <span style={{ color: "var(--color-accent)" }}>
+                  {exp.client}
+                </span>
+              </>
+            )}
           </p>
         </div>
       </div>
@@ -277,7 +287,14 @@ export function SystemFile({ slug }: { slug: string }) {
           measure at ~68ch so the freed canvas doesn't blow up line length. */}
       <div className="grid grid-cols-12 gap-x-6 mb-16">
         <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-          <SubHeading label="What it does" />
+          {/* Heading labels adapt to the section. "What it does" /
+              "Architecture" fit an engineering system; on a Teaching
+              chapter they're a category error (the narrative is about
+              running labs, not system architecture), so Teaching gets
+              role-appropriate labels. */}
+          <SubHeading
+            label={section === "Teaching" ? "What it was" : "What it does"}
+          />
           <p
             className="mb-8"
             style={{
@@ -291,7 +308,9 @@ export function SystemFile({ slug }: { slug: string }) {
             {exp.summary}
           </p>
 
-          <SubHeading label="Architecture" />
+          <SubHeading
+            label={section === "Teaching" ? "How I taught it" : "Architecture"}
+          />
           <div className="space-y-5">
             {paragraphs.map((p, i) => (
               <p

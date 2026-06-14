@@ -140,14 +140,20 @@ export function Maintainer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-mono-meta inline-flex items-center transition-colors duration-200"
-                  /* WCAG 2.1 SC 2.5.8 — 24x24 target size. */
+                  /* WCAG 2.1 SC 2.5.8 — 24x24 target size. break-words so a
+                     long URL wraps instead of overflowing the viewport on
+                     mobile. */
                   style={{
                     color: "var(--color-accent)",
                     minHeight: "24px",
                     padding: "2px 0",
+                    overflowWrap: "anywhere",
                   }}
                 >
-                  {link.url}
+                  {/* Display without the scheme + www so the platform name
+                      (shown to the left) isn't echoed and the line is short
+                      enough not to overflow on a 390px screen. */}
+                  {link.url.replace(/^https?:\/\/(www\.)?/, "")}
                 </a>
               </div>
             ))}

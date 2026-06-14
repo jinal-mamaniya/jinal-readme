@@ -250,7 +250,7 @@ export const ATLAS_STATIONS: AtlasStation[] = [
   },
   {
     id: "constraints",
-    label: "Constraints + computed cols",
+    label: "Constraints + cols",
     lines: ["data"],
     context: "Integrity as contract, not as application convention. FKs, check constraints, computed columns.",
     y: 22,
@@ -416,7 +416,7 @@ export const ATLAS_STATIONS: AtlasStation[] = [
   },
   {
     id: "ai-debug",
-    label: "Agent-augmented debugging",
+    label: "Agent debugging",
     lines: ["ai"],
     context: "Hypothesis generation at scale. Triangulation, not single-shot.",
     y:60,
@@ -431,7 +431,7 @@ export const ATLAS_STATIONS: AtlasStation[] = [
   },
   {
     id: "ai-workflow",
-    label: "Agent-augmented workflow",
+    label: "Agent workflow",
     lines: ["ai"],
     context: "Engineering with AI in the loop — when to delegate, when to drive.",
     emphasis: "terminal",

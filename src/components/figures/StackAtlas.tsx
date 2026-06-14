@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   ATLAS_LINES,
   ATLAS_STATIONS,
@@ -41,7 +41,7 @@ const JUNCTION_RADIUS = 10;
 const TERMINAL_RADIUS = 11;
 /* Label sits to the right of the station center */
 const LABEL_OFFSET_RIGHT = 16;
-const STATION_FONT_SIZE = 12;
+const STATION_FONT_SIZE = 11;
 const LINE_LABEL_FONT_SIZE = 13;
 
 function yCoord(stationY: number): number {
@@ -61,6 +61,19 @@ export function StackAtlas() {
   const selectedStation = selectedStationId
     ? ATLAS_STATIONS.find((s) => s.id === selectedStationId)
     : null;
+
+  /* Bug fix — the detail panel renders below an 820px-tall map, so clicking
+     a station near the top of the map placed the feedback far below the
+     fold (a click that looked like nothing happened). Scroll the panel
+     into view on selection. block:"nearest" means no scroll when it's
+     already visible, so re-selecting nearby stations doesn't yank the
+     viewport. */
+  const detailRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (selectedStationId && detailRef.current) {
+      detailRef.current.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  }, [selectedStationId]);
 
   return (
     <div>
@@ -180,12 +193,14 @@ export function StackAtlas() {
       </div>
 
       {/* Detail panel (shared across both views) */}
-      {selectedStation && (
-        <StationDetailPanel
-          station={selectedStation}
-          onClose={() => setSelectedStationId(null)}
-        />
-      )}
+      <div ref={detailRef}>
+        {selectedStation && (
+          <StationDetailPanel
+            station={selectedStation}
+            onClose={() => setSelectedStationId(null)}
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -199,15 +214,26 @@ function StackSubwayMap({
   selectedStationId: string | null;
   onSelectStation: (id: string | null) => void;
 }) {
+  /* Keyboard-focused station — drives the visible focus ring. Distinct from
+     selectedStationId (click/Enter selection) so a keyboard user can tab
+     across stations and see where they are before activating. */
+  const [focusedStationId, setFocusedStationId] = useState<string | null>(null);
+
   return (
+    /* width="100%" + viewBox lets the map scale to the container instead of
+       forcing a fixed 1100px that horizontally scrolled (and cut off the
+       Runtime line) at common widths. overflow-x-auto stays as a floor for
+       very narrow desktop containers. */
     <div className="w-full overflow-x-auto">
       <svg
         viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
-        width={MAP_WIDTH}
-        height={MAP_HEIGHT}
-        style={{ maxWidth: "none", display: "block" }}
-        aria-label="Stack atlas — seven lines representing craft dimensions"
-        role="img"
+        width="100%"
+        style={{ display: "block", height: "auto", minWidth: "680px" }}
+        /* role="group" (not "img") so the interactive station buttons inside
+           stay in the accessibility tree — role="img" would expose the SVG
+           as a single static graphic and hide every station from AT. */
+        role="group"
+        aria-label="Stack atlas — six craft dimensions; tab to a station and press Enter for detail"
       >
         {/* Line strokes — each line is a vertical track with stations descending */}
         {ATLAS_LINES.map((line) => {
@@ -307,6 +333,7 @@ function StackSubwayMap({
                 ? JUNCTION_RADIUS
                 : STATION_RADIUS;
           const isSelected = station.id === selectedStationId;
+          const isFocused = station.id === focusedStationId;
           /* Labels render to the right of every station. Column spacing
              (170px) accommodates max label width (~140px) without
              cross-column collision. */
@@ -314,12 +341,48 @@ function StackSubwayMap({
           const labelTextAnchor: "start" | "end" = "start";
           const labelY = cy + 4; // baseline adjustment
 
+          /* Accessible name — the station, the craft line(s) it sits on (so
+             line membership reaches screen readers without relying on color),
+             and the engineering context. */
+          const lineNames = station.lines
+            .map((id) => ATLAS_LINES.find((l) => l.id === id)?.label)
+            .filter(Boolean)
+            .join(", ");
+          const ariaLabel = `${station.label}. ${lineNames}.${
+            station.context ? ` ${station.context}` : ""
+          }`;
+
           return (
             <g
               key={station.id}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", outline: "none" }}
+              tabIndex={0}
+              role="button"
+              aria-label={ariaLabel}
+              aria-pressed={isSelected}
               onClick={() => onSelectStation(station.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelectStation(station.id);
+                }
+              }}
+              onFocus={() => setFocusedStationId(station.id)}
+              onBlur={() => setFocusedStationId(null)}
             >
+              {/* Keyboard focus ring — dashed accent ring so a tabbing user
+                  can see which station is focused before activating it. */}
+              {isFocused && (
+                <circle
+                  cx={cx}
+                  cy={cy}
+                  r={radius + 7}
+                  fill="none"
+                  stroke="var(--color-accent)"
+                  strokeWidth={2}
+                  strokeDasharray="3,3"
+                />
+              )}
               {/* Station marker */}
               <circle
                 cx={cx}

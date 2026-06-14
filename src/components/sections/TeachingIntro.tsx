@@ -52,8 +52,9 @@ export function TeachingIntro() {
           }}
         >
           Two semesters at Northeastern — 190 students across both cohorts,
-          no slides, lab sessions as live debugging. Teaching what production-
-          quality thinking looks like before the code gets written.
+          no slides, lab sessions as live debugging. Teaching what
+          production-quality thinking looks like before the code gets
+          written.
         </p>
       </div>
     </section>

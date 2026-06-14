@@ -99,36 +99,42 @@ export function Glossary() {
       <ul className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-1.5 max-w-[80rem]">
         {entries.map((e) => (
           <li key={e.term} className="group">
+            {/* Stacks on mobile (term, then ref beneath the term text),
+                horizontal term ···· ref leader at lg+. The earlier
+                single-row layout gave both term and ref flex:0 0 auto,
+                so on a 390px viewport a long term + ref exceeded the
+                width and the ref clipped off the right edge. */}
             <a
               href={e.href}
-              className="flex items-baseline gap-3 py-1.5 transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded-sm"
+              className="flex flex-col lg:flex-row lg:items-baseline gap-x-3 gap-y-0.5 py-1.5 transition-colors duration-200 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 rounded-sm"
               style={{
                 color: "var(--color-text)",
               }}
             >
-              {/* Dimensional dot — 8px circle in the entry's atlas-dimension
-                  color. Aria-label keeps it accessible without cluttering
-                  the scan visually. */}
-              <DimensionalDot dimension={e.dimension} alignSelf="center" />
-              <span
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "clamp(0.9375rem, 1.05vw, 1rem)",
-                  fontWeight: 500,
-                  flex: "0 0 auto",
-                  transition: "color 200ms ease",
-                }}
-                className="group-hover:text-accent"
-              >
-                {e.term}
+              {/* Dimensional dot + term stay together as one row even when
+                  the entry stacks on mobile. min-w-0 lets the term wrap
+                  rather than overflow. */}
+              <span className="inline-flex items-center gap-3 min-w-0 lg:flex-none">
+                <DimensionalDot dimension={e.dimension} alignSelf="center" />
+                <span
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "clamp(0.9375rem, 1.05vw, 1rem)",
+                    fontWeight: 500,
+                    transition: "color 200ms ease",
+                  }}
+                  className="group-hover:text-accent"
+                >
+                  {e.term}
+                </span>
               </span>
               <span
                 aria-hidden="true"
-                className="flex-1 border-b border-dotted self-baseline mb-1.5"
+                className="hidden lg:block flex-1 border-b border-dotted self-baseline mb-1.5"
                 style={{ borderColor: "var(--color-border)" }}
               />
               <span
-                className="font-mono-path"
+                className="font-mono-path pl-[1.25rem] lg:pl-0"
                 style={{
                   color: "var(--color-cool-meta)",
                   fontSize: "0.75rem",

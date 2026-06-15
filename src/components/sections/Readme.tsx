@@ -313,21 +313,25 @@ export function Readme() {
                   strings   → foreground
                   numbers   → foreground
                   punctuation → cool-meta (subdued) */}
+            {/* white-space: pre-wrap (not pre) so long metric values and
+                the 15-21-item stack arrays WRAP within the column instead
+                of forcing a ~3300px-wide horizontal scroll. The per-line
+                hanging indents (in the Json* helpers) keep wrapped lines
+                aligned, so it still reads as formatted code. No
+                overflow-x / scrollable region anymore — nothing scrolls
+                sideways, so the a11y scrollable-region affordance is no
+                longer needed. */}
             <pre
-              /* tabIndex + role so keyboard users can focus and scroll the
-                 horizontally-overflowing code block (axe:
-                 scrollable-region-focusable). */
-              tabIndex={0}
-              role="region"
-              aria-label="package.json — skills and stack"
-              className="overflow-x-auto p-5 m-0"
+              className="p-5 m-0"
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "0.8125rem",
-                lineHeight: 1.65,
+                lineHeight: 1.7,
                 background: "transparent",
                 margin: 0,
                 color: "var(--color-text)",
+                whiteSpace: "pre-wrap",
+                overflowWrap: "break-word",
               }}
             >
               <code>
@@ -983,7 +987,16 @@ function JsonPair({
   comma?: boolean;
 }) {
   return (
-    <div style={{ paddingLeft: `${indent * 0.5}rem` }}>
+    /* Hanging indent: paddingLeft holds wrapped continuation one level in,
+       textIndent pulls the first line (the key) back out to the real
+       indent — so a long value wraps cleanly under itself instead of back
+       to column 0. */
+    <div
+      style={{
+        paddingLeft: `${indent * 0.5 + 1}rem`,
+        textIndent: "-1rem",
+      }}
+    >
       <span style={{ color: KEY }}>{`"${k}"`}</span>
       <span style={{ color: PUNCT }}>{`: `}</span>
       <span style={{ color: VAL }}>{v}</span>
@@ -1002,7 +1015,12 @@ function JsonString({
   comma?: boolean;
 }) {
   return (
-    <div style={{ paddingLeft: `${indent * 0.5}rem` }}>
+    <div
+      style={{
+        paddingLeft: `${indent * 0.5 + 1}rem`,
+        textIndent: "-1rem",
+      }}
+    >
       <span style={{ color: VAL }}>{v}</span>
       {comma && <span style={{ color: PUNCT }}>,</span>}
     </div>
@@ -1055,7 +1073,17 @@ function JsonInlineArray({
   comma?: boolean;
 }) {
   return (
-    <div style={{ paddingLeft: `${indent * 0.5}rem` }}>
+    /* Deeper hanging indent (2rem) so the items — which now WRAP across
+       lines when the array is long — nest visibly inside the array
+       brackets instead of running off into a horizontal scroll. Short
+       arrays still render on one line; long ones (the 15-21-item stack
+       dimensions) fill-wrap like Prettier formats a long array. */
+    <div
+      style={{
+        paddingLeft: `${indent * 0.5 + 2}rem`,
+        textIndent: "-2rem",
+      }}
+    >
       <span style={{ color: KEY }}>{`"${k}"`}</span>
       <span style={{ color: PUNCT }}>{`: [`}</span>
       {items.map((item, i) => (

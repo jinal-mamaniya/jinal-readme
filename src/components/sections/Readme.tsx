@@ -347,17 +347,22 @@ export function Readme() {
                   v={`"Most of the software I've built, people never think about — and that's the point."`}
                   comma
                 />
-                {/* Metrics expanded 2026-05-31 from 3 entries to 12 — prior
-                    was a shortcut that left ~25 documented achievements out.
-                    LN daily-users restored 2026-06-10: the 15K+ figure is
-                    in the public resume verbatim ("serving 15K+ daily users"),
-                    so the prior exclusion was over-cautious relative to the
-                    actual NDA boundary. Surfaces consistently with the LN
-                    chapter metric strip per rule #6.
-                    Every metric traces to resume + LinkedIn; each attribution
-                    names the system + technique. */}
+                {/* Metrics object — every value traces to resume + LinkedIn,
+                    each attribution naming the system + technique.
+                    LexisNexis is intentionally absent from `users`: its
+                    chapter headlines event throughput, not a user count (the
+                    LN metric strip rotated from "15K users" to "100K+ events
+                    / 82% errors" on 2026-06-13, see experience.ts). LN's real
+                    figures live under `throughput`, `availability`, and
+                    `error_reduction` below. Listing LN's 15K here as well
+                    would invite "why 15K here but 100K+ in the chapter?" — so
+                    `users` carries only the roles that foreground a daily-user
+                    count (TCS, LTI). Rule #6: consistent with the chapters.
+                    (The 15K+ resume figure is real but redundant with the
+                    chapter's current framing — do NOT re-add it here as a
+                    prior 2026-06-10 pass did before the chapter rotated.) */}
                 <JsonObjectOpen indent={2} k="metrics" />
-                <JsonPair indent={4} k="users" v={`"15K+ daily (LexisNexis) · 17K+ (TCS Dow OPD) · 3K+ (LTI early)"`} comma />
+                <JsonPair indent={4} k="users" v={`"17K+ daily (TCS Dow OPD) · 3K+ (LTI early)"`} comma />
                 <JsonPair indent={4} k="global_reach" v={`"650 plants · 13 languages (TCS Dow OPD)"`} comma />
                 <JsonPair indent={4} k="availability" v={`"99.95% API (LexisNexis · Polly resilience)"`} comma />
                 <JsonPair indent={4} k="throughput" v={`"100K+ daily events (LexisNexis)"`} comma />

@@ -212,6 +212,14 @@ export const credentials = {
               rendered in Endorsement at page-top; surface here too as
               a formal credential). */
   awards: [
+    /* Letter of Recommendation leads the column — it's the strongest
+       recognition (external, from the Dow client tool owner), so it
+       outranks the internal TCS awards below it. */
+    {
+      name: "Letter of Recommendation",
+      issuer: "The Dow Chemical Company",
+      context: "Jacky S. Aikin, OPD Tool Owner · 2021",
+    },
     {
       name: "Star of the Month (×2)",
       issuer: "Tata Consultancy Services",
@@ -224,11 +232,6 @@ export const credentials = {
     {
       name: "Contextual Master Award",
       issuer: "Tata Consultancy Services",
-    },
-    {
-      name: "Letter of Recommendation",
-      issuer: "The Dow Chemical Company",
-      context: "Jacky S. Aikin, OPD Tool Owner · 2021",
     },
   ],
 };

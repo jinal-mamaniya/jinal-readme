@@ -295,6 +295,10 @@ export function SystemFile({ slug }: { slug: string }) {
           <SubHeading
             label={section === "Teaching" ? "What it was" : "What it does"}
           />
+          {/* ColoredText so the summary follows the same keyword color
+              coding as the Architecture narrative below it — previously
+              the summary rendered as plain text, which read as "color
+              coding not followed" next to the colored Architecture paras. */}
           <p
             className="mb-8"
             style={{
@@ -305,7 +309,7 @@ export function SystemFile({ slug }: { slug: string }) {
               maxWidth: "68ch",
             }}
           >
-            {exp.summary}
+            <ColoredText text={exp.summary} />
           </p>
 
           <SubHeading

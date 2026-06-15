@@ -1,6 +1,7 @@
 import { credentials } from "@/data/unconventional";
 import { EngineeringDecisionTree } from "@/components/figures/EngineeringDecisionTree";
 import { DimensionalDot } from "@/components/ui/DimensionalDot";
+import { ColoredText } from "@/components/figures/ColoredText";
 
 /**
  * Readme — the project's actual README, rendered with Pentagram/Vignelli
@@ -794,12 +795,7 @@ export function Readme() {
               maxWidth: "68ch",
             }}
           >
-            Started in Mumbai — LTI right out of college, then nearly six
-            years at Tata Consultancy Services building the Operations
-            Dashboard for Dow Chemical: 17,000 daily users, 650 plants, 13
-            languages. Grew from developer to team supervisor and global SME.
-            Moved to Boston for a master&apos;s at Northeastern, then Motorola
-            Solutions. Now in Raleigh at LexisNexis.
+            <ColoredText text="Started in Mumbai — LTI right out of college, then nearly six years at Tata Consultancy Services building the Operations Dashboard for Dow Chemical: 17,000 daily users, 650 plants, 13 languages. Grew from developer to team supervisor and global SME. Moved to Boston for a master's at Northeastern, then Motorola Solutions. Now in Raleigh at LexisNexis." />
           </p>
           <p
             style={{
@@ -810,11 +806,7 @@ export function Readme() {
               maxWidth: "68ch",
             }}
           >
-            Along the way, I taught 190 students as a graduate teaching
-            assistant across two semesters, mentored engineers across teams on
-            architecture patterns, and led knowledge transfers that outlasted
-            my time on the team. The code I write matters. But the engineers
-            I help think more clearly about systems —{" "}
+            <ColoredText text="Along the way, I taught 190 students as a graduate teaching assistant across two semesters, mentored engineers across teams on architecture patterns, and led knowledge transfers that outlasted my time on the team. The code I write matters. But the engineers I help think more clearly about systems — " />
             <strong style={{ color: "var(--color-accent)" }}>
               that&apos;s the work that compounds.
             </strong>

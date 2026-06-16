@@ -182,25 +182,31 @@ export const projects: Project[] = [
     teaserLede:
       "One artist. Thirteen years. 437 songs — read six ways. What defines a track's sound. Where an era sits emotionally. Which songs survived every tour. How far a release really reached. Pick any album, and all six lenses turn to face it.",
 
-    /* Detail page essay — three beats.
-       P1: spark + thesis. Hooks the reader with the personal moment,
-       pivots HARD to the engineering complaint (most music analytics
-       lie quietly), states the case-study thesis. The BIG IDEA across
-       the whole artifact lives here: historical integrity in music
-       data, where most analytics quietly fail.
-       P2: how it works (data spine + cache + Wikipedia versioning).
-       P3: what it does (each view's engineering substance).
-       Replaces an earlier P1 that contained three fabricated specifics
-       ("three world tours across twenty-five countries, two billion
-       BANGTANTV views") and a P2 that contained a fabricated count
-       ("Fourteen validation scripts"). All fabrications removed
-       2026-06-14 per the Tier 1 strict-review pass; every numeric or
-       categorical specific now traces to a verified read of
-       D:\\ramapir\\bts-evolution. */
+    /* Detail page essay — three beats, DISCOVERY-FIRST. Reworked
+       2026-06-16 after re-reading the bts-evolution codebase directly
+       (not via an agent — an agent study had fabricated a "13 tours"
+       count). The earlier essay led with the data-integrity plumbing;
+       the real story is the six-lens, song-level discovery surface,
+       with the integrity engineering as the trustworthy foundation
+       (P3), not the headline.
+       P1: WHAT it is — six lenses, song-level audio DNA, interconnected.
+       P2: HOW each lens works — the analytical depth.
+       P3: WHY it's trustworthy — the spine.
+       Also corrects a STALE claim: the old P3 said "120-point harmonic
+       shape modulated by five audio features" — that described an old
+       SoundSignature implementation that no longer exists (verified
+       absent 2026-06-16: no "120"/"breathing"/"five" in
+       SoundSignature.tsx). Current code is a cardinal-spline curve
+       through SIX traits. Every figure traces to a file read directly:
+       437 songs + 7 features (spotifyFeatures.ts, data.ts), honest
+       album-vs-song overlay (SoundSignature.tsx:18-22), 4 mood quadrants
+       (EmotionalMapping.tsx), setlist-position frequency
+       (SongJourneyMap.tsx), 3-angle 8-day impact (data.ts:48-56,
+       ReleaseImpactGrouped.tsx:275). */
     detailEssay: [
-      "It started with a Carpool Karaoke clip in March 2025 — but the case study isn't about that. It's about what I noticed within weeks: most music analytics platforms lie quietly. Release dates drift. Wikipedia article names change mid-history. Third-party APIs serve stale data dressed as fresh. This is the case study of building one that doesn't.",
-      "The data discipline is the work. Six interconnected views read from one verified data spine. Curated MusicBrainz release-group IDs, because upstream release dates are wrong often enough to matter — LOVE YOURSELF ‘Her’ would land in the WINGS era if you trusted the source. A frozen-cache pattern that drops 444 third-party API calls to six per refresh. Validation scripts that cross-check audio features against ReccoBeats, Wikipedia article names against history, tour data against setlist.fm, song titles against MusicBrainz. Wikipedia article-name versioning that knows BTS_(band) was renamed to BTS in March 2020 and Big_Hit_Entertainment to Hybe_Corporation a year later — so historical impact queries hit the era-correct page.",
-      "Sound Signature renders each album as a 120-point harmonic shape modulated by five audio features, verified against a 189-song UCLA-curated dataset that itself was independently validated against ReccoBeats. Emotional Map plots tracks in Russell’s Circumplex. Concert Evolution maps the actual setlist progression of every tour from 2014 forward. Global Reach measures release-day attention across three angles — the artist, the genre, the label — against the era-correct Wikipedia page for each. Because conflating them is how analytics lies.",
+      "BTS Evolution reads a thirteen-year discography six different ways. Every one of 437 songs carries a seven-dimension audio fingerprint — energy, valence, danceability, and four more. Albums become coordinates in mood space and organic harmonic signatures; tours decompose into the songs that defined them; releases get measured for their global footprint. The six views aren't separate dashboards — they're lenses on one dataset: select an album in any of them and the rest re-focus on it.",
+      "Sound Signature draws each album as a smooth curve through its six audio traits, then overlays a single song on top — same mapping for both, so where the song bulges past the album, that trait genuinely dominates the track. Emotional Map plots every album by valence and energy into four mood quadrants. Concert Evolution tracks not just which songs were played but where in the setlist they landed — the openers, the closers, the staples that survived every tour. Global Reach measures each release's Wikipedia impact across three separate angles — the artist, the genre, the label — over an eight-day window before and after, because a single blended number hides which audience actually moved.",
+      "None of this holds if the numbers can't be trusted — and music data rarely is, straight from the source: release dates drift, Wikipedia renamed both the band and the label mid-history, audio features get faked. So the spine underneath is built to refuse that. A frozen cache pins every number. Wikipedia article-name versioning sends historical queries to the era-correct page. Audio features are cross-validated against an independent dataset and flagged when a value is only a thirty-second-clip estimate. Six confirmed lenses over one spine that labels its own uncertainty. This is the engineering I do when the brief is mine to choose.",
     ],
 
     /* Three stats, three NON-OVERLAPPING engineering stories.
@@ -230,8 +236,8 @@ export const projects: Project[] = [
         label: "Wikipedia article renames tracked",
       },
       {
-        value: "189",
-        label: "Songs cross-validated against ReccoBeats",
+        value: "437",
+        label: "Songs with audio features",
       },
     ],
 
@@ -251,8 +257,8 @@ export const projects: Project[] = [
         body: "Wikipedia renamed BTS_(band) → BTS in March 2020 and Big_Hit_Entertainment → Hybe_Corporation a year later. A naive impact query against today’s article would miss the day the rename happened — the analytics version of asking “what was traffic before this domain existed?” The pipeline pulls the era-correct article name for every release date in the 8-day impact window.",
       },
       {
-        title: "189-song UCLA dataset over fabricated features",
-        body: "Early prototypes generated audio features from album metadata — a small story dressed as data. The project froze, the audio analysis came out, and the rebuild used only a 189-song UCLA-curated dataset, independently verified against ReccoBeats. Better to ship six confirmed views than seven with one lying.",
+        title: "Verified dataset over fabricated features",
+        body: "Early prototypes generated audio features from album metadata — a small story dressed as data. The project froze, the audio analysis came out, and the rebuild used only a 437-song dataset stitched from UCLA, Olivia, ReccoBeats, and Huggingface sources — with clip-estimated values flagged so the curve never claims more certainty than it has. Better to ship six confirmed views than seven with one lying.",
       },
     ],
 
@@ -285,17 +291,17 @@ export const projects: Project[] = [
         name: "Sound Signature",
         whatItAnswers:
           "How does each album sound different from every other one?",
-        body: "Each album is rendered as a 120-point harmonic shape: radius is modulated by sin and cos of five audio features (energy, valence, acousticness, speechiness, danceability). Higher-energy albums literally breathe faster — the animation cycle is computed as Math.max(1.5, 4 − energy × 3) seconds. Three view modes: album, song, comparison. Album art clips to a 14-pixel circle at center with a colored-circle fallback if the image fails. Audio data comes from a 189-song UCLA dataset, never generated.",
+        body: "Each album is drawn as a smooth organic curve — a cardinal-closed spline through six points, one per audio trait (energy, valence, danceability, acousticness, instrumentalness, speechiness). A high radius floor keeps even a zero-value trait a rounded lobe, so the shape always reads as an identity rather than collapsing to a pinch. Three modes — album, song, comparison: overlay a single track on its album and, because both use the same mapping, where the song bulges past the album that trait genuinely dominates. Album averages exclude tracks with no audio data, so a few feature-less interludes never drag the signature toward zero.",
         liveHash: "#signature",
         image: {
           src: "/images/projects/bts/03_sound-signature.png",
           alt: "Sound Signature — harmonic shape modulated by audio features",
-          caption: "Sound Signature — sin·cos harmonics modulated by 5 audio features",
+          caption: "Sound Signature — a smooth curve through six audio traits per album",
         },
         annotations: [
-          { marker: "1", label: "120 harmonic points around the circle" },
-          { marker: "2", label: "Album art at 14px center, 0.7 opacity" },
-          { marker: "3", label: "Breath cycle tied to energy value" },
+          { marker: "1", label: "Cardinal spline through six audio-trait points" },
+          { marker: "2", label: "Same mapping for album + song — honest overlay" },
+          { marker: "3", label: "Album / song / comparison modes" },
         ],
         whatItLeavesOpen:
           "The shape tells you how it sounds. But how does it feel?",
@@ -305,7 +311,7 @@ export const projects: Project[] = [
         number: "03",
         name: "Emotional Map",
         whatItAnswers: "Where do these songs cluster on the emotion graph?",
-        body: "Russell’s Circumplex Model rendered as a quadrant scatter. Every track positioned by valence (sad → happy) and energy (calm → intense), distributed across four named quadrants: Joyful, Intense, Peaceful, Melancholic. The same 189-song dataset behind Sound Signature, here read as feeling instead of sound.",
+        body: "Russell’s Circumplex Model rendered as a quadrant scatter. Every track positioned by valence (sad → happy) and energy (calm → intense), distributed across four named quadrants: Joyful, Intense, Peaceful, Melancholic. The same 437-song dataset behind Sound Signature, here read as feeling instead of sound.",
         liveHash: "#emotional",
         image: {
           src: "/images/projects/bts/04_emotional-map.png",

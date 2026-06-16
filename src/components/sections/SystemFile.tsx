@@ -446,7 +446,7 @@ export function SystemFile({ slug }: { slug: string }) {
                       color: "var(--color-foreground)",
                     }}
                   >
-                    {d.text}
+                    <ColoredText text={d.text} />
                   </p>
                 </div>
               ))}
@@ -470,7 +470,7 @@ export function SystemFile({ slug }: { slug: string }) {
                 borderColor: "var(--color-cool-meta)",
               }}
             >
-              {unconventional.limitations}
+              <ColoredText text={unconventional.limitations} />
             </p>
           </div>
         </div>
@@ -498,7 +498,7 @@ export function SystemFile({ slug }: { slug: string }) {
                   color: "var(--color-foreground)",
                 }}
               >
-                {unconventional.selfCritique}
+                <ColoredText text={unconventional.selfCritique} />
               </p>
               <p
                 className="font-mono-meta mt-5"

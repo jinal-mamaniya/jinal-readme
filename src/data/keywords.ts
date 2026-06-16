@@ -59,6 +59,7 @@ export const KEYWORDS: KeywordEntry[] = [
 
   /* ===== data (teal) — data craft, schema, query language ===== */
   { term: "queries and mutations", dimension: "data" },
+  { term: "Stored procedures", dimension: "data" },
   { term: "stored procedures", dimension: "data" },
   { term: "stored procedure", dimension: "data" },
   { term: "Entity Framework", dimension: "data" },
@@ -115,6 +116,7 @@ export const KEYWORDS: KeywordEntry[] = [
      Multiple exception-handling variants explicitly added so each
      phrasing in the narratives colors consistently. */
   { term: "exception-handling middleware", dimension: "discipline" },
+  { term: "exception middleware", dimension: "discipline" },
   { term: "Error-handling middleware", dimension: "discipline" },
   { term: "exception-handling strategy", dimension: "discipline" },
   { term: "validation frameworks", dimension: "discipline" },

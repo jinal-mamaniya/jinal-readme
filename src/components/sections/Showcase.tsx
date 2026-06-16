@@ -273,13 +273,18 @@ export function Showcase() {
             and earns the click into the case study. */}
         <div className="grid grid-cols-12 gap-x-6 mb-12">
           <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+            {/* Standout treatment — larger + weightier so the hook commands
+                attention and tempts the click, rather than reading as body
+                copy. The lede IS the pitch on the home page. */}
             <p
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "clamp(1.0625rem, 1.3vw, 1.1875rem)",
-                lineHeight: 1.6,
-                color: "var(--color-text)",
-                maxWidth: "62ch",
+                fontSize: "clamp(1.375rem, 1.9vw, 1.75rem)",
+                fontWeight: 500,
+                lineHeight: 1.35,
+                letterSpacing: "-0.015em",
+                color: "var(--color-foreground)",
+                maxWidth: "42ch",
               }}
             >
               {project.teaserLede}

@@ -167,20 +167,20 @@ export const projects: Project[] = [
     liveUrl: BTS_LIVE,
     liveUrlDisplay: "bts-evolution.netlify.app",
 
-    /* Showcase teaser — single paragraph. Frames the WHY without crowding
-       the hero. The full essay lives on the detail page. Reworked in the
-       Round-D strict-review pass (2026-06-14): the earlier closing tail
-       "built with the same discipline I bring to enterprise systems" was
-       generic-positioning tell-don't-show vocabulary — replaced with three
-       concrete engineering moves that earn the click. Each move is
-       verifiable in the case study (frozen cache → 444→6 architecture
-       decision; Wikipedia versioning → article-name pivots across BTS/Hybe
-       renames; cross-validated audio → 189-song UCLA dataset vs ReccoBeats).
-       Closing clause "engineering depth lives in the case study" routes
-       the reader to the structured artifact (now the dominant CTA after
-       the Round-B flip). */
+    /* Showcase teaser — the standout hook. Reworked 2026-06-16 after a
+       direct re-study of the bts-evolution codebase: the earlier lede led
+       with the data-integrity plumbing (frozen cache / Wikipedia
+       versioning), which sells the foundation, not the product. The real
+       story is DISCOVERY — six interconnected lenses you can interrogate
+       down to the song. Punchy fragments + four concrete discoveries (one
+       per analytical lens: Sound Signature / Emotional Map / Concert
+       Evolution / Global Reach), closing on the interactive hook (pick an
+       album, all six views refocus — the selectedAlbum interconnection in
+       MainPage.tsx). Every figure verified directly: 437 songs +
+       seven-dimension features (spotifyFeatures.ts, data.ts). Rendered at
+       a larger standout size in Showcase.tsx so it tempts the click. */
     teaserLede:
-      "Six interconnected views over one verified data spine — thirteen years of releases, tours, and global attention rendered as queryable history. Frozen-cache architecture, Wikipedia article-name versioning across upstream renames, cross-validated audio data. Most music analytics quietly skip all three.",
+      "One artist. Thirteen years. 437 songs — read six ways. What defines a track's sound. Where an era sits emotionally. Which songs survived every tour. How far a release really reached. Pick any album, and all six lenses turn to face it.",
 
     /* Detail page essay — three beats.
        P1: spark + thesis. Hooks the reader with the personal moment,

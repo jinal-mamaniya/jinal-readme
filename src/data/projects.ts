@@ -180,7 +180,7 @@ export const projects: Project[] = [
        tagline above — that surface earns its rhythm with scan
        brevity. */
     detailTagline:
-      "A solo-built artist-intelligence platform that doesn’t — engineering a thirteen-year career as queryable history, verified end-to-end.",
+      "A solo-built artist-intelligence platform that doesn’t lie — engineering a thirteen-year career as queryable history, verified end-to-end.",
     liveUrl: BTS_LIVE,
     liveUrlDisplay: "bts-evolution.netlify.app",
 

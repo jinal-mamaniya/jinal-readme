@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { projects } from "@/data/projects";
 import { DimensionalDot } from "@/components/ui/DimensionalDot";
+import { LensPreview } from "./LensPreview";
 
 /**
  * Showcase — the home-page teaser for the BTS Evolution case study.
@@ -21,9 +22,11 @@ import { DimensionalDot } from "@/components/ui/DimensionalDot";
  *   — Hero image at 16/10, designed plate with caption
  *   — Origin block: cobalt date stamp + pull-quote + body — the personal
  *     hook lands here so the detail page can open with engineering thesis
- *   — Single-paragraph teaser lede (was a 2-column 3-paragraph essay; the
- *     full essay lives on the detail page now)
- *   — Three-number stats strip
+ *   — Tight logline teaser lede (was a four-question paragraph; the six
+ *     lenses moved into the interactive index below — see LensPreview)
+ *   — Six-lens preview index (<LensPreview>): hover-swap on desktop,
+ *     thumbnail cards on mobile, each deep-linking to its detail spread
+ *   — Four-number stats strip (the scaling story, ending on data rigor)
  *   — Trimmed tech-stack grid (eight most-recognizable chips; full twelve
  *     surface on the detail page)
  *   — Two CTAs side-by-side: "Read the case study →" (internal) and
@@ -290,6 +293,18 @@ export function Showcase() {
               {project.teaserLede}
             </p>
           </div>
+        </div>
+
+        {/* ===== SIX-LENS PREVIEW INDEX =====
+            The logline above tees up "six lenses"; this interactive index
+            delivers them — one evocative line + a live screenshot per lens,
+            each deep-linking to its full spread on the detail page. Replaces
+            cramming all six into the lede paragraph: the brands this teaser
+            emulates (HYBE / Spotify / Netflix) reach premium through
+            structure, not a swelling paragraph. Driven by the `views` array
+            (previewLine + image). See LensPreview.tsx. */}
+        <div className="mb-12">
+          <LensPreview views={project.views} baseHref="/projects/bts-evolution" />
         </div>
 
         {/* ===== STATS STRIP — the scaling story, rendered BIG =====

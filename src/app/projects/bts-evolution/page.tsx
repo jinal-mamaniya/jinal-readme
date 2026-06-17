@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import { DimensionalDot } from "@/components/ui/DimensionalDot";
+import { ColoredText } from "@/components/figures/ColoredText";
 
 /* The single project this page case-studies. If a future project warrants
    the same treatment, parameterize via [slug] route and pull from
@@ -263,7 +264,14 @@ export default function BtsEvolutionCaseStudy() {
           ))}
         </div>
 
-        {/* ===== 5. ESSAY — three paragraphs ===== */}
+        {/* ===== 5. ESSAY — magazine layout (per direction 2026-06-17) =====
+            Full-width STANDFIRST deck, then the body split into TWO columns
+            below so the section fills the article width instead of stranding
+            a narrow left column with dead-right space. The essay is short (3
+            body paragraphs), which keeps the read-down-then-up column cost
+            tolerable. Standfirst stays a comfortable deck measure; each body
+            column lands ~55–60ch (within the readable range). Bold anchors +
+            lens/keyword coloring all run through <ColoredText>. */}
         <section className="mb-20">
           <p
             className="font-mono-label mb-6 pb-2 border-b inline-block"
@@ -274,10 +282,24 @@ export default function BtsEvolutionCaseStudy() {
           >
             What it is
           </p>
-          <div className="space-y-7 max-w-[62ch]">
-            {project.detailEssay.map((paragraph, idx) => (
+          <p
+            className="max-w-[52rem] mb-9"
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "clamp(1.375rem, 1.9vw, 1.75rem)",
+              fontWeight: 400,
+              lineHeight: 1.4,
+              letterSpacing: "-0.015em",
+              color: "var(--color-foreground)",
+            }}
+          >
+            <ColoredText text={project.detailEssay[0]} />
+          </p>
+          <div className="columns-1 md:columns-2 gap-x-12">
+            {project.detailEssay.slice(1).map((paragraph, idx) => (
               <p
                 key={idx}
+                className="break-inside-avoid mb-6"
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "clamp(1.0625rem, 1.3vw, 1.1875rem)",
@@ -285,7 +307,7 @@ export default function BtsEvolutionCaseStudy() {
                   color: "var(--color-text)",
                 }}
               >
-                {paragraph}
+                <ColoredText text={paragraph} />
               </p>
             ))}
           </div>
@@ -370,6 +392,28 @@ export default function BtsEvolutionCaseStudy() {
                           : "max-w-[62ch]"
                       }`}
                     >
+                      {/* Dimension eyebrow — gated DimensionalDot + the
+                          craft dimension this view exercises, tying each
+                          spread to the Stack Atlas legend exactly as every
+                          chapter section does (rule #6 / #31). Omitted on
+                          My Story, which carries no craft dimension. */}
+                      {view.dimension && (
+                        <p
+                          className="font-mono-label mb-3 inline-flex items-center gap-2"
+                          style={{
+                            color: "var(--color-cool-meta)",
+                            letterSpacing: "0.08em",
+                          }}
+                        >
+                          <DimensionalDot
+                            dimension={view.dimension}
+                            size={10}
+                            ariaLabel={`${view.dimension} dimension`}
+                          />
+                          <span>{view.dimension}</span>
+                        </p>
+                      )}
+
                       {/* View number + name */}
                       <div className="flex items-baseline gap-3 mb-5">
                         <p
@@ -460,7 +504,7 @@ export default function BtsEvolutionCaseStudy() {
                           color: "var(--color-text)",
                         }}
                       >
-                        {view.body}
+                        <ColoredText text={view.body} />
                       </p>
 
                       {/* Live deep-link to this exact view in the live app */}
@@ -564,7 +608,7 @@ export default function BtsEvolutionCaseStudy() {
                     borderLeft: "1px solid var(--color-border)",
                   }}
                 >
-                  {decision.body}
+                  <ColoredText text={decision.body} />
                 </p>
               </div>
             ))}
@@ -597,7 +641,7 @@ export default function BtsEvolutionCaseStudy() {
                 color: "var(--color-foreground)",
               }}
             >
-              {project.signatureInsight.body}
+              <ColoredText text={project.signatureInsight.body} />
             </p>
           </div>
         </section>

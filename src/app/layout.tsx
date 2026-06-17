@@ -24,27 +24,28 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+/* Single source for absolute URLs (og:image, og:url, canonical). Must point
+   at a domain actually serving this build — otherwise social scrapers
+   (LinkedIn, X) hang resolving og:url and/or fetch the preview image from a
+   dead host. jinalmamaniya.com isn't attached yet, so resolve to Vercel's
+   production domain at build/runtime: VERCEL_PROJECT_PRODUCTION_URL is the
+   custom domain once one is attached, otherwise the project's *.vercel.app.
+   Falls back to the brand domain for local dev. Auto-upgrades to
+   jinalmamaniya.com the day it's attached — no code change needed. */
+const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "https://jinalmamaniya.com";
+
 export const metadata: Metadata = {
   title: "Jinal Mamaniya — README",
   description:
     "Senior Software Engineer. A handoff document for the systems I've helped maintain across legal-tech, public-safety, and enterprise.",
-  /* Absolute-URL base for og:image, canonical, etc. Must point at a domain
-     that is actually serving this build, or social scrapers (LinkedIn, X)
-     fetch the preview image from a dead host and show a blank card.
-     jinalmamaniya.com isn't attached yet, so resolve to Vercel's production
-     domain at build/runtime — VERCEL_PROJECT_PRODUCTION_URL is the custom
-     domain once one is attached, otherwise the project's *.vercel.app.
-     Falls back to the intended brand domain for local dev. */
-  metadataBase: new URL(
-    process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "https://jinalmamaniya.com",
-  ),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     title: "Jinal Mamaniya — README",
     description:
       "Senior Software Engineer. A handoff document for the systems I've helped maintain.",
-    url: "https://jinalmamaniya.com",
+    url: SITE_URL,
     siteName: "Jinal Mamaniya",
     locale: "en_US",
     type: "website",

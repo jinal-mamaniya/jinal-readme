@@ -260,10 +260,10 @@ export function Showcase() {
                 paddingLeft: "1.5rem",
               }}
             >
-              The project exists because of music I love. I recognized a
-              pattern other engineers might miss: a decade of compound
-              dedication produces measurable signals. Patterns you can
-              prove with data.
+              The project exists because of music I love. Thirteen years of
+              one artist turns out to be a rare kind of dataset — long enough
+              that the patterns are real, not noise — so I built something
+              rigorous enough to trust them.
             </p>
           </div>
         </div>

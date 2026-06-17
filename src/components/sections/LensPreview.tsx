@@ -77,8 +77,12 @@ export function LensPreview({ views, baseHref }: LensPreviewProps) {
           Six lenses, one dataset
         </p>
 
-        {/* ===== DESKTOP: list + live preview (lg+) ===== */}
-        <div className="hidden lg:grid grid-cols-12 gap-x-8 items-start">
+        {/* ===== DESKTOP: list + live preview (lg+) =====
+            items-center vertically centers the preview against the taller
+            six-row list, so the right column's spare height reads as
+            symmetric padding rather than dead space stranded beside rows
+            04-06 (the height-mismatch the essay rework also resolved). */}
+        <div className="hidden lg:grid grid-cols-12 gap-x-8 items-center">
           {/* List */}
           <ul className="col-span-5 flex flex-col">
             {lenses.map((lens, i) => {

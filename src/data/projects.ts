@@ -209,36 +209,23 @@ export const projects: Project[] = [
       "None of this holds if the numbers can't be trusted — and music data rarely is, straight from the source: release dates drift, Wikipedia renamed both the band and the label mid-history, audio features get faked. So the spine underneath is built to refuse that. A frozen cache pins every number. Wikipedia article-name versioning sends historical queries to the era-correct page. Audio features are cross-validated against an independent dataset and flagged when a value is only a thirty-second-clip estimate. Six confirmed lenses over one spine that labels its own uncertainty. This is the engineering I do when the brief is mine to choose.",
     ],
 
-    /* Three stats, three NON-OVERLAPPING engineering stories.
-       Position 1 — architecture (frozen cache).
-       Position 2 — historical integrity, set as the twist (names, not
-                    a number — Wikipedia renamed BTS_(band) → BTS in
-                    March 2020 and Big_Hit_Entertainment → Hybe_
-                    Corporation a year later; this slot calls out the
-                    two real renames the pipeline catches).
-       Position 3 — data integrity (independent cross-validation).
-       The earlier strip had "6 interconnected views" and "14
-       validation scripts" — the count of views is already prose
-       (paragraph 2 of detailEssay) and "14" was fabricated. Both
-       removed 2026-06-14 per the Tier 1 strict-review pass.
-       ariaValue is set on the two values containing separators
-       (→ and ·) so screen readers say "from 444 to 6" and "BTS and
-       HYBE" instead of pronouncing the glyphs.  */
+    /* Four stats as a SCALING STORY, read left to right — a decade →
+       hundreds of songs → measured deep → explored wide. Reworked
+       2026-06-16: the earlier strip led with integrity/plumbing
+       (444→6 frozen cache, the BTS·HYBE Wikipedia renames), which
+       contradicts the discovery-first reframe. Those engineering facts
+       now live in detailEssay ¶3 + the decision cards, where they have
+       context; the strip's job is to convey the scale and depth of the
+       discovery. Every figure verified directly:
+         13  — 2013→2026 discography span
+         437 — songs with audio features (spotifyFeatures.ts)
+         7   — audio dimensions per song (SongFeatures, data.ts)
+         6   — interconnected view modes (MainPage.tsx) */
     stats: [
-      {
-        value: "444 → 6",
-        ariaValue: "from 444 to 6",
-        label: "API calls per refresh",
-      },
-      {
-        value: "BTS · HYBE",
-        ariaValue: "BTS and HYBE",
-        label: "Wikipedia article renames tracked",
-      },
-      {
-        value: "437",
-        label: "Songs with audio features",
-      },
+      { value: "13", label: "Years, one discography" },
+      { value: "437", label: "Songs fingerprinted" },
+      { value: "7", label: "Audio dimensions each" },
+      { value: "6", label: "Interconnected lenses" },
     ],
 
     /* Engineering decisions — marginalia on the detail page. Engineer's

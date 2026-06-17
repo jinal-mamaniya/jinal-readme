@@ -292,17 +292,15 @@ export function Showcase() {
           </div>
         </div>
 
-        {/* ===== STATS STRIP =====
-            Three hard numbers. Each one is a story by itself:
-            • 6 — the count that motivates "interconnected views"
-            • 444 → 6 — the frozen-cache engineering decision in two numbers
-            • 14 — validation script count signaling data-integrity discipline
-            Stacks on mobile, three columns at md+. Values in display weight,
-            labels in mono-meta. */}
+        {/* ===== STATS STRIP — the scaling story, rendered BIG =====
+            Four numbers that escalate left to right: a decade → hundreds
+            of songs → measured across 7 dimensions → explored 6 ways.
+            Oversized display numbers so the strip reads as a confident
+            headline, not a footnote. 2 columns on mobile, 4 at md+. */}
         <div className="grid grid-cols-12 gap-x-6 mb-12">
           <div className="col-span-12 lg:col-span-10 lg:col-start-3">
             <div
-              className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6 py-6 border-t border-b"
+              className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 py-8 border-t border-b"
               style={{ borderColor: "var(--color-border)" }}
             >
               {project.stats.map((stat) => (
@@ -311,17 +309,17 @@ export function Showcase() {
                     aria-label={stat.ariaValue}
                     style={{
                       fontFamily: "var(--font-sans)",
-                      fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                      fontSize: "clamp(2.75rem, 5vw, 4.25rem)",
                       fontWeight: 700,
-                      letterSpacing: "-0.03em",
-                      lineHeight: 1,
+                      letterSpacing: "-0.04em",
+                      lineHeight: 0.95,
                       color: "var(--color-foreground)",
                     }}
                   >
                     {stat.value}
                   </p>
                   <p
-                    className="font-mono-label mt-2"
+                    className="font-mono-label mt-3"
                     style={{ color: "var(--color-cool-meta)" }}
                   >
                     {stat.label}

@@ -233,9 +233,9 @@ export default function BtsEvolutionCaseStudy() {
           )}
         </figure>
 
-        {/* ===== 4. STATS STRIP ===== */}
+        {/* ===== 4. STATS STRIP — the scaling story, rendered big ===== */}
         <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8 py-8 border-t border-b mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-10 py-10 border-t border-b mb-16"
           style={{ borderColor: "var(--color-border)" }}
         >
           {project.stats.map((stat) => (
@@ -244,10 +244,10 @@ export default function BtsEvolutionCaseStudy() {
                 aria-label={stat.ariaValue}
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "clamp(2.5rem, 4.5vw, 4rem)",
+                  fontSize: "clamp(3rem, 5.5vw, 5rem)",
                   fontWeight: 700,
-                  letterSpacing: "-0.035em",
-                  lineHeight: 1,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 0.92,
                   color: "var(--color-foreground)",
                 }}
               >

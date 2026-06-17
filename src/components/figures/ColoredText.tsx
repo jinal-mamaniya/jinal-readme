@@ -47,16 +47,24 @@ export function ColoredText({ text }: ColoredTextProps) {
      clean text so the two systems compose (a colored keyword inside a bold
      phrase gets both color AND weight). */
   const boldRanges: { start: number; end: number }[] = [];
+  const accentRanges: { start: number; end: number }[] = [];
   let cleanText = "";
   {
-    const re = /\*\*([\s\S]+?)\*\*/g;
+    // **bold** -> weight emphasis.
+    // ++accent++ -> brand-accent (cobalt) emphasis for a key figure. Per
+    // rule #31, decorative emphasis is the brand accent's job alone and used
+    // sparingly — so this is NOT an atlas color and should be rare (e.g.,
+    // the single most important number in a paragraph).
+    const re = /(\*\*|\+\+)([\s\S]+?)\1/g;
     let last = 0;
     let m: RegExpExecArray | null;
     while ((m = re.exec(text)) !== null) {
       cleanText += text.slice(last, m.index);
       const start = cleanText.length;
-      cleanText += m[1];
-      boldRanges.push({ start, end: cleanText.length });
+      cleanText += m[2];
+      const range = { start, end: cleanText.length };
+      if (m[1] === "**") boldRanges.push(range);
+      else accentRanges.push(range);
       last = re.lastIndex;
     }
     cleanText += text.slice(last);
@@ -114,6 +122,10 @@ export function ColoredText({ text }: ColoredTextProps) {
     cuts.add(b.start);
     cuts.add(b.end);
   }
+  for (const acc of accentRanges) {
+    cuts.add(acc.start);
+    cuts.add(acc.end);
+  }
   const points = [...cuts].sort((a, b) => a - b);
 
   const children: React.ReactNode[] = [];
@@ -124,16 +136,24 @@ export function ColoredText({ text }: ColoredTextProps) {
     const slice = cleanText.slice(a, b);
     const dim = filtered.find((m) => m.start <= a && m.end >= b)?.dimension;
     const isBold = boldRanges.some((r) => r.start <= a && r.end >= b);
-    if (!dim && !isBold) {
+    const isAccent = accentRanges.some((r) => r.start <= a && r.end >= b);
+    if (!dim && !isBold && !isAccent) {
       children.push(slice);
       continue;
     }
+    // ++accent++ (brand cobalt) wins over a keyword dimension color — it's an
+    // explicit emphasis on a key figure, not a craft-dimension signal.
+    const color = isAccent
+      ? "var(--color-accent)"
+      : dim
+        ? `var(--color-atlas-${dim})`
+        : undefined;
     children.push(
       <span
         key={a}
         style={{
-          ...(dim ? { color: `var(--color-atlas-${dim})` } : {}),
-          fontWeight: isBold ? 700 : dim ? 500 : undefined,
+          ...(color ? { color } : {}),
+          fontWeight: isBold ? 700 : isAccent || dim ? 500 : undefined,
         }}
       >
         {slice}

@@ -27,8 +27,9 @@ export interface ProjectAnnotation {
 }
 
 /**
- * A "view" is one of the six interconnected experiences inside the live BTS
- * platform. Each renders as a cinematic spread on the detail page: large
+ * A "view" is one of the six experiences inside the live BTS platform
+ * (three of which share a live album selection). Each renders as a
+ * cinematic spread on the detail page: large
  * screenshot with numbered annotation overlays + engineering paragraph + live
  * deep-link + narrative thread to the next view.
  */
@@ -171,16 +172,19 @@ export const projects: Project[] = [
        direct re-study of the bts-evolution codebase: the earlier lede led
        with the data-integrity plumbing (frozen cache / Wikipedia
        versioning), which sells the foundation, not the product. The real
-       story is DISCOVERY — six interconnected lenses you can interrogate
-       down to the song. Punchy fragments + four concrete discoveries (one
-       per analytical lens: Sound Signature / Emotional Map / Concert
-       Evolution / Global Reach), closing on the interactive hook (pick an
-       album, all six views refocus — the selectedAlbum interconnection in
-       MainPage.tsx). Every figure verified directly: 437 songs +
+       story is DISCOVERY — six lenses you can interrogate down to the
+       song. Punchy fragments + four concrete discoveries (one per
+       analytical lens: Sound Signature / Emotional Map / Concert
+       Evolution / Global Reach), closing on the honest breadth hook
+       (six lenses, one verified discography). The earlier close claimed
+       "all six lenses turn to face it" — corrected 2026-06-16: only the
+       three timeline views (standard/signature/emotional) share the
+       selectedAlbum selection in MainPage.tsx; concert/global/creator
+       take no selectedAlbum. Every figure verified directly: 437 songs +
        seven-dimension features (spotifyFeatures.ts, data.ts). Rendered at
        a larger standout size in Showcase.tsx so it tempts the click. */
     teaserLede:
-      "One artist. Thirteen years. 437 songs — read six ways. What defines a track's sound. Where an era sits emotionally. Which songs survived every tour. How far a release really reached. Pick any album, and all six lenses turn to face it.",
+      "One artist. Thirteen years. 437 songs — read six ways. What defines a track's sound. Where an era sits emotionally. Which songs survived every tour. How far a release really reached. Six lenses on one verified discography.",
 
     /* Detail page essay — three beats, DISCOVERY-FIRST. Reworked
        2026-06-16 after re-reading the bts-evolution codebase directly
@@ -189,7 +193,9 @@ export const projects: Project[] = [
        the real story is the six-lens, song-level discovery surface,
        with the integrity engineering as the trustworthy foundation
        (P3), not the headline.
-       P1: WHAT it is — six lenses, song-level audio DNA, interconnected.
+       P1: WHAT it is — six lenses, song-level audio DNA; three share a
+           live selection (verified: only standard/signature/emotional in
+           MainPage.tsx, not all six).
        P2: HOW each lens works — the analytical depth.
        P3: WHY it's trustworthy — the spine.
        Also corrects a STALE claim: the old P3 said "120-point harmonic
@@ -204,7 +210,7 @@ export const projects: Project[] = [
        (SongJourneyMap.tsx), 3-angle 8-day impact (data.ts:48-56,
        ReleaseImpactGrouped.tsx:275). */
     detailEssay: [
-      "BTS Evolution reads a thirteen-year discography six different ways. Every one of 437 songs carries a seven-dimension audio fingerprint — energy, valence, danceability, and four more. Albums become coordinates in mood space and organic harmonic signatures; tours decompose into the songs that defined them; releases get measured for their global footprint. The six views aren't separate dashboards — they're lenses on one dataset: select an album in any of them and the rest re-focus on it.",
+      "BTS Evolution reads a thirteen-year discography six different ways. Every one of 437 songs carries a seven-dimension audio fingerprint — energy, valence, danceability, and four more. Albums become coordinates in mood space and organic harmonic signatures; tours decompose into the songs that defined them; releases get measured for their global footprint. The six views aren't separate dashboards — they're lenses on one dataset. Three of them share a live selection: pick an album in Discography, Sound Signature, or Emotional Map and its sound, mood, and tracklist all turn to face it, the timeline staying mounted across the switch.",
       "Sound Signature draws each album as a smooth curve through its six audio traits, then overlays a single song on top — same mapping for both, so where the song bulges past the album, that trait genuinely dominates the track. Emotional Map plots every album by valence and energy into four mood quadrants. Concert Evolution tracks not just which songs were played but where in the setlist they landed — the openers, the closers, the staples that survived every tour. Global Reach measures each release's Wikipedia impact across three separate angles — the artist, the genre, the label — over an eight-day window before and after, because a single blended number hides which audience actually moved.",
       "None of this holds if the numbers can't be trusted — and music data rarely is, straight from the source: release dates drift, Wikipedia renamed both the band and the label mid-history, audio features get faked. So the spine underneath is built to refuse that. A frozen cache pins every number. Wikipedia article-name versioning sends historical queries to the era-correct page. Audio features are cross-validated against an independent dataset and flagged when a value is only a thirty-second-clip estimate. Six confirmed lenses over one spine that labels its own uncertainty. This is the engineering I do when the brief is mine to choose.",
     ],
@@ -220,12 +226,12 @@ export const projects: Project[] = [
          13  — 2013→2026 discography span
          437 — songs with audio features (spotifyFeatures.ts)
          7   — audio dimensions per song (SongFeatures, data.ts)
-         6   — interconnected view modes (MainPage.tsx) */
+         6   — view modes (MainPage.tsx); 3 share live selection */
     stats: [
       { value: "13", label: "Years, one discography" },
       { value: "437", label: "Songs fingerprinted" },
       { value: "7", label: "Audio dimensions each" },
-      { value: "6", label: "Interconnected lenses" },
+      { value: "6", label: "Ways to read it" },
     ],
 
     /* Engineering decisions — marginalia on the detail page. Engineer's

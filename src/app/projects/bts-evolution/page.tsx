@@ -13,11 +13,11 @@ const project = projects.find((p) => p.slug === "bts-evolution");
 export const metadata: Metadata = {
   title: "BTS Evolution — Case Study — Jinal Mamaniya",
   description:
-    "A music-data platform engineered as queryable history. Six interconnected views, frozen-cache architecture, Wikipedia article-name versioning, 189-song UCLA-curated dataset.",
+    "A music-data platform engineered as queryable history. Six analytical views over one verified spine, frozen-cache architecture, Wikipedia article-name versioning, 437-song cross-validated dataset.",
   openGraph: {
     title: "BTS Evolution — Engineering a discography as queryable history.",
     description:
-      "Six interconnected views over one verified data spine. Engineering depth for a music-domain audience.",
+      "Six analytical views over one verified data spine. Engineering depth for a music-domain audience.",
     type: "article",
     url: "https://jinalmamaniya.com/projects/bts-evolution",
   },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BTS Evolution — Case Study",
     description:
-      "Engineering a discography as queryable history. Six interconnected views, verified data spine.",
+      "Engineering a discography as queryable history. Six analytical views, verified data spine.",
   },
 };
 

@@ -79,7 +79,7 @@ export function Showcase() {
             color: "var(--color-text-muted)",
           }}
         >
-          Six interconnected views, harmonic synthesis math, d3-force
+          Six analytical views, harmonic synthesis math, d3-force
           layouts. A standardized 3-angle impact methodology that holds
           across every release. The engineering I do when the constraints
           are mine to choose.

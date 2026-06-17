@@ -91,11 +91,11 @@
        judgment   = #1d4ed8 (cobalt — matches --color-accent)
        runtime    = #475569 (slate grey) */
   --color-atlas-discipline: oklch(50% 0.17 40);
-  --color-atlas-data: oklch(48% 0.08 180);
+  --color-atlas-data: oklch(48% 0.13 180);
   --color-atlas-ai: oklch(50% 0.1 220);
   --color-atlas-multiplier: oklch(48% 0.21 325);
   --color-atlas-judgment: var(--color-accent);
-  --color-atlas-runtime: oklch(45% 0.04 245);
+  --color-atlas-runtime: oklch(45% 0.1 245);
 
   /* ===== FONTS — Geist Sans + Geist Mono (loaded in layout.tsx) =====
      Per RESEARCH.md §2B: engineering-doc register requires custom font
@@ -227,10 +227,10 @@
      atlas-judgment NOT overridden here — it inherits via
      `var(--color-accent)` alias which already has its dark-mode value. */
   --color-atlas-discipline: oklch(75% 0.14 40);
-  --color-atlas-data: oklch(72% 0.08 180);
+  --color-atlas-data: oklch(72% 0.13 180);
   --color-atlas-ai: oklch(75% 0.1 220);
   --color-atlas-multiplier: oklch(72% 0.18 325);
-  --color-atlas-runtime: oklch(70% 0.03 245);
+  --color-atlas-runtime: oklch(70% 0.08 245);
 }
 
 /* Smooth theme transitions on the elements most likely to change.

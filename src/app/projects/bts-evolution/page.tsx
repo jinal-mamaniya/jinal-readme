@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import { DimensionalDot } from "@/components/ui/DimensionalDot";
 import { ColoredText } from "@/components/figures/ColoredText";
+import { SITE_URL } from "@/lib/site";
 
 /* The single project this page case-studies. If a future project warrants
    the same treatment, parameterize via [slug] route and pull from
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     description:
       "Six analytical views over one verified data spine. Engineering depth for a music-domain audience.",
     type: "article",
-    url: "https://jinalmamaniya.com/projects/bts-evolution",
+    url: `${SITE_URL}/projects/bts-evolution`,
   },
   twitter: {
     card: "summary_large_image",
@@ -34,18 +35,18 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://jinalmamaniya.com" },
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
     {
       "@type": "ListItem",
       position: 2,
       name: "Showcase",
-      item: "https://jinalmamaniya.com/#showcase",
+      item: `${SITE_URL}/#showcase`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "BTS Evolution",
-      item: "https://jinalmamaniya.com/projects/bts-evolution",
+      item: `${SITE_URL}/projects/bts-evolution`,
     },
   ],
 };

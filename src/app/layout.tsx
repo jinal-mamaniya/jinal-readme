@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 /* Custom font selection — Geist Sans + Geist Mono.
  * Per RESEARCH.md §2B: engineering-doc register (Stripe / Linear / Vercel)
@@ -23,18 +24,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   display: "swap",
 });
-
-/* Single source for absolute URLs (og:image, og:url, canonical). Must point
-   at a domain actually serving this build — otherwise social scrapers
-   (LinkedIn, X) hang resolving og:url and/or fetch the preview image from a
-   dead host. jinalmamaniya.com isn't attached yet, so resolve to Vercel's
-   production domain at build/runtime: VERCEL_PROJECT_PRODUCTION_URL is the
-   custom domain once one is attached, otherwise the project's *.vercel.app.
-   Falls back to the brand domain for local dev. Auto-upgrades to
-   jinalmamaniya.com the day it's attached — no code change needed. */
-const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "https://jinalmamaniya.com";
 
 export const metadata: Metadata = {
   title: "Jinal Mamaniya — README",

@@ -249,7 +249,7 @@ export default function BtsEvolutionCaseStudy() {
                   fontWeight: 700,
                   letterSpacing: "-0.04em",
                   lineHeight: 0.92,
-                  color: "var(--color-foreground)",
+                  color: "var(--color-accent)",
                 }}
               >
                 {stat.value}

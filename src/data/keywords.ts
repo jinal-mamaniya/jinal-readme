@@ -179,4 +179,32 @@ export const KEYWORDS: KeywordEntry[] = [
   { term: "business rules", dimension: "judgment" },
   { term: "test-script", dimension: "discipline" },
   { term: "DBA", dimension: "multiplier" },
+
+  /* ===== 2026-06-17 additions — BTS case-study detail page =====
+     Genuine CRAFT terms from the case study, gated to real dimensions so
+     the detail page joins the atlas color system (rule #6) without
+     decoration (rule #31). Deliberately EXCLUDES music/viz-domain words —
+     valence, energy, danceability, spline, Circumplex, Gantt, Cover River,
+     mood quadrants — those are domain data, not craft dimensions; coloring
+     them would be decorative. Bare "edge" is intentionally NOT a keyword
+     (it substring-matches "knowledge"). */
+  { term: "Netlify Blobs", dimension: "runtime" },
+  { term: "frozen cache", dimension: "runtime" },
+  { term: "d3-force", dimension: "runtime" },
+  { term: "cross-validated", dimension: "discipline" },
+
+  /* ===== 2026-06-17 — BTS lens names colored by craft dimension =====
+     SEMANTIC, not decorative (rule #31): each lens name refers to a
+     dimensioned view, so coloring it carries the SAME meaning as that
+     view's DimensionalDot on the detail page — it ties the essay prose to
+     the dimensional legend. Mapping matches the per-view `dimension`
+     assignments exactly. Case-sensitive: the PROPER-NOUN lens name colors
+     ("pick an album in Discography"), the lowercase common noun does not
+     ("a thirteen-year discography"). My Story is intentionally absent — it
+     carries no craft dimension (no dot either). */
+  { term: "Concert Evolution", dimension: "runtime" },
+  { term: "Sound Signature", dimension: "data" },
+  { term: "Emotional Map", dimension: "data" },
+  { term: "Global Reach", dimension: "discipline" },
+  { term: "Discography", dimension: "data" },
 ];

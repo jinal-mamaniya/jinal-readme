@@ -39,6 +39,29 @@ interface ColoredTextProps {
 }
 
 export function ColoredText({ text }: ColoredTextProps) {
+  /* Pass 1 — extract **bold** emphasis markers. Editorial weight-hierarchy
+     (RESEARCH.md §2D: "content hierarchy through size and weight"). Opt-in:
+     text with no `**` markers is unaffected, so chapter narratives that
+     don't use it render exactly as before. We strip the markers and record
+     bold ranges in CLEAN-text coordinates, then run keyword matching on the
+     clean text so the two systems compose (a colored keyword inside a bold
+     phrase gets both color AND weight). */
+  const boldRanges: { start: number; end: number }[] = [];
+  let cleanText = "";
+  {
+    const re = /\*\*([\s\S]+?)\*\*/g;
+    let last = 0;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      cleanText += text.slice(last, m.index);
+      const start = cleanText.length;
+      cleanText += m[1];
+      boldRanges.push({ start, end: cleanText.length });
+      last = re.lastIndex;
+    }
+    cleanText += text.slice(last);
+  }
+
   type Match = { start: number; end: number; dimension: AtlasDimension };
   const matches: Match[] = [];
   const matchedTerms = new Set<string>();
@@ -56,7 +79,7 @@ export function ColoredText({ text }: ColoredTextProps) {
       `(?<![A-Za-z0-9])${escapeRegExp(term)}(?![A-Za-z0-9])`,
       "g",
     );
-    const m = regex.exec(text);
+    const m = regex.exec(cleanText);
     if (m) {
       matches.push({
         start: m.index,
@@ -79,24 +102,43 @@ export function ColoredText({ text }: ColoredTextProps) {
     }
   }
 
-  /* Build React children — alternating plain-text and colored-span. */
-  const children: React.ReactNode[] = [];
-  let cursor = 0;
+  /* Build a unified set of segment boundaries from every keyword and bold
+     edge, then emit one span per run with the combined style. This lets
+     color (keyword) and weight (bold) overlap freely without nesting. */
+  const cuts = new Set<number>([0, cleanText.length]);
   for (const m of filtered) {
-    if (m.start > cursor) children.push(text.slice(cursor, m.start));
+    cuts.add(m.start);
+    cuts.add(m.end);
+  }
+  for (const b of boldRanges) {
+    cuts.add(b.start);
+    cuts.add(b.end);
+  }
+  const points = [...cuts].sort((a, b) => a - b);
+
+  const children: React.ReactNode[] = [];
+  for (let i = 0; i < points.length - 1; i++) {
+    const a = points[i];
+    const b = points[i + 1];
+    if (a === b) continue;
+    const slice = cleanText.slice(a, b);
+    const dim = filtered.find((m) => m.start <= a && m.end >= b)?.dimension;
+    const isBold = boldRanges.some((r) => r.start <= a && r.end >= b);
+    if (!dim && !isBold) {
+      children.push(slice);
+      continue;
+    }
     children.push(
       <span
-        key={m.start}
+        key={a}
         style={{
-          color: `var(--color-atlas-${m.dimension})`,
-          fontWeight: 500,
+          ...(dim ? { color: `var(--color-atlas-${dim})` } : {}),
+          fontWeight: isBold ? 700 : dim ? 500 : undefined,
         }}
       >
-        {text.slice(m.start, m.end)}
+        {slice}
       </span>,
     );
-    cursor = m.end;
   }
-  if (cursor < text.length) children.push(text.slice(cursor));
   return <>{children}</>;
 }

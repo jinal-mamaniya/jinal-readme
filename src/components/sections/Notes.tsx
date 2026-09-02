@@ -38,7 +38,7 @@ const SHARPEST_LINES: Record<string, string> = {
    Pull-quote left rule stays cobalt (--color-accent) so the brand signal
    doesn't fragment; only the number marker recolors. Per rule #31 these
    are semantic categorical tokens, not new brand accents. */
-const ESSAY_DIMENSION: Record<string, string> = {
+export const ESSAY_DIMENSION: Record<string, string> = {
   "why-i-stopped-caring-about-frameworks": "var(--color-atlas-judgment)",
   "the-real-cost-of-a-slow-query": "var(--color-atlas-runtime)",
   "mentoring-isnt-about-code-reviews": "var(--color-atlas-multiplier)",
